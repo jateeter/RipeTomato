@@ -1,0 +1,130 @@
+import { Event } from '../types/Event';
+
+export const mockEvents: Event[] = [
+  {
+    id: '1',
+    title: 'Farmer\'s Market',
+    description: 'Weekly farmer\'s market featuring local produce, crafts, and food vendors.',
+    startTime: new Date('2024-07-13T08:00:00'),
+    endTime: new Date('2024-07-13T12:00:00'),
+    location: 'Main Street Park',
+    category: 'community',
+    organizer: 'Idaho Community Association',
+    contact: 'info@idahocommunity.org',
+    isRecurring: true,
+    tags: ['food', 'local', 'outdoor']
+  },
+  {
+    id: '2',
+    title: 'Youth Soccer Game',
+    description: 'Idaho Eagles vs. Mountain View Lions - U-12 Division',
+    startTime: new Date('2024-07-13T10:00:00'),
+    endTime: new Date('2024-07-13T11:30:00'),
+    location: 'Community Sports Complex',
+    category: 'sports',
+    organizer: 'Idaho Youth Soccer League',
+    contact: '(208) 555-0123',
+    tags: ['youth', 'soccer', 'sports']
+  },
+  {
+    id: '3',
+    title: 'Art Gallery Opening',
+    description: 'Grand opening of the new local artist exhibition "Mountain Landscapes"',
+    startTime: new Date('2024-07-13T18:00:00'),
+    endTime: new Date('2024-07-13T21:00:00'),
+    location: 'Idaho Arts Center',
+    category: 'arts',
+    organizer: 'Idaho Arts Center',
+    contact: 'gallery@idahoarts.org',
+    website: 'https://idahoarts.org',
+    tags: ['art', 'exhibition', 'local artists']
+  },
+  {
+    id: '4',
+    title: 'Business Networking Breakfast',
+    description: 'Monthly networking event for local business owners and entrepreneurs',
+    startTime: new Date('2024-07-14T07:30:00'),
+    endTime: new Date('2024-07-14T09:00:00'),
+    location: 'Chamber of Commerce',
+    category: 'business',
+    organizer: 'Idaho Chamber of Commerce',
+    contact: 'networking@idahochamber.com',
+    isRecurring: true,
+    tags: ['business', 'networking', 'breakfast']
+  },
+  {
+    id: '5',
+    title: 'Community Library Story Time',
+    description: 'Story time for children ages 3-7 with local librarian Sarah Johnson',
+    startTime: new Date('2024-07-15T10:00:00'),
+    endTime: new Date('2024-07-15T11:00:00'),
+    location: 'Idaho Community Library',
+    category: 'education',
+    organizer: 'Idaho Community Library',
+    contact: 'children@idaholibrary.org',
+    isRecurring: true,
+    tags: ['children', 'reading', 'education']
+  },
+  {
+    id: '6',
+    title: 'Family Movie Night',
+    description: 'Outdoor movie screening of "The Incredibles" - bring your blankets!',
+    startTime: new Date('2024-07-16T20:00:00'),
+    endTime: new Date('2024-07-16T22:30:00'),
+    location: 'Riverside Park',
+    category: 'family',
+    organizer: 'Idaho Parks & Recreation',
+    contact: 'events@idahoparks.gov',
+    tags: ['family', 'movie', 'outdoor', 'free']
+  },
+  {
+    id: '7',
+    title: 'Food Truck Festival',
+    description: 'Local food trucks gathering with live music and family activities',
+    startTime: new Date('2024-07-17T16:00:00'),
+    endTime: new Date('2024-07-17T21:00:00'),
+    location: 'Downtown Square',
+    category: 'food',
+    organizer: 'Idaho Downtown Alliance',
+    contact: 'events@idahodowntown.org',
+    website: 'https://idahodowntown.org/events',
+    tags: ['food', 'music', 'family', 'downtown']
+  },
+  {
+    id: '8',
+    title: 'Senior Center Bingo',
+    description: 'Weekly bingo game with prizes and refreshments',
+    startTime: new Date('2024-07-18T14:00:00'),
+    endTime: new Date('2024-07-18T16:00:00'),
+    location: 'Idaho Senior Center',
+    category: 'community',
+    organizer: 'Idaho Senior Center',
+    contact: 'activities@idahosenior.org',
+    isRecurring: true,
+    tags: ['seniors', 'bingo', 'community']
+  },
+  {
+    id: '9',
+    title: 'High School Drama Production',
+    description: 'Idaho High School presents "Our Town" - a classic American play',
+    startTime: new Date('2024-07-19T19:00:00'),
+    endTime: new Date('2024-07-19T21:30:00'),
+    location: 'Idaho High School Auditorium',
+    category: 'arts',
+    organizer: 'Idaho High School Drama Club',
+    contact: 'drama@idahohigh.edu',
+    tags: ['theater', 'high school', 'drama']
+  },
+  {
+    id: '10',
+    title: 'Community Garden Workshop',
+    description: 'Learn about sustainable gardening practices with Master Gardener volunteers',
+    startTime: new Date('2024-07-20T09:00:00'),
+    endTime: new Date('2024-07-20T11:00:00'),
+    location: 'Idaho Community Garden',
+    category: 'education',
+    organizer: 'Idaho Master Gardeners',
+    contact: 'gardening@idahoextension.org',
+    tags: ['gardening', 'sustainability', 'education']
+  }
+];
