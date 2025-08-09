@@ -1,16 +1,21 @@
 import React, { useState, useRef } from 'react';
 import { BedReservation, CheckInSession } from '../types/Shelter';
+import { WalletCheckInSession, QRVerificationCode } from '../types/WalletVerification';
+import { walletVerificationService } from '../services/walletVerificationService';
+import { unifiedDataOwnershipService } from '../services/unifiedDataOwnershipService';
 
 interface CheckInVerificationProps {
   reservation: BedReservation;
   onCheckInComplete: (session: CheckInSession) => void;
   onCancel: () => void;
+  staffId?: string;
 }
 
 const CheckInVerification: React.FC<CheckInVerificationProps> = ({
   reservation,
   onCheckInComplete,
-  onCancel
+  onCancel,
+  staffId
 }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [session, setSession] = useState<CheckInSession>({
@@ -28,6 +33,12 @@ const CheckInVerification: React.FC<CheckInVerificationProps> = ({
     }
   });
 
+  // Wallet verification state
+  const [walletSession, setWalletSession] = useState<WalletCheckInSession | null>(null);
+  const [qrVerificationCode, setQrVerificationCode] = useState<QRVerificationCode | null>(null);
+  const [walletVerificationEnabled, setWalletVerificationEnabled] = useState(false);
+  const [showQrScanner, setShowQrScanner] = useState(false);
+
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [notes, setNotes] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -36,8 +47,8 @@ const CheckInVerification: React.FC<CheckInVerificationProps> = ({
     {
       id: 'identity',
       title: 'Identity Verification',
-      description: 'Verify client identity with ID or photo',
-      icon: '🪪'
+      description: walletVerificationEnabled ? 'Verify identity using digital wallet QR code' : 'Verify client identity with ID or photo',
+      icon: walletVerificationEnabled ? '📱' : '🪪'
     },
     {
       id: 'photo',
@@ -73,6 +84,71 @@ const CheckInVerification: React.FC<CheckInVerificationProps> = ({
         [step]: value
       }
     }));
+  };
+
+  // Check if client has unified data ownership (wallet verification available)
+  React.useEffect(() => {
+    const checkWalletAvailability = async () => {
+      try {
+        const owner = await unifiedDataOwnershipService.getDataOwner(reservation.clientId);
+        if (owner && (owner.walletAccess.passes.length > 0 || owner.hatVault.status === 'active')) {
+          setWalletVerificationEnabled(true);
+        }
+      } catch (error) {
+        console.log('Wallet verification not available for client:', error);
+        setWalletVerificationEnabled(false);
+      }
+    };
+    
+    checkWalletAvailability();
+  }, [reservation.clientId]);
+
+  // Handle QR code scanning
+  const handleQrCodeScan = async (qrData: string) => {
+    try {
+      const validationResult = await walletVerificationService.validateQRCode(qrData);
+      
+      if (validationResult.isValid && validationResult.qrCode) {
+        setQrVerificationCode(validationResult.qrCode);
+        
+        // Start wallet verification session
+        const walletSession = await walletVerificationService.startVerificationSession(
+          validationResult.qrCode.codeId,
+          staffId
+        );
+        
+        setWalletSession(walletSession);
+        setShowQrScanner(false);
+        
+        // Mark identity as verified if wallet verification succeeds
+        setTimeout(async () => {
+          try {
+            const finalResult = await walletVerificationService.completeVerification(walletSession.sessionId);
+            if (finalResult.overallStatus === 'verified') {
+              updateVerificationStep('identityVerified', true);
+            }
+          } catch (error) {
+            console.error('Wallet verification failed:', error);
+          }
+        }, 3000);
+        
+      } else {
+        alert(validationResult.errorMessage || 'Invalid QR code');
+      }
+    } catch (error) {
+      console.error('QR code scanning failed:', error);
+      alert('Failed to scan QR code. Please try again.');
+    }
+  };
+
+  const enableWalletVerification = () => {
+    setWalletVerificationEnabled(true);
+    setShowQrScanner(true);
+  };
+
+  const useTraditionalVerification = () => {
+    setWalletVerificationEnabled(false);
+    setShowQrScanner(false);
   };
 
   const handlePhotoCapture = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,25 +216,122 @@ const CheckInVerification: React.FC<CheckInVerificationProps> = ({
       case 'identity':
         return (
           <div className="space-y-4">
-            <p className="text-gray-600">Please verify the client's identity using one of the following methods:</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button
-                onClick={() => handleStepComplete('identity')}
-                className="p-4 border-2 border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors"
-              >
-                <div className="text-2xl mb-2">🪪</div>
-                <div className="font-medium">Government ID</div>
-                <div className="text-sm text-gray-500">Driver's license, state ID, etc.</div>
-              </button>
-              <button
-                onClick={() => handleStepComplete('identity')}
-                className="p-4 border-2 border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors"
-              >
-                <div className="text-2xl mb-2">👤</div>
-                <div className="font-medium">Staff Recognition</div>
-                <div className="text-sm text-gray-500">Staff member recognizes client</div>
-              </button>
-            </div>
+            {/* Wallet verification option */}
+            {walletVerificationEnabled && !showQrScanner && !walletSession && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                <div className="flex items-center space-x-3">
+                  <div className="text-2xl">📱</div>
+                  <div>
+                    <h3 className="font-medium text-blue-900">Digital Wallet Verification Available</h3>
+                    <p className="text-sm text-blue-700">This client has unified data ownership with wallet passes</p>
+                  </div>
+                </div>
+                <button
+                  onClick={enableWalletVerification}
+                  className="mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Use Wallet Verification
+                </button>
+              </div>
+            )}
+
+            {/* QR Scanner */}
+            {showQrScanner && (
+              <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                <div className="text-6xl mb-4">📱</div>
+                <h3 className="text-lg font-semibold mb-2">Scan Client's QR Code</h3>
+                <p className="text-gray-600 mb-4">
+                  Ask the client to show their verification QR code from their wallet app
+                </p>
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder="Scan QR code or paste QR data here"
+                    className="w-full border border-gray-300 rounded-md px-3 py-2"
+                    onPaste={(e) => {
+                      setTimeout(() => {
+                        const value = (e.target as HTMLInputElement).value;
+                        if (value) {
+                          handleQrCodeScan(value);
+                        }
+                      }, 100);
+                    }}
+                  />
+                  <button
+                    onClick={useTraditionalVerification}
+                    className="text-gray-600 hover:text-gray-800 underline"
+                  >
+                    Use traditional verification instead
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Wallet verification in progress */}
+            {walletSession && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="text-2xl">🔍</div>
+                  <div>
+                    <h3 className="font-medium text-green-900">Wallet Verification in Progress</h3>
+                    <p className="text-sm text-green-700">Verifying identity through multiple wallet methods...</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {walletSession.verificationSteps.map((step, index) => (
+                    <div key={step.stepId} className="flex items-center text-sm">
+                      <div className={`w-4 h-4 rounded-full mr-3 ${
+                        step.status === 'completed' ? 'bg-green-500' :
+                        step.status === 'in_progress' ? 'bg-blue-500 animate-pulse' :
+                        step.status === 'failed' ? 'bg-red-500' :
+                        'bg-gray-300'
+                      }`}></div>
+                      <span className={
+                        step.status === 'completed' ? 'text-green-700' :
+                        step.status === 'in_progress' ? 'text-blue-700' :
+                        step.status === 'failed' ? 'text-red-700' :
+                        'text-gray-500'
+                      }>
+                        {step.stepName}
+                      </span>
+                      {step.status === 'completed' && (
+                        <span className="ml-2 text-green-600">✓</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {walletSession.finalVerification.overallStatus === 'verified' && (
+                  <div className="mt-3 p-2 bg-green-100 rounded text-sm text-green-800">
+                    ✅ Identity verified with {walletSession.finalVerification.confidenceScore}% confidence
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Traditional verification methods */}
+            {!walletVerificationEnabled && !showQrScanner && !walletSession && (
+              <div>
+                <p className="text-gray-600 mb-4">Please verify the client's identity using one of the following methods:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <button
+                    onClick={() => handleStepComplete('identity')}
+                    className="p-4 border-2 border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors"
+                  >
+                    <div className="text-2xl mb-2">🪪</div>
+                    <div className="font-medium">Government ID</div>
+                    <div className="text-sm text-gray-500">Driver's license, state ID, etc.</div>
+                  </button>
+                  <button
+                    onClick={() => handleStepComplete('identity')}
+                    className="p-4 border-2 border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors"
+                  >
+                    <div className="text-2xl mb-2">👤</div>
+                    <div className="font-medium">Staff Recognition</div>
+                    <div className="text-sm text-gray-500">Staff member recognizes client</div>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         );
 
