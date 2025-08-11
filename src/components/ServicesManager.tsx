@@ -25,6 +25,9 @@ import { HMISFacility, hmisAPIService } from '../services/hmisAPIService';
 import { PersonRegistrationModal, PersonType, PersonRegistrationData } from './PersonRegistrationModal';
 import { solidPodService } from '../services/solidPodService';
 import { solidAuthService } from '../services/solidAuthService';
+import { OpenMapsComponent } from './OpenMapsComponent';
+import { ShelterList } from './ShelterList';
+import { shelterDataService, ShelterFacility } from '../services/shelterDataService';
 
 interface ServicesManagerProps {
   managerId: string;
@@ -49,7 +52,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
 }) => {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'staff' | 'resources' | 'clients' | 'reports' | 'alerts' | 'facilities' | 'configuration'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'staff' | 'resources' | 'clients' | 'reports' | 'alerts' | 'facilities' | 'configuration' | 'shelters'>('overview');
   const [selectedTimeRange, setSelectedTimeRange] = useState<'today' | 'week' | 'month'>('today');
 
   // Configuration state
@@ -105,6 +108,12 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
     managers: []
   });
 
+  // Shelter management state
+  const [shelters, setShelters] = useState<ShelterFacility[]>([]);
+  const [selectedShelter, setSelectedShelter] = useState<ShelterFacility | null>(null);
+  const [shelterViewMode, setShelterViewMode] = useState<'list' | 'map'>('list');
+  const [spatialNavigationEnabled, setSpatialNavigationEnabled] = useState(true);
+
   useEffect(() => {
     loadDashboardData();
     
@@ -124,6 +133,13 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
   useEffect(() => {
     if (activeTab === 'configuration') {
       loadRegisteredPersons();
+    }
+  }, [activeTab]);
+
+  // Load shelter data when shelters tab is active
+  useEffect(() => {
+    if (activeTab === 'shelters') {
+      loadShelterData();
     }
   }, [activeTab]);
 
@@ -221,6 +237,23 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
       });
     } catch (error) {
       console.error('Failed to load registered persons:', error);
+    }
+  };
+
+  const loadShelterData = async () => {
+    try {
+      console.log('Loading shelter data with spatial navigation...');
+      
+      // Load shelters from the shelter data service
+      const shelterData = await shelterDataService.getAllShelters();
+      setShelters(shelterData);
+      
+      console.log('Shelter data loaded:', {
+        count: shelterData.length,
+        spatialNavigation: spatialNavigationEnabled
+      });
+    } catch (error) {
+      console.error('Failed to load shelter data:', error);
     }
   };
 
@@ -574,6 +607,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
               { key: 'staff', label: 'Staff', icon: '👥' },
               { key: 'resources', label: 'Resources', icon: '📦' },
               { key: 'clients', label: 'Clients', icon: '👤' },
+              { key: 'shelters', label: 'Shelter Services', icon: '🏠' },
               { key: 'facilities', label: 'Facilities Map', icon: '🗺️' },
               { key: 'reports', label: 'Reports', icon: '📈' },
               { key: 'alerts', label: `Alerts (${dashboardData?.alerts.filter(a => !a.acknowledgedAt).length || 0})`, icon: '🚨' },
@@ -1170,6 +1204,134 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                   <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
                     <div className="font-medium text-indigo-600">📋 Data Export</div>
                     <div className="text-sm text-gray-600 mt-1">Export system configuration</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'shelters' && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold flex items-center">
+                  <span className="mr-2">🏠</span>
+                  Shelter Services Management
+                </h3>
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setShelterViewMode('list')}
+                      className={`px-3 py-1 rounded ${
+                        shelterViewMode === 'list'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      📋 List View
+                    </button>
+                    <button
+                      onClick={() => setShelterViewMode('map')}
+                      className={`px-3 py-1 rounded ${
+                        shelterViewMode === 'map'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      🗺️ Map View
+                    </button>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <label className="flex items-center text-sm">
+                      <input
+                        type="checkbox"
+                        checked={spatialNavigationEnabled}
+                        onChange={(e) => setSpatialNavigationEnabled(e.target.checked)}
+                        className="mr-2"
+                      />
+                      Spatial Navigation
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Shelter Content */}
+              {shelterViewMode === 'list' ? (
+                <ShelterList
+                  userRole="manager"
+                  showFilters={true}
+                  allowSelection={true}
+                  onShelterSelect={setSelectedShelter}
+                  maxHeight="700px"
+                  enableExport={true}
+                />
+              ) : (
+                <div className="space-y-4">
+                  <OpenMapsComponent
+                    shelters={shelters}
+                    onShelterSelect={setSelectedShelter}
+                    showUtilizationPopups={true}
+                    userRole="manager"
+                    enableSpatialNavigation={spatialNavigationEnabled}
+                    height="600px"
+                    center={{ lat: 45.515, lng: -122.65 }}
+                    zoom={12}
+                  />
+                  
+                  {selectedShelter && (
+                    <div className="bg-white border rounded-lg p-4">
+                      <h4 className="font-semibold mb-2">Selected Shelter Details</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div>
+                          <div className="font-medium">{selectedShelter.name}</div>
+                          <div className="text-gray-600">{selectedShelter.address.street}</div>
+                          <div className="text-gray-600">{selectedShelter.address.city}, {selectedShelter.address.state}</div>
+                        </div>
+                        <div>
+                          <div className="font-medium">Capacity & Utilization</div>
+                          <div className="text-gray-600">Total: {selectedShelter.capacity.total}</div>
+                          <div className="text-gray-600">
+                            Occupied: {selectedShelter.currentUtilization.occupied} 
+                            ({Math.round(selectedShelter.currentUtilization.utilizationRate * 100)}%)
+                          </div>
+                          <div className="text-gray-600">Available: {selectedShelter.currentUtilization.available}</div>
+                        </div>
+                        <div>
+                          <div className="font-medium">Services & Demographics</div>
+                          <div className="text-gray-600">Type: {selectedShelter.type}</div>
+                          <div className="text-gray-600">
+                            Serves: {selectedShelter.demographics.acceptedPopulations.join(', ')}
+                          </div>
+                          <div className="text-gray-600">
+                            Services: {selectedShelter.services.slice(0, 2).join(', ')}
+                            {selectedShelter.services.length > 2 && ` +${selectedShelter.services.length - 2} more`}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              {/* Shelter Management Actions */}
+              <div className="bg-gray-50 border rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-medium">Shelter Management Actions</h4>
+                  <div className="text-sm text-gray-600">
+                    Manager Access • Spatial Navigation: {spatialNavigationEnabled ? 'Enabled' : 'Disabled'}
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                  <button className="p-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+                    📊 View Utilization Analytics
+                  </button>
+                  <button className="p-3 bg-green-600 text-white rounded hover:bg-green-700 text-sm">
+                    🗺️ Export Facility Data
+                  </button>
+                  <button className="p-3 bg-purple-600 text-white rounded hover:bg-purple-700 text-sm">
+                    📱 Generate QR Codes
+                  </button>
+                  <button className="p-3 bg-orange-600 text-white rounded hover:bg-orange-700 text-sm">
+                    ⚠️ Manage Alerts
                   </button>
                 </div>
               </div>
