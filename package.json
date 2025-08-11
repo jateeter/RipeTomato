@@ -15,6 +15,7 @@
     "@twilio/voice-sdk": "^2.15.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.126",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/uuid": "^10.0.0",
@@ -22,6 +23,7 @@
     "date-fns": "^4.1.0",
     "google-auth-library": "^10.2.1",
     "googleapis": "^154.1.0",
+    "qrcode": "^1.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
@@ -34,7 +36,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx --max-warnings 100",
+    "agent:health": "node scripts/external-agent.js health",
+    "agent:build": "node scripts/external-agent.js build",
+    "agent:test": "node scripts/external-agent.js test",
+    "agent:status": "node scripts/external-agent.js status",
+    "agent:info": "node scripts/external-agent.js info"
   },
   "eslintConfig": {
     "extends": [
