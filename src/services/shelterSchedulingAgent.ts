@@ -154,8 +154,8 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
     const now = new Date();
     
     // Check for check-in due events
-    for (const [, reservation] of this.bedReservations.entries()) {
-      if (reservation.status === 'confirmed' && reservation.checkInTime) {
+    for (const reservation of Array.from(this.bedReservations.values())) {
+      if (reservation.status === 'reserved' && reservation.checkInTime) {
         const checkInTime = new Date(reservation.checkInTime);
         const timeDiff = checkInTime.getTime() - now.getTime();
         const hoursUntilCheckIn = timeDiff / (1000 * 60 * 60);
@@ -166,7 +166,7 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
             bedReservationId: reservation.id,
             clientId: reservation.clientId,
             checkInTime: checkInTime.toISOString(),
-            location: `Bed ${reservation.bedNumber}`
+            location: `Bed ID: ${reservation.bedId}`
           });
         }
         
@@ -176,7 +176,7 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
             bedReservationId: reservation.id,
             clientId: reservation.clientId,
             overdueMinutes: Math.abs(Math.floor(hoursUntilCheckIn * 60)),
-            location: `Bed ${reservation.bedNumber}`
+            location: `Bed ID: ${reservation.bedId}`
           });
         }
       }
@@ -199,8 +199,8 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
     }
 
     // Check for no-shows (2+ hours past check-in with no contact)
-    for (const [, reservation] of this.bedReservations.entries()) {
-      if (reservation.status === 'confirmed' && reservation.checkInTime) {
+    for (const reservation of Array.from(this.bedReservations.values())) {
+      if (reservation.status === 'reserved' && reservation.checkInTime) {
         const checkInTime = new Date(reservation.checkInTime);
         const hoursOverdue = (now.getTime() - checkInTime.getTime()) / (1000 * 60 * 60);
         
@@ -447,8 +447,8 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
           return client ? `${client.firstName} ${client.lastName}` : 'Unknown Client';
         }
         return 'N/A';
-      case 'bedNumber':
-        return event.data.bedNumber || event.data.location || 'TBD';
+      case 'bedId':
+        return event.data.bedId || event.data.location || 'TBD';
       case 'checkInTime':
         return event.data.checkInTime ? new Date(event.data.checkInTime).toLocaleString() : 'TBD';
       case 'availableBeds':
@@ -553,8 +553,8 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
           templateId: uuidv4(),
           eventType: 'check_in_due',
           channel: 'sms',
-          message: 'Hi {{clientName}}, your check-in at Idaho Shelter is scheduled for {{checkInTime}} at {{bedNumber}}. Please arrive on time.',
-          variables: ['clientName', 'checkInTime', 'bedNumber'],
+          message: 'Hi {{clientName}}, your check-in at Idaho Shelter is scheduled for {{checkInTime}} at {{bedId}}. Please arrive on time.',
+          variables: ['clientName', 'checkInTime', 'bedId'],
           priority: 'medium'
         },
         {
@@ -569,8 +569,8 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
           templateId: uuidv4(),
           eventType: 'check_in_overdue',
           channel: 'sms',
-          message: 'Check-in overdue for {{clientName}} at {{bedNumber}}. Scheduled {{checkInTime}}. Please contact client or update reservation.',
-          variables: ['clientName', 'bedNumber', 'checkInTime'],
+          message: 'Check-in overdue for {{clientName}} at {{bedId}}. Scheduled {{checkInTime}}. Please contact client or update reservation.',
+          variables: ['clientName', 'bedId', 'checkInTime'],
           priority: 'high'
         }
       ],
@@ -654,7 +654,7 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
     this.addEvent('bed_reservation_created', 'medium', {
       bedReservationId: reservation.id,
       clientId: reservation.clientId,
-      bedNumber: reservation.bedNumber,
+      bedId: reservation.bedId,
       checkInTime: reservation.checkInTime?.toISOString()
     });
   }

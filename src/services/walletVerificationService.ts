@@ -725,7 +725,7 @@ class WalletVerificationServiceImpl implements WalletVerificationService {
         {
           stepNumber: 1,
           instruction: 'Select your preferred wallet for verification',
-          action: 'wallet_selection',
+          action: 'open_wallet',
           expectedDuration: 30,
           icon: '📱',
           isCompleted: false
@@ -733,7 +733,7 @@ class WalletVerificationServiceImpl implements WalletVerificationService {
         {
           stepNumber: 2,
           instruction: 'Generate your verification QR code',
-          action: 'generate_qr',
+          action: 'show_screen',
           expectedDuration: 15,
           icon: '🔗',
           isCompleted: false
