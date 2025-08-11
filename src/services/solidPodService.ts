@@ -14,6 +14,8 @@ import {
 } from '../types/CommunityServices';
 import { UnifiedDataOwner } from '../types/UnifiedDataOwnership';
 import { unifiedDataOwnershipService } from './unifiedDataOwnershipService';
+import { PersonRegistrationData } from '../components/PersonRegistrationModal';
+import { solidAuthService } from './solidAuthService';
 
 interface DocumentMetadata {
   documentId: string;
@@ -694,6 +696,271 @@ class SolidPodDocumentService {
     }
 
     return analytics;
+  }
+
+  /**
+   * Store person registration data in Solid Pod
+   */
+  async storePersonData(personData: PersonRegistrationData): Promise<boolean> {
+    try {
+      const sessionInfo = solidAuthService.getSessionInfo();
+      if (!sessionInfo.isLoggedIn) {
+        throw new Error('Not authenticated with Solid Pod');
+      }
+
+      // Create a secure container for person data
+      const containerId = `person_${personData.role}_${Date.now()}`;
+      const solidPodUrl = `${sessionInfo.webId}/private/shelter/${containerId}/`;
+
+      // Structure the data with privacy levels
+      const structuredData = {
+        // Public information (minimal)
+        public: {
+          firstName: personData.firstName,
+          role: personData.role,
+          active: true
+        },
+        
+        // Restricted information (staff and managers can see)
+        restricted: {
+          lastName: personData.lastName,
+          email: personData.email,
+          phone: personData.phone,
+          department: personData.department,
+          position: personData.position
+        },
+        
+        // Confidential information (case managers and authorized staff)
+        confidential: {
+          dateOfBirth: personData.dateOfBirth,
+          address: personData.address,
+          emergencyContact: personData.emergencyContact,
+          startDate: personData.startDate
+        },
+        
+        // Sensitive information (medical staff and supervisors only)
+        sensitive: {
+          medicalNotes: personData.medicalNotes,
+          behavioralNotes: personData.behavioralNotes,
+          restrictions: personData.restrictions,
+          preferences: {
+            bedType: personData.preferredBedType
+          }
+        },
+        
+        // Metadata
+        metadata: {
+          id: personData.id || `${personData.role}_${Date.now()}`,
+          registrationDate: personData.registrationDate || new Date().toISOString(),
+          solidPodUrl,
+          lastUpdated: new Date().toISOString(),
+          version: '1.0',
+          dataSource: 'registration_form'
+        },
+        
+        // Consent records
+        consent: {
+          consentGiven: personData.consentGiven,
+          consentDate: personData.consentDate,
+          privacyAgreement: personData.privacyAgreement,
+          dataRetentionPeriod: personData.dataRetentionPeriod,
+          consentEvidence: {
+            method: 'web_form',
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent
+          }
+        }
+      };
+
+      // In a real implementation, this would use the Solid Pod client to store data
+      // For now, we'll simulate the storage and log the action
+      console.log(`📁 Storing person data in Solid Pod: ${solidPodUrl}`);
+      console.log(`🔐 Data structure:`, {
+        containerId,
+        dataTypes: Object.keys(structuredData),
+        privacyLevels: ['public', 'restricted', 'confidential', 'sensitive']
+      });
+
+      // Store in local cache for development
+      const storageKey = `solidpod_person_${personData.role}_${personData.id || Date.now()}`;
+      localStorage.setItem(storageKey, JSON.stringify(structuredData));
+
+      // Update person registry
+      await this.updatePersonRegistry(personData.role, personData.id || structuredData.metadata.id, {
+        solidPodUrl,
+        lastUpdated: new Date(),
+        active: true
+      });
+
+      return true;
+    } catch (error) {
+      console.error('Failed to store person data in Solid Pod:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Retrieve person data from Solid Pod
+   */
+  async getPersonData(personId: string, requestingRole?: string): Promise<any> {
+    try {
+      const sessionInfo = solidAuthService.getSessionInfo();
+      if (!sessionInfo.isLoggedIn) {
+        throw new Error('Not authenticated with Solid Pod');
+      }
+
+      // Try to find in local storage first (development)
+      const storageKeys = Object.keys(localStorage).filter(key => 
+        key.startsWith('solidpod_person_') && key.includes(personId)
+      );
+      
+      if (storageKeys.length === 0) {
+        return null;
+      }
+
+      const storedData = JSON.parse(localStorage.getItem(storageKeys[0]) || '{}');
+      
+      // Apply privacy filtering based on requesting role
+      return this.filterPersonDataByRole(storedData, requestingRole);
+    } catch (error) {
+      console.error('Failed to retrieve person data from Solid Pod:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Update person registry
+   */
+  private async updatePersonRegistry(role: string, personId: string, updates: any): Promise<void> {
+    const registryKey = `solidpod_registry_${role}`;
+    const registry = JSON.parse(localStorage.getItem(registryKey) || '{}');
+    
+    registry[personId] = {
+      ...registry[personId],
+      ...updates,
+      lastUpdated: new Date().toISOString()
+    };
+    
+    localStorage.setItem(registryKey, JSON.stringify(registry));
+  }
+
+  /**
+   * Filter person data based on requesting role and permissions
+   */
+  private filterPersonDataByRole(data: any, requestingRole?: string): any {
+    const filteredData = { ...data.public };
+
+    // Apply role-based access control
+    switch (requestingRole) {
+      case 'manager':
+      case 'supervisor':
+        // Managers can see all data except sensitive medical info
+        Object.assign(filteredData, data.restricted, data.confidential);
+        break;
+        
+      case 'staff':
+      case 'case_manager':
+        // Staff can see restricted and some confidential data
+        Object.assign(filteredData, data.restricted);
+        if (data.confidential) {
+          filteredData.emergencyContact = data.confidential.emergencyContact;
+        }
+        break;
+        
+      case 'medical_staff':
+        // Medical staff can see medical information
+        Object.assign(filteredData, data.restricted, data.confidential, data.sensitive);
+        break;
+        
+      default:
+        // Default to public information only
+        break;
+    }
+
+    // Always include metadata for authorized users
+    if (requestingRole) {
+      filteredData.metadata = data.metadata;
+      filteredData.consent = data.consent;
+    }
+
+    return filteredData;
+  }
+
+  /**
+   * Get all registered persons by role
+   */
+  async getPersonsByRole(role: PersonRegistrationData['role']): Promise<any[]> {
+    try {
+      const registryKey = `solidpod_registry_${role}`;
+      const registry = JSON.parse(localStorage.getItem(registryKey) || '{}');
+      
+      const persons: any[] = [];
+      for (const [personId, info] of Object.entries(registry)) {
+        const personData = await this.getPersonData(personId, 'manager'); // Manager level access for listing
+        if (personData && typeof info === 'object' && info !== null) {
+          persons.push({
+            ...personData,
+            ...(info as any),
+            id: personId
+          });
+        }
+      }
+      
+      return persons.sort((a, b) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime());
+    } catch (error) {
+      console.error(`Failed to get persons by role ${role}:`, error);
+      return [];
+    }
+  }
+
+  /**
+   * Update Solid Pod configuration persistence
+   */
+  async saveSolidConfiguration(config: {
+    webId: string;
+    provider: string;
+    connected: boolean;
+    lastConnected: Date;
+  }): Promise<void> {
+    try {
+      const configData = {
+        ...config,
+        persistedAt: new Date().toISOString(),
+        version: '1.0'
+      };
+      
+      // Store in persistent storage
+      localStorage.setItem('solidpod_config', JSON.stringify(configData));
+      
+      console.log('💾 Solid Pod configuration saved:', configData);
+    } catch (error) {
+      console.error('Failed to save Solid Pod configuration:', error);
+    }
+  }
+
+  /**
+   * Load persisted Solid Pod configuration
+   */
+  async loadSolidConfiguration(): Promise<any> {
+    try {
+      const storedConfig = localStorage.getItem('solidpod_config');
+      if (storedConfig) {
+        const config = JSON.parse(storedConfig);
+        console.log('📂 Loaded persisted Solid Pod configuration:', config);
+        return config;
+      }
+      return null;
+    } catch (error) {
+      console.error('Failed to load Solid Pod configuration:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Check if Solid Pod configuration is persistent
+   */
+  hasPersistentConfiguration(): boolean {
+    return localStorage.getItem('solidpod_config') !== null;
   }
 
   // Private helper methods

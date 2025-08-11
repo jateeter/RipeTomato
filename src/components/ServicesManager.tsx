@@ -22,6 +22,9 @@ import {
 } from '../types/CommunityServices';
 import { FacilitiesMap } from './FacilitiesMap';
 import { HMISFacility, hmisAPIService } from '../services/hmisAPIService';
+import { PersonRegistrationModal, PersonType, PersonRegistrationData } from './PersonRegistrationModal';
+import { solidPodService } from '../services/solidPodService';
+import { solidAuthService } from '../services/solidAuthService';
 
 interface ServicesManagerProps {
   managerId: string;
@@ -89,6 +92,19 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
     supportServices: 0
   });
 
+  // Registration modal state
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
+  const [registrationType, setRegistrationType] = useState<PersonType>('client');
+  const [registeredPersons, setRegisteredPersons] = useState<{
+    clients: PersonRegistrationData[];
+    staff: PersonRegistrationData[];
+    managers: PersonRegistrationData[];
+  }>({
+    clients: [],
+    staff: [],
+    managers: []
+  });
+
   useEffect(() => {
     loadDashboardData();
     
@@ -103,6 +119,35 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
       loadHMISStats();
     }
   }, [activeTab]);
+
+  // Load registered persons when configuration tab is active
+  useEffect(() => {
+    if (activeTab === 'configuration') {
+      loadRegisteredPersons();
+    }
+  }, [activeTab]);
+
+  // Initialize persistent Solid Pod configuration on component mount
+  useEffect(() => {
+    const initializePersistentConfig = async () => {
+      try {
+        const persistedConfig = await solidAuthService.getPersistentSessionInfo();
+        if (persistedConfig && persistedConfig.connected) {
+          setSolidConfig({
+            connected: true,
+            provider: persistedConfig.provider,
+            webId: persistedConfig.webId,
+            status: 'connected'
+          });
+          console.log('✅ Restored persistent Solid Pod configuration');
+        }
+      } catch (error) {
+        console.error('Failed to initialize persistent configuration:', error);
+      }
+    };
+
+    initializePersistentConfig();
+  }, []);
 
   const loadDashboardData = async () => {
     try {
@@ -151,6 +196,73 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
       console.log('HMIS stats loaded:', newStats);
     } catch (error) {
       console.error('Failed to load HMIS stats:', error);
+    }
+  };
+
+  const loadRegisteredPersons = async () => {
+    try {
+      console.log('Loading registered persons...');
+      
+      // Load from Solid Pod
+      const clients = await solidPodService.getPersonsByRole('client');
+      const staff = await solidPodService.getPersonsByRole('staff');
+      const managers = await solidPodService.getPersonsByRole('manager');
+
+      setRegisteredPersons({
+        clients: clients as PersonRegistrationData[],
+        staff: staff as PersonRegistrationData[],
+        managers: managers as PersonRegistrationData[]
+      });
+
+      console.log('Registered persons loaded:', {
+        clients: clients.length,
+        staff: staff.length,
+        managers: managers.length
+      });
+    } catch (error) {
+      console.error('Failed to load registered persons:', error);
+    }
+  };
+
+  const handleOpenRegistration = (type: PersonType) => {
+    setRegistrationType(type);
+    setShowRegistrationModal(true);
+  };
+
+  const handleRegistrationSuccess = async (person: PersonRegistrationData) => {
+    console.log(`✅ ${person.role} registered successfully:`, person);
+    
+    // Update the local state
+    setRegisteredPersons(prev => ({
+      ...prev,
+      [person.role === 'client' ? 'clients' : person.role === 'staff' ? 'staff' : 'managers']: [
+        ...prev[person.role === 'client' ? 'clients' : person.role === 'staff' ? 'staff' : 'managers'],
+        person
+      ]
+    }));
+
+    // Show success message
+    alert(`${person.firstName} ${person.lastName} has been successfully registered as a ${person.role}.`);
+  };
+
+  const handleSolidConnect = async (provider: string, webId: string) => {
+    try {
+      // Update Solid configuration
+      setSolidConfig({
+        connected: true,
+        provider,
+        webId,
+        status: 'connected'
+      });
+      
+      // Save persistent session
+      await solidAuthService.savePersistentSession(provider);
+      
+      setShowSolidModal(false);
+      console.log('Solid Pod connected and saved persistently:', { provider, webId });
+    } catch (error) {
+      setSolidConfig(prev => ({ ...prev, status: 'error' }));
+      console.error('Solid Pod connection failed:', error);
     }
   };
 
@@ -361,23 +473,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
     return 'operational';
   };
 
-  // Configuration handlers
-  const handleSolidConnect = async (provider: string, webId: string) => {
-    try {
-      // Simulate connection process
-      setSolidConfig({
-        connected: true,
-        provider,
-        webId,
-        status: 'connected'
-      });
-      setShowSolidModal(false);
-      console.log('Solid Pod connected:', { provider, webId });
-    } catch (error) {
-      setSolidConfig(prev => ({ ...prev, status: 'error' }));
-      console.error('Solid Pod connection failed:', error);
-    }
-  };
+  // Configuration handlers (updated to use the persistent version above)
 
   const handleHATConnect = async (domain: string) => {
     try {
@@ -947,14 +1043,17 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                         <span className="mr-2">👤</span>
                         Client Registration
                       </h5>
-                      <button className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700">
+                      <button 
+                        onClick={() => handleOpenRegistration('client')}
+                        className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700"
+                      >
                         Register New Client
                       </button>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
                         <div className="text-gray-500">Total Registered</div>
-                        <div className="font-medium text-lg">{dashboardData?.clientMetrics.totalActiveClients}</div>
+                        <div className="font-medium text-lg">{registeredPersons.clients.length}</div>
                       </div>
                       <div>
                         <div className="text-gray-500">This Month</div>
@@ -978,14 +1077,17 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                         <span className="mr-2">👨‍💼</span>
                         Staff Registration
                       </h5>
-                      <button className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
+                      <button 
+                        onClick={() => handleOpenRegistration('staff')}
+                        className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+                      >
                         Register New Staff
                       </button>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
                         <div className="text-gray-500">Total Staff</div>
-                        <div className="font-medium text-lg">{dashboardData?.staffMetrics.totalStaff}</div>
+                        <div className="font-medium text-lg">{registeredPersons.staff.length}</div>
                       </div>
                       <div>
                         <div className="text-gray-500">Active Today</div>
@@ -1009,14 +1111,17 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                         <span className="mr-2">👨‍💻</span>
                         Manager Registration
                       </h5>
-                      <button className="px-3 py-1 bg-purple-600 text-white text-sm rounded hover:bg-purple-700">
+                      <button 
+                        onClick={() => handleOpenRegistration('manager')}
+                        className="px-3 py-1 bg-purple-600 text-white text-sm rounded hover:bg-purple-700"
+                      >
                         Register New Manager
                       </button>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
                         <div className="text-gray-500">Total Managers</div>
-                        <div className="font-medium text-lg">8</div>
+                        <div className="font-medium text-lg">{registeredPersons.managers.length}</div>
                       </div>
                       <div>
                         <div className="text-gray-500">Active Sessions</div>
@@ -1078,6 +1183,14 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
 
       {/* HAT Configuration Modal */}
       {showHATModal && <HATConfigModal onClose={() => setShowHATModal(false)} onConnect={handleHATConnect} />}
+
+      {/* Person Registration Modal */}
+      <PersonRegistrationModal 
+        isOpen={showRegistrationModal}
+        onClose={() => setShowRegistrationModal(false)}
+        personType={registrationType}
+        onSuccess={handleRegistrationSuccess}
+      />
     </div>
   );
 };

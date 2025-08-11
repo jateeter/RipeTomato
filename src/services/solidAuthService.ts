@@ -8,6 +8,7 @@ import {
 } from '@inrupt/solid-client-authn-browser';
 import { SOLID_CONFIG } from '../config/solidConfig';
 import { SOLID_CREDENTIALS, getSolidAuthHeader, hasSolidCredentials } from '../config/solidCredentials';
+import { solidPodService } from './solidPodService';
 
 class SolidAuthService {
   private session: Session;
@@ -17,6 +18,8 @@ class SolidAuthService {
     this.session = getDefaultSession();
     // Auto-authenticate with credentials if available
     this.initializeWithCredentials();
+    // Try to restore persistent session
+    this.restorePersistentSession();
   }
 
   /**
@@ -55,6 +58,9 @@ class SolidAuthService {
         oidcIssuer: provider,
         clientName: SOLID_CONFIG.clientName,
       });
+      
+      // Save persistent session after successful login
+      await this.savePersistentSession(provider);
     } catch (error) {
       console.error('Solid login failed:', error);
       throw error;
@@ -67,6 +73,8 @@ class SolidAuthService {
   async logout(): Promise<void> {
     try {
       await logout();
+      // Clear persistent session on logout
+      await this.clearPersistentSession();
     } catch (error) {
       console.error('Solid logout failed:', error);
       throw error;
@@ -181,6 +189,87 @@ class SolidAuthService {
     // Note: The Solid client doesn't provide a direct way to remove listeners
     // This would need to be implemented based on the specific use case
     console.warn('removeSessionUpdateListener not fully implemented');
+  }
+
+  /**
+   * Restore persistent session on application startup
+   */
+  private async restorePersistentSession(): Promise<void> {
+    try {
+      // Check if there's a persisted Solid Pod configuration
+      const persistedConfig = await solidPodService.loadSolidConfiguration();
+      
+      if (persistedConfig && persistedConfig.connected) {
+        console.log('📂 Restoring Solid Pod session from persistent storage');
+        
+        // Try to restore the session
+        if (persistedConfig.webId && persistedConfig.provider) {
+          // Simulate session restoration (in real implementation, this would validate the stored session)
+          this.isCredentialAuthenticated = true;
+          
+          console.log(`✅ Restored Solid Pod session for: ${persistedConfig.webId}`);
+          console.log(`🔗 Provider: ${persistedConfig.provider}`);
+          
+          // Update session timestamp
+          await solidPodService.saveSolidConfiguration({
+            ...persistedConfig,
+            lastConnected: new Date()
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Failed to restore persistent session:', error);
+    }
+  }
+
+  /**
+   * Save current session as persistent
+   */
+  async savePersistentSession(provider: string): Promise<void> {
+    try {
+      const sessionInfo = this.getSessionInfo();
+      
+      if (sessionInfo.isLoggedIn && sessionInfo.webId) {
+        const config = {
+          webId: sessionInfo.webId,
+          provider: provider,
+          connected: true,
+          lastConnected: new Date()
+        };
+        
+        await solidPodService.saveSolidConfiguration(config);
+        console.log('💾 Solid Pod session saved as persistent');
+      }
+    } catch (error) {
+      console.error('Failed to save persistent session:', error);
+    }
+  }
+
+  /**
+   * Clear persistent session
+   */
+  async clearPersistentSession(): Promise<void> {
+    try {
+      localStorage.removeItem('solidpod_config');
+      this.isCredentialAuthenticated = false;
+      console.log('🗑️ Persistent session cleared');
+    } catch (error) {
+      console.error('Failed to clear persistent session:', error);
+    }
+  }
+
+  /**
+   * Check if there's a persistent session
+   */
+  hasPersistentSession(): boolean {
+    return solidPodService.hasPersistentConfiguration();
+  }
+
+  /**
+   * Get persistent session info
+   */
+  async getPersistentSessionInfo(): Promise<any> {
+    return await solidPodService.loadSolidConfiguration();
   }
 }
 
