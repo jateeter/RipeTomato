@@ -1,0 +1,131 @@
+# Apple Wallet & HealthKit Configuration
+# Configuration for Apple Wallet pass generation and HealthKit integration
+
+apple:
+  wallet:
+    # Certificate Configuration
+    certificates:
+      team_identifier: "${APPLE_TEAM_ID}"
+      pass_type_certificate: "${APPLE_PASS_TYPE_CERT_PATH}"
+      wwdr_certificate: "${APPLE_WWDR_CERT_PATH}"
+      
+    # Pass Type Identifiers
+    pass_types:
+      shelter_access:
+        identifier: "pass.com.idaho.shelter.access"
+        description: "Shelter Access Pass"
+        organization_name: "Idaho Community Shelter"
+        background_color: "rgb(34, 139, 34)"  # Forest Green
+        foreground_color: "rgb(255, 255, 255)"  # White
+        label_color: "rgb(255, 255, 255)"  # White
+        
+      health_record:
+        identifier: "pass.com.idaho.shelter.health"
+        description: "Health Information Pass"
+        organization_name: "Idaho Community Shelter"
+        background_color: "rgb(220, 20, 60)"  # Crimson
+        foreground_color: "rgb(255, 255, 255)"  # White
+        label_color: "rgb(255, 255, 255)"  # White
+        
+      identification:
+        identifier: "pass.com.idaho.shelter.id"
+        description: "Client Identification Pass"
+        organization_name: "Idaho Community Shelter"
+        background_color: "rgb(25, 25, 112)"  # Midnight Blue
+        foreground_color: "rgb(255, 255, 255)"  # White
+        label_color: "rgb(255, 255, 255)"  # White
+        
+      service_entitlement:
+        identifier: "pass.com.idaho.shelter.services"
+        description: "Service Entitlement Pass"
+        organization_name: "Idaho Community Shelter"
+        background_color: "rgb(128, 0, 128)"  # Purple
+        foreground_color: "rgb(255, 255, 255)"  # White
+        label_color: "rgb(255, 255, 255)"  # White
+        
+      emergency_contact:
+        identifier: "pass.com.idaho.shelter.emergency"
+        description: "Emergency Contact Pass"
+        organization_name: "Idaho Community Shelter"
+        background_color: "rgb(255, 69, 0)"  # Red Orange
+        foreground_color: "rgb(255, 255, 255)"  # White
+        label_color: "rgb(255, 255, 255)"  # White
+        
+    # Pass Configuration
+    pass_settings:
+      format_version: 1
+      supports_suica: false
+      app_launch_url: "idaho-shelter://client/"
+      associated_store_identifiers: []
+      
+  healthkit:
+    # HealthKit Data Types
+    data_types:
+      vital_signs:
+        - "HKQuantityTypeIdentifierBloodPressureSystolic"
+        - "HKQuantityTypeIdentifierBloodPressureDiastolic"
+        - "HKQuantityTypeIdentifierHeartRate"
+        - "HKQuantityTypeIdentifierBodyTemperature"
+        - "HKQuantityTypeIdentifierOxygenSaturation"
+        
+      body_measurements:
+        - "HKQuantityTypeIdentifierHeight"
+        - "HKQuantityTypeIdentifierBodyMass"
+        - "HKQuantityTypeIdentifierBMI"
+        
+      activity:
+        - "HKQuantityTypeIdentifierStepCount"
+        - "HKQuantityTypeIdentifierDistanceWalkingRunning"
+        - "HKQuantityTypeIdentifierActiveEnergyBurned"
+        
+      clinical:
+        - "HKClinicalTypeIdentifierMedicationRecord"
+        - "HKClinicalTypeIdentifierAllergyRecord"
+        - "HKClinicalTypeIdentifierConditionRecord"
+        - "HKClinicalTypeIdentifierProcedureRecord"
+        
+    # Data Sharing Preferences
+    sharing:
+      default_enabled: false
+      categories:
+        emergency_access:
+          enabled: true
+          data_types:
+            - "blood_pressure"
+            - "heart_rate"
+            - "medications"
+            - "allergies"
+        shelter_monitoring:
+          enabled: false
+          data_types:
+            - "step_count"
+            - "sleep_analysis"
+            - "body_temperature"
+            
+    # Privacy Settings
+    privacy:
+      data_minimization: true
+      automatic_deletion: true
+      encryption_level: "enhanced"  # basic, enhanced, maximum
+      anonymization: true
+      audit_logging: true
+      
+  # Integration Configuration
+  integration:
+    sync_frequency: "hourly"  # realtime, hourly, daily
+    background_refresh: true
+    notification_preferences:
+      critical_alerts: true
+      routine_updates: false
+      
+development:
+  # Development settings
+  use_sandbox: true
+  debug_passes: true
+  skip_certificate_validation: false
+  
+production:
+  # Production settings
+  use_sandbox: false
+  debug_passes: false
+  skip_certificate_validation: false

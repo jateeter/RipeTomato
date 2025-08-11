@@ -1,0 +1,184 @@
+# Application Configuration
+# Main application configuration including database, services, and workflows
+
+application:
+  # Basic Information
+  name: "Idaho Community Shelter Management System"
+  version: "0.1.0"
+  description: "Comprehensive shelter management system with unified data ownership"
+  
+  # Environment Configuration
+  environment: "${NODE_ENV:-development}"
+  port: "${PORT:-3000}"
+  base_url: "${REACT_APP_BASE_URL:-http://localhost:3000}"
+  
+  # Feature Flags
+  features:
+    google_calendar_integration: true
+    solid_pod_integration: true
+    hat_integration: true
+    apple_wallet_integration: true
+    healthkit_integration: true
+    twilio_integration: true
+    emergency_alerts: true
+    bed_management: true
+    client_registration: true
+    
+  # Database Configuration
+  database:
+    type: "postgresql"  # or sqlite, mysql
+    host: "${DB_HOST:-localhost}"
+    port: "${DB_PORT:-5432}"
+    name: "${DB_NAME:-idaho_shelter}"
+    username: "${DB_USERNAME:-shelter_user}"
+    password: "${DB_PASSWORD}"
+    ssl: "${DB_SSL:-false}"
+    
+  # Authentication & Security
+  security:
+    session_secret: "${SESSION_SECRET}"
+    jwt_secret: "${JWT_SECRET}"
+    encryption_key: "${ENCRYPTION_KEY}"
+    
+    # Password Requirements
+    password_policy:
+      min_length: 8
+      require_uppercase: true
+      require_lowercase: true
+      require_numbers: true
+      require_symbols: true
+      
+    # Multi-Factor Authentication
+    mfa:
+      enabled: true
+      methods:
+        - "sms"
+        - "email"
+        - "authenticator_app"
+        
+  # Privacy Configuration
+  privacy:
+    # Data Minimization
+    data_minimization: true
+    automatic_deletion: true
+    encryption_level: "enhanced"  # basic, enhanced, maximum
+    anonymization: true
+    audit_logging: true
+    
+    # Consent Management
+    consent:
+      required_types:
+        - "data_storage"
+        - "data_sharing"
+        - "medical_access"
+        - "emergency_contact"
+      expiration_days: 365
+      renewable: true
+      
+  # Identity Verification
+  identity_verification:
+    required_level: "enhanced"  # basic, enhanced, maximum
+    biometric_enabled: true
+    multi_factor_auth: true
+    verification_methods:
+      - "password"
+      - "biometric"
+      - "sms"
+      - "email"
+      
+  # Health Services Configuration
+  health:
+    blood_pressure_monitoring:
+      enabled: true
+      alert_thresholds:
+        systolic_high: 140
+        systolic_low: 90
+        diastolic_high: 90
+        diastolic_low: 60
+      notification_methods:
+        - "sms"
+        - "email"
+        - "in_app"
+        
+    health_data_exposure:
+      categories:
+        - "vital_signs"
+        - "medications"
+        - "allergies"
+        - "conditions"
+      sharing_preferences:
+        emergency_only: true
+        authorized_staff: false
+        case_manager: true
+        
+  # Shelter Management
+  shelter:
+    # Bed Management
+    beds:
+      total_capacity: 100
+      bed_types:
+        - "standard"
+        - "accessible"
+        - "family"
+        - "isolation"
+      reservation_window_hours: 24
+      
+    # Check-in/Check-out
+    check_in:
+      required_documents:
+        - "identification"
+        - "health_screening"
+        - "consent_forms"
+      verification_methods:
+        - "photo_id"
+        - "biometric"
+        - "digital_wallet"
+        
+  # Communication Services
+  communication:
+    twilio:
+      account_sid: "${TWILIO_ACCOUNT_SID}"
+      auth_token: "${TWILIO_AUTH_TOKEN}"
+      phone_number: "${TWILIO_PHONE_NUMBER}"
+      
+    google_voice:
+      enabled: false  # Set to true if using Google Voice instead of Twilio
+      
+    emergency_alerts:
+      enabled: true
+      alert_types:
+        - "medical_emergency"
+        - "security_incident"
+        - "weather_alert"
+        - "capacity_alert"
+        
+  # Logging Configuration
+  logging:
+    level: "${LOG_LEVEL:-info}"  # error, warn, info, debug
+    format: "json"
+    destinations:
+      - "console"
+      - "file"
+      - "external_service"
+    file_path: "${LOG_FILE_PATH:-./logs/app.log}"
+    
+development:
+  # Development-specific settings
+  debug: true
+  hot_reload: true
+  mock_external_services: true
+  
+testing:
+  # Testing-specific settings
+  database:
+    name: "idaho_shelter_test"
+  mock_services: true
+  
+production:
+  # Production-specific settings
+  debug: false
+  ssl_required: true
+  rate_limiting: true
+  monitoring:
+    enabled: true
+    service: "datadog"  # or "newrelic", "prometheus"

@@ -1,0 +1,56 @@
+# Google Services Configuration
+# Configuration for Google Calendar API, Google Voice, and other Google services
+
+google:
+  calendar:
+    # OAuth 2.0 Configuration
+    client_id: "${REACT_APP_GOOGLE_CLIENT_ID}"
+    api_key: "${REACT_APP_GOOGLE_API_KEY}"
+    
+    # API Configuration
+    discovery_doc: "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+    scopes: "https://www.googleapis.com/auth/calendar"
+    calendar_id: "primary"
+    
+    # Calendar Settings
+    settings:
+      max_results: 100
+      time_zone: "America/Boise"  # Idaho timezone
+      single_events: true
+      order_by: "startTime"
+      
+    # Authorized Origins (for development and production)
+    authorized_origins:
+      - "http://localhost:3000"
+      - "http://localhost:3001"
+      - "https://your-production-domain.com"
+      
+  voice:
+    # Google Voice/Twilio Integration
+    integration_type: "twilio"  # or "google_voice"
+    
+  auth:
+    # Authentication Settings
+    consent_screen:
+      user_type: "external"
+      app_name: "Idaho Community Shelter Management System"
+      support_email: "support@idaho-shelter.org"
+      
+security:
+  # Security Best Practices
+  api_key_restrictions:
+    - "calendar_api_only"
+  oauth_security:
+    - "https_required"
+    - "trusted_domains_only"
+    
+development:
+  # Development-specific settings
+  redirect_urls:
+    - "http://localhost:3000/auth/callback"
+    - "http://localhost:3001/auth/callback"
+    
+production:
+  # Production-specific settings
+  redirect_urls:
+    - "https://your-production-domain.com/auth/callback"

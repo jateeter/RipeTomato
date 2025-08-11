@@ -35,7 +35,6 @@ const CheckInVerification: React.FC<CheckInVerificationProps> = ({
 
   // Wallet verification state
   const [walletSession, setWalletSession] = useState<WalletCheckInSession | null>(null);
-  const [qrVerificationCode, setQrVerificationCode] = useState<QRVerificationCode | null>(null);
   const [walletVerificationEnabled, setWalletVerificationEnabled] = useState(false);
   const [showQrScanner, setShowQrScanner] = useState(false);
 
@@ -109,7 +108,6 @@ const CheckInVerification: React.FC<CheckInVerificationProps> = ({
       const validationResult = await walletVerificationService.validateQRCode(qrData);
       
       if (validationResult.isValid && validationResult.qrCode) {
-        setQrVerificationCode(validationResult.qrCode);
         
         // Start wallet verification session
         const walletSession = await walletVerificationService.startVerificationSession(

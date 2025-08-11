@@ -300,7 +300,7 @@ export interface ClientWalletOption {
 export interface VerificationInstruction {
   stepNumber: number;
   instruction: string;
-  action?: 'scan_qr' | 'open_wallet' | 'show_screen' | 'wait' | 'follow_staff';
+  action?: 'scan_qr' | 'open_wallet' | 'show_screen' | 'wait' | 'follow_staff' | 'wallet_selection' | 'generate_qr';
   expectedDuration: number; // seconds
   icon?: string;
   isCompleted: boolean;

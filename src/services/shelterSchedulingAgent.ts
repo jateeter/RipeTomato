@@ -154,8 +154,8 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
     const now = new Date();
     
     // Check for check-in due events
-    for (const [, reservation] of this.bedReservations.entries()) {
-      if (reservation.status === 'confirmed' && reservation.checkInTime) {
+    for (const [, reservation] of Array.from(this.bedReservations.entries())) {
+      if (reservation.status === 'reserved' && reservation.checkInTime) {
         const checkInTime = new Date(reservation.checkInTime);
         const timeDiff = checkInTime.getTime() - now.getTime();
         const hoursUntilCheckIn = timeDiff / (1000 * 60 * 60);
@@ -166,7 +166,7 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
             bedReservationId: reservation.id,
             clientId: reservation.clientId,
             checkInTime: checkInTime.toISOString(),
-            location: `Bed ${reservation.bedNumber}`
+            location: `Bed ${reservation.bedId}`
           });
         }
         
@@ -176,7 +176,7 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
             bedReservationId: reservation.id,
             clientId: reservation.clientId,
             overdueMinutes: Math.abs(Math.floor(hoursUntilCheckIn * 60)),
-            location: `Bed ${reservation.bedNumber}`
+            location: `Bed ${reservation.bedId}`
           });
         }
       }
@@ -199,8 +199,8 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
     }
 
     // Check for no-shows (2+ hours past check-in with no contact)
-    for (const [, reservation] of this.bedReservations.entries()) {
-      if (reservation.status === 'confirmed' && reservation.checkInTime) {
+    for (const [, reservation] of Array.from(this.bedReservations.entries())) {
+      if (reservation.status === 'reserved' && reservation.checkInTime) {
         const checkInTime = new Date(reservation.checkInTime);
         const hoursOverdue = (now.getTime() - checkInTime.getTime()) / (1000 * 60 * 60);
         
@@ -654,7 +654,7 @@ class ShelterSchedulingAgentImpl implements ShelterSchedulingAgent {
     this.addEvent('bed_reservation_created', 'medium', {
       bedReservationId: reservation.id,
       clientId: reservation.clientId,
-      bedNumber: reservation.bedNumber,
+      bedNumber: reservation.bedId,
       checkInTime: reservation.checkInTime?.toISOString()
     });
   }

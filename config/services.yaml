@@ -1,0 +1,156 @@
+# Services Configuration
+# Configuration for external services and integrations
+
+services:
+  # Twilio Configuration
+  twilio:
+    account_sid: "${TWILIO_ACCOUNT_SID}"
+    auth_token: "${TWILIO_AUTH_TOKEN}"
+    phone_number: "${TWILIO_PHONE_NUMBER}"
+    
+    # SMS Configuration
+    sms:
+      webhook_url: "${TWILIO_SMS_WEBHOOK_URL}"
+      status_callback: "${TWILIO_SMS_STATUS_CALLBACK}"
+      
+    # Voice Configuration
+    voice:
+      webhook_url: "${TWILIO_VOICE_WEBHOOK_URL}"
+      status_callback: "${TWILIO_VOICE_STATUS_CALLBACK}"
+      
+  # Email Service Configuration
+  email:
+    provider: "sendgrid"  # or "ses", "mailgun", "smtp"
+    api_key: "${EMAIL_API_KEY}"
+    from_address: "${EMAIL_FROM_ADDRESS:-noreply@idaho-shelter.org}"
+    from_name: "${EMAIL_FROM_NAME:-Idaho Community Shelter}"
+    
+    # Templates
+    templates:
+      welcome: "welcome_template_id"
+      password_reset: "password_reset_template_id"
+      appointment_reminder: "appointment_reminder_template_id"
+      emergency_alert: "emergency_alert_template_id"
+      
+  # HMIS (Homeless Management Information System) Integration
+  hmis:
+    enabled: "${HMIS_ENABLED:-false}"
+    api_url: "${HMIS_API_URL}"
+    api_key: "${HMIS_API_KEY}"
+    client_id: "${HMIS_CLIENT_ID}"
+    client_secret: "${HMIS_CLIENT_SECRET}"
+    
+    # Data Mapping
+    data_mapping:
+      client_fields:
+        - hmis_field: "PersonalID"
+          local_field: "clientId"
+        - hmis_field: "FirstName"
+          local_field: "firstName"
+        - hmis_field: "LastName"
+          local_field: "lastName"
+        - hmis_field: "DOB"
+          local_field: "dateOfBirth"
+          
+  # Emergency Services Integration
+  emergency:
+    # 911 Integration
+    emergency_services:
+      enabled: true
+      contact_number: "911"
+      non_emergency: "${NON_EMERGENCY_NUMBER}"
+      
+    # Hospital Integration
+    hospitals:
+      primary:
+        name: "Idaho State Hospital"
+        contact: "${PRIMARY_HOSPITAL_CONTACT}"
+        api_endpoint: "${PRIMARY_HOSPITAL_API}"
+        
+  # Food and Water Service
+  food_water:
+    inventory_tracking: true
+    meal_scheduling: true
+    dietary_restrictions: true
+    suppliers:
+      - name: "Idaho Food Bank"
+        contact: "${FOOD_BANK_CONTACT}"
+        api_endpoint: "${FOOD_BANK_API}"
+        
+  # Sanitation Services
+  sanitation:
+    scheduling: true
+    supply_tracking: true
+    maintenance_alerts: true
+    
+  # Community Services
+  community:
+    job_placement:
+      enabled: true
+      partners:
+        - "Idaho Department of Labor"
+        - "Goodwill Industries"
+        - "Salvation Army"
+        
+    housing_assistance:
+      enabled: true
+      partners:
+        - "Idaho Housing and Finance Association"
+        - "HUD"
+        - "Local Housing Authority"
+        
+    mental_health:
+      enabled: true
+      partners:
+        - "Idaho Department of Health and Welfare"
+        - "Community Mental Health Centers"
+        
+  # Monitoring and Analytics
+  monitoring:
+    # Application Performance Monitoring
+    apm:
+      provider: "${APM_PROVIDER:-datadog}"  # datadog, newrelic, elastic
+      api_key: "${APM_API_KEY}"
+      
+    # Error Tracking
+    error_tracking:
+      provider: "${ERROR_TRACKING_PROVIDER:-sentry}"
+      dsn: "${ERROR_TRACKING_DSN}"
+      
+    # Analytics
+    analytics:
+      provider: "${ANALYTICS_PROVIDER:-google}"
+      tracking_id: "${ANALYTICS_TRACKING_ID}"
+      
+  # Backup and Recovery
+  backup:
+    provider: "${BACKUP_PROVIDER:-aws_s3}"  # aws_s3, google_cloud, azure
+    bucket: "${BACKUP_BUCKET}"
+    access_key: "${BACKUP_ACCESS_KEY}"
+    secret_key: "${BACKUP_SECRET_KEY}"
+    schedule: "daily"  # hourly, daily, weekly
+    retention_days: 30
+    
+  # File Storage
+  storage:
+    provider: "${STORAGE_PROVIDER:-local}"  # local, aws_s3, google_cloud, azure
+    bucket: "${STORAGE_BUCKET}"
+    access_key: "${STORAGE_ACCESS_KEY}"
+    secret_key: "${STORAGE_SECRET_KEY}"
+    
+    # File Types
+    allowed_file_types:
+      documents: [".pdf", ".doc", ".docx", ".txt"]
+      images: [".jpg", ".jpeg", ".png", ".gif"]
+      spreadsheets: [".xls", ".xlsx", ".csv"]
+      
+development:
+  # Development service configurations
+  mock_services: true
+  local_storage: true
+  
+production:
+  # Production service configurations
+  mock_services: false
+  ssl_required: true
+  rate_limiting: true

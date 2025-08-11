@@ -1,0 +1,100 @@
+# Solid Pod Configuration
+# Configuration for Solid Pod integration and data management
+
+solid:
+  # Pod Providers
+  providers:
+    default: "https://opencommons.net"
+    available:
+      - "https://opencommons.net"
+      - "https://inrupt.net"
+      - "https://solidweb.me"
+      - "https://pod.inrupt.com"
+      
+  # Application Identity
+  application:
+    client_name: "Idaho Community Shelter Management System"
+    client_id: "https://shelter-management.idaho.local"
+    
+  # Authentication Configuration
+  auth:
+    redirect_url: "${REACT_APP_SOLID_REDIRECT_URL:-http://localhost:3000/solid-callback}"
+    
+  # Data Organization Structure
+  data_structure:
+    # Shelter-specific containers
+    shelter:
+      base: "/shelter/"
+      clients: "/shelter/clients/"
+      staff: "/shelter/staff/"
+      consent: "/shelter/consent/"
+      logs: "/shelter/logs/"
+      
+    # Client data containers
+    personal:
+      base: "/personal/"
+      medical: "/medical/"
+      emergency: "/emergency/"
+      preferences: "/preferences/"
+      history: "/history/"
+      
+  # Privacy Levels and Data Classification
+  privacy_levels:
+    public:
+      - "bedPreferences"
+      - "activeStatus"
+    restricted:
+      - "firstName"
+      - "lastName"
+      - "phone"
+      - "email"
+    confidential:
+      - "dateOfBirth"
+      - "emergencyContact"
+      - "medicalNotes"
+    sensitive:
+      - "behavioralNotes"
+      - "restrictions"
+      - "stayHistory"
+      
+  # Data Access Controls
+  access_controls:
+    client_data:
+      read_permissions:
+        - "client_self"
+        - "authorized_staff"
+        - "case_manager"
+      write_permissions:
+        - "client_self"
+        - "authorized_staff"
+    staff_data:
+      read_permissions:
+        - "staff_self"
+        - "supervisor"
+        - "admin"
+      write_permissions:
+        - "staff_self"
+        - "supervisor"
+        - "admin"
+        
+  # Consent Management
+  consent:
+    types:
+      - "data_storage"
+      - "data_sharing"
+      - "medical_access"
+      - "emergency_contact"
+      - "research_participation"
+    expiration:
+      default_days: 365
+      renewable: true
+      
+development:
+  # Development-specific settings
+  pod_provider: "https://opencommons.net"
+  debug_mode: true
+  
+production:
+  # Production-specific settings
+  pod_provider: "https://inrupt.net"
+  debug_mode: false
