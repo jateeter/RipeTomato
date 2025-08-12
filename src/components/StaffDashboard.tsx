@@ -11,6 +11,8 @@ import React, { useState, useEffect } from 'react';
 import { OpenMapsComponent } from './OpenMapsComponent';
 import { ShelterList } from './ShelterList';
 import { shelterDataService, ShelterFacility } from '../services/shelterDataService';
+import { ClientBedRegistrationModal, BedRegistration } from './ClientBedRegistrationModal';
+import { InteractiveCalendar } from './InteractiveCalendar';
 
 interface StaffDashboardProps {
   staffId: string;
@@ -37,9 +39,13 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
   const [activeTab, setActiveTab] = useState<'overview' | 'shelters' | 'clients' | 'tasks'>('overview');
   const [shelters, setShelters] = useState<ShelterFacility[]>([]);
   const [selectedShelter, setSelectedShelter] = useState<ShelterFacility | null>(null);
-  const [shelterViewMode, setShelterViewMode] = useState<'list' | 'map'>('map');
+  const [shelterViewMode, setShelterViewMode] = useState<'list' | 'map' | 'calendar'>('map');
   const [spatialNavigationEnabled, setSpatialNavigationEnabled] = useState(true);
   const [loading, setLoading] = useState(true);
+  
+  // Bed registration state
+  const [showBedRegistrationModal, setShowBedRegistrationModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   
   // Staff metrics
   const [staffMetrics, setStaffMetrics] = useState<StaffMetrics>({
@@ -101,6 +107,19 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
       });
     } catch (error) {
       console.error('Failed to load shelter data:', error);
+    }
+  };
+
+  const handleBedRegistrationComplete = (registration: BedRegistration) => {
+    console.log('Staff bed registration completed:', registration);
+    setShowBedRegistrationModal(false);
+    loadShelterData(); // Reload to update occupancy
+  };
+
+  const handleCalendarDateSelect = (date: Date, availableBeds: number) => {
+    setSelectedDate(date);
+    if (availableBeds > 0 && selectedShelter) {
+      setShowBedRegistrationModal(true);
     }
   };
 
@@ -243,23 +262,33 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => setShelterViewMode('list')}
-                      className={`px-3 py-1 rounded ${
+                      className={`px-3 py-1 rounded text-sm ${
                         shelterViewMode === 'list'
                           ? 'bg-blue-600 text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      📋 List View
+                      📋 List
                     </button>
                     <button
                       onClick={() => setShelterViewMode('map')}
-                      className={`px-3 py-1 rounded ${
+                      className={`px-3 py-1 rounded text-sm ${
                         shelterViewMode === 'map'
                           ? 'bg-blue-600 text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      🗺️ Map View
+                      🗺️ Map
+                    </button>
+                    <button
+                      onClick={() => setShelterViewMode('calendar')}
+                      className={`px-3 py-1 rounded text-sm ${
+                        shelterViewMode === 'calendar'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      📅 Calendar
                     </button>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -277,7 +306,7 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
               </div>
 
               {/* Shelter Content */}
-              {shelterViewMode === 'list' ? (
+              {shelterViewMode === 'list' && (
                 <ShelterList
                   userRole="staff"
                   showFilters={true}
@@ -286,7 +315,9 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
                   maxHeight="600px"
                   enableExport={false}
                 />
-              ) : (
+              )}
+
+              {shelterViewMode === 'map' && (
                 <div className="space-y-4">
                   <OpenMapsComponent
                     shelters={shelters}
@@ -312,8 +343,11 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
                           </div>
                         </div>
                         <div className="space-y-2">
-                          <button className="w-full px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-                            🏠 Check Client Into Bed
+                          <button
+                            onClick={() => setShowBedRegistrationModal(true)}
+                            className="w-full px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+                          >
+                            🏠 Register Client to Bed
                           </button>
                           <button className="w-full px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm">
                             📞 Call Shelter Direct
@@ -327,6 +361,37 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
                   )}
                 </div>
               )}
+
+              {shelterViewMode === 'calendar' && (
+                <div className="space-y-4">
+                  {selectedShelter && (
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="font-medium">Staff Calendar: {selectedShelter.name}</div>
+                          <div className="text-sm text-gray-600">
+                            Click dates to register clients • Green dates have availability
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setSelectedShelter(null)}
+                          className="text-sm text-green-600 hover:text-green-800"
+                        >
+                          View All Facilities
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <InteractiveCalendar
+                    shelter={selectedShelter || undefined}
+                    onDateSelect={handleCalendarDateSelect}
+                    showOccupancy={true}
+                    showEvents={false}
+                    userRole="staff"
+                    height="500px"
+                  />
+                </div>
+              )}
               
               {/* Staff Actions */}
               <div className="bg-gray-50 border rounded-lg p-4">
@@ -336,11 +401,17 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
                     Staff Access • Spatial Navigation: {spatialNavigationEnabled ? 'Enabled' : 'Disabled'}
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  <button className="p-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-                    🔍 Search Available Beds
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                  <button
+                    onClick={() => setShowBedRegistrationModal(true)}
+                    className="p-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+                  >
+                    🏠 Register Client to Bed
                   </button>
                   <button className="p-3 bg-green-600 text-white rounded hover:bg-green-700 text-sm">
+                    🔍 Search Available Beds
+                  </button>
+                  <button className="p-3 bg-orange-600 text-white rounded hover:bg-orange-700 text-sm">
                     📱 Emergency Placement
                   </button>
                   <button className="p-3 bg-purple-600 text-white rounded hover:bg-purple-700 text-sm">
@@ -378,6 +449,16 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
           )}
         </div>
       </div>
+
+      {/* Client Bed Registration Modal */}
+      <ClientBedRegistrationModal
+        isOpen={showBedRegistrationModal}
+        onClose={() => setShowBedRegistrationModal(false)}
+        shelter={selectedShelter || undefined}
+        selectedDate={selectedDate || undefined}
+        onRegistrationComplete={handleBedRegistrationComplete}
+        userRole="staff"
+      />
     </div>
   );
 };

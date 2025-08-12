@@ -441,6 +441,198 @@ class ShelterDataService {
   }
 
   /**
+   * Register client to bed
+   */
+  async registerClientToBed(shelterId: string, clientId: string, bedRegistration: {
+    bedType: 'standard' | 'accessible' | 'family' | 'isolation';
+    bedNumber?: string;
+    checkInDate: Date;
+    expectedCheckOutDate?: Date;
+    specialNeeds?: string[];
+    medicalNotes?: string;
+    behavioralNotes?: string;
+  }): Promise<string | null> {
+    const shelter = this.shelters.get(shelterId);
+    if (!shelter) return null;
+
+    // Check bed availability
+    if (shelter.currentUtilization.available <= 0) {
+      throw new Error('No beds available at this shelter');
+    }
+
+    // Generate registration ID
+    const registrationId = `bed_reg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+    // Update shelter utilization
+    await this.updateShelterUtilization(shelterId, {
+      occupied: shelter.currentUtilization.occupied + 1,
+      available: shelter.currentUtilization.available - 1
+    });
+
+    // Store registration in localStorage (in real implementation, store in Solid Pod)
+    const registration = {
+      id: registrationId,
+      clientId,
+      shelterId,
+      shelterName: shelter.name,
+      ...bedRegistration,
+      registrationDate: new Date(),
+      status: 'active'
+    };
+
+    localStorage.setItem(`bed_registration_${registrationId}`, JSON.stringify(registration));
+
+    console.log(`✅ Client ${clientId} registered to bed at ${shelter.name}:`, registration);
+    return registrationId;
+  }
+
+  /**
+   * Check out client from bed
+   */
+  async checkOutClient(registrationId: string, checkOutDate: Date = new Date()): Promise<boolean> {
+    try {
+      // Load registration
+      const registrationData = localStorage.getItem(`bed_registration_${registrationId}`);
+      if (!registrationData) return false;
+
+      const registration = JSON.parse(registrationData);
+      
+      // Update registration status
+      registration.status = 'completed';
+      registration.actualCheckOutDate = checkOutDate;
+      
+      // Update shelter utilization
+      const shelter = this.shelters.get(registration.shelterId);
+      if (shelter) {
+        await this.updateShelterUtilization(registration.shelterId, {
+          occupied: shelter.currentUtilization.occupied - 1,
+          available: shelter.currentUtilization.available + 1
+        });
+      }
+
+      // Save updated registration
+      localStorage.setItem(`bed_registration_${registrationId}`, JSON.stringify(registration));
+
+      console.log(`✅ Client checked out from ${registration.shelterName}:`, registration);
+      return true;
+    } catch (error) {
+      console.error('Failed to check out client:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Get active registrations for a shelter
+   */
+  async getActiveRegistrations(shelterId: string): Promise<any[]> {
+    const registrations = [];
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith('bed_registration_')) {
+        try {
+          const registration = JSON.parse(localStorage.getItem(key) || '{}');
+          if (registration.shelterId === shelterId && registration.status === 'active') {
+            registrations.push({
+              ...registration,
+              checkInDate: new Date(registration.checkInDate),
+              expectedCheckOutDate: registration.expectedCheckOutDate 
+                ? new Date(registration.expectedCheckOutDate) 
+                : undefined,
+              registrationDate: new Date(registration.registrationDate)
+            });
+          }
+        } catch (error) {
+          console.error('Failed to parse registration:', error);
+        }
+      }
+    }
+    
+    return registrations.sort((a, b) => new Date(b.registrationDate).getTime() - new Date(a.registrationDate).getTime());
+  }
+
+  /**
+   * Get occupancy forecast for a date range
+   */
+  async getOccupancyForecast(shelterId: string, startDate: Date, endDate: Date): Promise<{
+    date: Date;
+    expectedOccupancy: number;
+    checkIns: number;
+    checkOuts: number;
+    availableBeds: number;
+  }[]> {
+    const shelter = this.shelters.get(shelterId);
+    if (!shelter) return [];
+
+    const forecast = [];
+    const currentDate = new Date(startDate);
+
+    // Load all registrations for this shelter
+    const allRegistrations = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith('bed_registration_')) {
+        try {
+          const registration = JSON.parse(localStorage.getItem(key) || '{}');
+          if (registration.shelterId === shelterId) {
+            allRegistrations.push({
+              ...registration,
+              checkInDate: new Date(registration.checkInDate),
+              expectedCheckOutDate: registration.expectedCheckOutDate 
+                ? new Date(registration.expectedCheckOutDate) 
+                : null,
+              registrationDate: new Date(registration.registrationDate)
+            });
+          }
+        } catch (error) {
+          console.error('Failed to parse registration:', error);
+        }
+      }
+    }
+
+    while (currentDate <= endDate) {
+      const dayStart = new Date(currentDate);
+      dayStart.setHours(0, 0, 0, 0);
+      const dayEnd = new Date(currentDate);
+      dayEnd.setHours(23, 59, 59, 999);
+
+      // Count active registrations for this day
+      const activeRegistrations = allRegistrations.filter(reg => {
+        const checkIn = reg.checkInDate;
+        const checkOut = reg.expectedCheckOutDate || new Date(checkIn.getTime() + 30 * 24 * 60 * 60 * 1000);
+        return checkIn <= dayEnd && checkOut >= dayStart && reg.status === 'active';
+      });
+
+      // Count check-ins on this day
+      const checkIns = allRegistrations.filter(reg => {
+        const checkIn = reg.checkInDate;
+        return checkIn >= dayStart && checkIn <= dayEnd;
+      }).length;
+
+      // Count check-outs on this day
+      const checkOuts = allRegistrations.filter(reg => {
+        const checkOut = reg.expectedCheckOutDate;
+        return checkOut && checkOut >= dayStart && checkOut <= dayEnd;
+      }).length;
+
+      const expectedOccupancy = activeRegistrations.length;
+      const availableBeds = shelter.capacity.total - expectedOccupancy;
+
+      forecast.push({
+        date: new Date(currentDate),
+        expectedOccupancy,
+        checkIns,
+        checkOuts,
+        availableBeds: Math.max(0, availableBeds)
+      });
+
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    return forecast;
+  }
+
+  /**
    * Get shelter system overview
    */
   async getShelterSystemOverview(): Promise<{

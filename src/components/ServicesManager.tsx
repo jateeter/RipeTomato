@@ -28,6 +28,9 @@ import { solidAuthService } from '../services/solidAuthService';
 import { OpenMapsComponent } from './OpenMapsComponent';
 import { ShelterList } from './ShelterList';
 import { shelterDataService, ShelterFacility } from '../services/shelterDataService';
+import { ClientBedRegistrationModal, BedRegistration } from './ClientBedRegistrationModal';
+import { InteractiveCalendar } from './InteractiveCalendar';
+import { EnhancedFacilitiesCollection } from './EnhancedFacilitiesCollection';
 
 interface ServicesManagerProps {
   managerId: string;
@@ -111,8 +114,13 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
   // Shelter management state
   const [shelters, setShelters] = useState<ShelterFacility[]>([]);
   const [selectedShelter, setSelectedShelter] = useState<ShelterFacility | null>(null);
-  const [shelterViewMode, setShelterViewMode] = useState<'list' | 'map'>('list');
+  const [shelterViewMode, setShelterViewMode] = useState<'list' | 'map' | 'calendar' | 'collection'>('list');
   const [spatialNavigationEnabled, setSpatialNavigationEnabled] = useState(true);
+  
+  // Bed registration state
+  const [showBedRegistrationModal, setShowBedRegistrationModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [bedRegistrations, setBedRegistrations] = useState<BedRegistration[]>([]);
 
   useEffect(() => {
     loadDashboardData();
@@ -248,12 +256,59 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
       const shelterData = await shelterDataService.getAllShelters();
       setShelters(shelterData);
       
+      // Load bed registrations
+      loadBedRegistrations();
+      
       console.log('Shelter data loaded:', {
         count: shelterData.length,
         spatialNavigation: spatialNavigationEnabled
       });
     } catch (error) {
       console.error('Failed to load shelter data:', error);
+    }
+  };
+
+  const loadBedRegistrations = () => {
+    const registrations: BedRegistration[] = [];
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith('bed_registration_')) {
+        try {
+          const registration = JSON.parse(localStorage.getItem(key) || '{}');
+          registrations.push({
+            ...registration,
+            checkInDate: new Date(registration.checkInDate),
+            expectedCheckOutDate: registration.expectedCheckOutDate 
+              ? new Date(registration.expectedCheckOutDate) 
+              : undefined,
+            actualCheckOutDate: registration.actualCheckOutDate 
+              ? new Date(registration.actualCheckOutDate) 
+              : undefined,
+            registrationDate: new Date(registration.registrationDate)
+          });
+        } catch (error) {
+          console.error('Failed to parse registration:', error);
+        }
+      }
+    }
+    
+    setBedRegistrations(registrations.sort((a, b) => 
+      new Date(b.registrationDate).getTime() - new Date(a.registrationDate).getTime()
+    ));
+  };
+
+  const handleBedRegistrationComplete = (registration: BedRegistration) => {
+    console.log('Bed registration completed:', registration);
+    setBedRegistrations(prev => [registration, ...prev]);
+    setShowBedRegistrationModal(false);
+    loadShelterData(); // Reload to update occupancy
+  };
+
+  const handleCalendarDateSelect = (date: Date, availableBeds: number) => {
+    setSelectedDate(date);
+    if (availableBeds > 0 && selectedShelter) {
+      setShowBedRegistrationModal(true);
     }
   };
 
@@ -1221,23 +1276,43 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => setShelterViewMode('list')}
-                      className={`px-3 py-1 rounded ${
+                      className={`px-3 py-1 rounded text-sm ${
                         shelterViewMode === 'list'
                           ? 'bg-blue-600 text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      📋 List View
+                      📋 List
                     </button>
                     <button
                       onClick={() => setShelterViewMode('map')}
-                      className={`px-3 py-1 rounded ${
+                      className={`px-3 py-1 rounded text-sm ${
                         shelterViewMode === 'map'
                           ? 'bg-blue-600 text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      🗺️ Map View
+                      🗺️ Map
+                    </button>
+                    <button
+                      onClick={() => setShelterViewMode('calendar')}
+                      className={`px-3 py-1 rounded text-sm ${
+                        shelterViewMode === 'calendar'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      📅 Calendar
+                    </button>
+                    <button
+                      onClick={() => setShelterViewMode('collection')}
+                      className={`px-3 py-1 rounded text-sm ${
+                        shelterViewMode === 'collection'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      🏢 Collection
                     </button>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -1255,7 +1330,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
               </div>
 
               {/* Shelter Content */}
-              {shelterViewMode === 'list' ? (
+              {shelterViewMode === 'list' && (
                 <ShelterList
                   userRole="manager"
                   showFilters={true}
@@ -1264,7 +1339,9 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                   maxHeight="700px"
                   enableExport={true}
                 />
-              ) : (
+              )}
+
+              {shelterViewMode === 'map' && (
                 <div className="space-y-4">
                   <OpenMapsComponent
                     shelters={shelters}
@@ -1279,7 +1356,17 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                   
                   {selectedShelter && (
                     <div className="bg-white border rounded-lg p-4">
-                      <h4 className="font-semibold mb-2">Selected Shelter Details</h4>
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-semibold">Selected Shelter Details</h4>
+                        <button
+                          onClick={() => {
+                            setShowBedRegistrationModal(true);
+                          }}
+                          className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+                        >
+                          Register Client to Bed
+                        </button>
+                      </div>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                         <div>
                           <div className="font-medium">{selectedShelter.name}</div>
@@ -1311,27 +1398,117 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                   )}
                 </div>
               )}
+
+              {shelterViewMode === 'calendar' && (
+                <div className="space-y-4">
+                  {selectedShelter && (
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="font-medium">Calendar View: {selectedShelter.name}</div>
+                          <div className="text-sm text-gray-600">
+                            Click on any date to register a client • Available beds shown per day
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setSelectedShelter(null)}
+                          className="text-sm text-blue-600 hover:text-blue-800"
+                        >
+                          View All Facilities
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <InteractiveCalendar
+                    shelter={selectedShelter || undefined}
+                    onDateSelect={handleCalendarDateSelect}
+                    showOccupancy={true}
+                    showEvents={true}
+                    userRole="manager"
+                    height="600px"
+                  />
+                </div>
+              )}
+
+              {shelterViewMode === 'collection' && (
+                <EnhancedFacilitiesCollection
+                  userRole="manager"
+                  showCalendar={true}
+                  showMap={true}
+                  showRegistrationTracking={true}
+                  onFacilitySelect={setSelectedShelter}
+                />
+              )}
               
               {/* Shelter Management Actions */}
               <div className="bg-gray-50 border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-medium">Shelter Management Actions</h4>
                   <div className="text-sm text-gray-600">
-                    Manager Access • Spatial Navigation: {spatialNavigationEnabled ? 'Enabled' : 'Disabled'}
+                    Manager Access • Active Registrations: {bedRegistrations.filter(r => r.status === 'active').length} • 
+                    Spatial Navigation: {spatialNavigationEnabled ? 'Enabled' : 'Disabled'}
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-                  <button className="p-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-                    📊 View Utilization Analytics
+                
+                {/* Registration Summary */}
+                {bedRegistrations.length > 0 && (
+                  <div className="mb-4 p-3 bg-white border rounded">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center text-sm">
+                      <div>
+                        <div className="font-semibold text-blue-600">{bedRegistrations.filter(r => r.status === 'active').length}</div>
+                        <div className="text-gray-600">Active Registrations</div>
+                      </div>
+                      <div>
+                        <div className="font-semibold text-green-600">
+                          {bedRegistrations.filter(r => {
+                            const today = new Date();
+                            const checkIn = new Date(r.checkInDate);
+                            return checkIn.toDateString() === today.toDateString();
+                          }).length}
+                        </div>
+                        <div className="text-gray-600">Check-ins Today</div>
+                      </div>
+                      <div>
+                        <div className="font-semibold text-purple-600">
+                          {bedRegistrations.filter(r => {
+                            const today = new Date();
+                            const checkOut = r.expectedCheckOutDate;
+                            return checkOut && new Date(checkOut).toDateString() === today.toDateString();
+                          }).length}
+                        </div>
+                        <div className="text-gray-600">Expected Check-outs</div>
+                      </div>
+                      <div>
+                        <div className="font-semibold text-orange-600">
+                          {Math.round(bedRegistrations.reduce((sum, r) => {
+                            if (r.actualCheckOutDate) {
+                              const days = Math.ceil((new Date(r.actualCheckOutDate).getTime() - new Date(r.checkInDate).getTime()) / (1000 * 60 * 60 * 24));
+                              return sum + days;
+                            }
+                            return sum;
+                          }, 0) / Math.max(1, bedRegistrations.filter(r => r.actualCheckOutDate).length))}
+                        </div>
+                        <div className="text-gray-600">Avg Stay (days)</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <button
+                    onClick={() => setShowBedRegistrationModal(true)}
+                    className="p-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+                  >
+                    🏠 Register Client to Bed
                   </button>
                   <button className="p-3 bg-green-600 text-white rounded hover:bg-green-700 text-sm">
-                    🗺️ Export Facility Data
+                    📊 View Utilization Analytics
                   </button>
                   <button className="p-3 bg-purple-600 text-white rounded hover:bg-purple-700 text-sm">
-                    📱 Generate QR Codes
+                    📅 Calendar Management
                   </button>
                   <button className="p-3 bg-orange-600 text-white rounded hover:bg-orange-700 text-sm">
-                    ⚠️ Manage Alerts
+                    📈 Export Reports
                   </button>
                 </div>
               </div>
@@ -1352,6 +1529,16 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
         onClose={() => setShowRegistrationModal(false)}
         personType={registrationType}
         onSuccess={handleRegistrationSuccess}
+      />
+
+      {/* Client Bed Registration Modal */}
+      <ClientBedRegistrationModal
+        isOpen={showBedRegistrationModal}
+        onClose={() => setShowBedRegistrationModal(false)}
+        shelter={selectedShelter || undefined}
+        selectedDate={selectedDate || undefined}
+        onRegistrationComplete={handleBedRegistrationComplete}
+        userRole="manager"
       />
     </div>
   );
