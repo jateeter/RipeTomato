@@ -1,0 +1,130 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "facility-001",
+      "name": "Idaho Community Shelter",
+      "type": "Emergency Shelter",
+      "address": {
+        "street": "123 Main Street",
+        "city": "Boise",
+        "state": "ID",
+        "zipCode": "83702",
+        "latitude": 43.6135,
+        "longitude": -116.2023
+      },
+      "capacity": {
+        "total": 50,
+        "available": 12,
+        "occupied": 38
+      },
+      "services": ["Housing", "Meals", "Case Management", "Mental Health"],
+      "contact": {
+        "phone": "+12085551000",
+        "email": "info@idahoshelter.org",
+        "website": "https://idahoshelter.org"
+      },
+      "eligibility": {
+        "populations": ["Adults", "Families"],
+        "restrictions": ["No pets"],
+        "requirements": ["Valid ID", "Intake interview"]
+      },
+      "accessibility": {
+        "wheelchairAccessible": true,
+        "ada": true,
+        "publicTransit": true,
+        "parking": true
+      },
+      "operatingSchedule": {
+        "hoursOfOperation": "24/7",
+        "checkInTime": "18:00",
+        "checkOutTime": "08:00"
+      },
+      "verificationStatus": "verified",
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "facility-002", 
+      "name": "Boise Family Shelter",
+      "type": "Family Shelter",
+      "address": {
+        "street": "456 Oak Avenue",
+        "city": "Boise",
+        "state": "ID",
+        "zipCode": "83703",
+        "latitude": 43.6066,
+        "longitude": -116.2312
+      },
+      "capacity": {
+        "total": 25,
+        "available": 8,
+        "occupied": 17
+      },
+      "services": ["Housing", "Meals", "Childcare", "Education Support"],
+      "contact": {
+        "phone": "+12085552000",
+        "email": "families@boiseshelter.org"
+      },
+      "eligibility": {
+        "populations": ["Families with Children"],
+        "restrictions": ["Families only"],
+        "requirements": ["Background check", "Vaccination records for children"]
+      },
+      "accessibility": {
+        "wheelchairAccessible": true,
+        "ada": true,
+        "publicTransit": false,
+        "parking": true
+      },
+      "operatingSchedule": {
+        "hoursOfOperation": "24/7"
+      },
+      "verificationStatus": "verified",
+      "lastUpdated": "2024-01-15T09:30:00Z"
+    },
+    {
+      "id": "facility-003",
+      "name": "Youth Services Center", 
+      "type": "Youth Shelter",
+      "address": {
+        "street": "789 Pine Street",
+        "city": "Boise",
+        "state": "ID",
+        "zipCode": "83701",
+        "latitude": 43.6205,
+        "longitude": -116.1987
+      },
+      "capacity": {
+        "total": 20,
+        "available": 5,
+        "occupied": 15
+      },
+      "services": ["Housing", "Education", "Counseling", "Life Skills"],
+      "contact": {
+        "phone": "+12085553000",
+        "email": "youth@idahoyouth.org"
+      },
+      "eligibility": {
+        "populations": ["Youth 16-24"],
+        "restrictions": ["Age requirements"],
+        "requirements": ["Age verification", "Guardian consent if minor"]
+      },
+      "accessibility": {
+        "wheelchairAccessible": false,
+        "ada": false,
+        "publicTransit": true,
+        "parking": false
+      },
+      "operatingSchedule": {
+        "hoursOfOperation": "24/7"
+      },
+      "verificationStatus": "verified",
+      "lastUpdated": "2024-01-15T08:45:00Z"
+    }
+  ],
+  "metadata": {
+    "total": 3,
+    "lastSync": "2024-01-15T10:00:00Z",
+    "source": "hmis.opencommons.org"
+  }
+}

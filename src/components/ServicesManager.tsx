@@ -22,6 +22,7 @@ import {
 } from '../types/CommunityServices';
 import { FacilitiesMap } from './FacilitiesMap';
 import { HMISFacility, hmisAPIService } from '../services/hmisAPIService';
+import { hmisInventorySyncService } from '../services/hmisInventorySyncService';
 import { PersonRegistrationModal, PersonType, PersonRegistrationData } from './PersonRegistrationModal';
 import { solidPodService } from '../services/solidPodService';
 import { solidAuthService } from '../services/solidAuthService';
@@ -31,6 +32,8 @@ import { shelterDataService, ShelterFacility } from '../services/shelterDataServ
 import { ClientBedRegistrationModal, BedRegistration } from './ClientBedRegistrationModal';
 import { InteractiveCalendar } from './InteractiveCalendar';
 import { EnhancedFacilitiesCollection } from './EnhancedFacilitiesCollection';
+import { googleCalendarService } from '../services/googleCalendarService';
+import HMISFacilitiesDashboard from './HMISFacilitiesDashboard';
 
 interface ServicesManagerProps {
   managerId: string;
@@ -55,7 +58,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
 }) => {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'staff' | 'resources' | 'clients' | 'reports' | 'alerts' | 'facilities' | 'configuration' | 'shelters'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'staff' | 'resources' | 'clients' | 'reports' | 'alerts' | 'facilities' | 'hmis_facilities' | 'configuration' | 'shelters'>('overview');
   const [selectedTimeRange, setSelectedTimeRange] = useState<'today' | 'week' | 'month'>('today');
 
   // Configuration state
@@ -96,6 +99,19 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
     shelterCount: 0,
     availableBeds: 0,
     supportServices: 0
+  });
+
+  // HMIS sync status
+  const [hmisSyncStatus, setHmisSyncStatus] = useState<{
+    lastSyncTime: Date | null;
+    syncInProgress: boolean;
+    autoSyncEnabled: boolean;
+    syncInterval: number;
+  }>({
+    lastSyncTime: null,
+    syncInProgress: false,
+    autoSyncEnabled: false,
+    syncInterval: 300000
   });
 
   // Registration modal state

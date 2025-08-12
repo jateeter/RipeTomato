@@ -13,6 +13,7 @@ import { ShelterList } from './ShelterList';
 import { shelterDataService, ShelterFacility } from '../services/shelterDataService';
 import { ClientBedRegistrationModal, BedRegistration } from './ClientBedRegistrationModal';
 import { InteractiveCalendar } from './InteractiveCalendar';
+import { googleCalendarService } from '../services/googleCalendarService';
 
 interface StaffDashboardProps {
   staffId: string;
@@ -58,6 +59,7 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
 
   useEffect(() => {
     loadDashboardData();
+    initializeStaffCalendar();
   }, []);
 
   useEffect(() => {
@@ -65,6 +67,30 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
       loadShelterData();
     }
   }, [activeTab]);
+
+  const initializeStaffCalendar = async () => {
+    try {
+      await googleCalendarService.initialize();
+      
+      // Create personal calendar for staff member
+      try {
+        await googleCalendarService.createPersonalCalendar(
+          staffId,
+          'staff',
+          {
+            name: `Staff Member ${staffId}`,
+            email: `${staffId}@shelter-system.org`,
+            department: staffRole.replace('_', ' ')
+          }
+        );
+      } catch (error) {
+        console.log('Staff calendar may already exist:', error);
+      }
+      
+    } catch (error) {
+      console.error('Failed to initialize staff calendar:', error);
+    }
+  };
 
   const loadDashboardData = async () => {
     try {
@@ -110,8 +136,60 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
     }
   };
 
-  const handleBedRegistrationComplete = (registration: BedRegistration) => {
+  const handleBedRegistrationComplete = async (registration: BedRegistration) => {
     console.log('Staff bed registration completed:', registration);
+    
+    try {
+      // Create calendar events for the registration
+      const shelterCalendarId = `shelter_${registration.shelterId}`;
+      const staffCalendarId = `personal_${staffId}`;
+      
+      // Create bed registration event in shelter calendar
+      await googleCalendarService.createBedRegistrationEvent(
+        registration,
+        shelterCalendarId
+      );
+      
+      // Create client calendar and sync with service delivery
+      try {
+        const clientCalendarId = await googleCalendarService.createPersonalCalendar(
+          registration.clientId,
+          'client',
+          {
+            name: registration.clientName,
+            email: `${registration.clientId}@system.local`
+          }
+        );
+        
+        // Create service delivery calendar for this case
+        const serviceCalendarId = await googleCalendarService.createServiceDeliveryCalendar(
+          staffId,
+          'case_management',
+          registration.shelterId
+        );
+        
+        // Set up bi-directional sync
+        await googleCalendarService.setupCalendarSync(
+          registration.clientId,
+          clientCalendarId,
+          serviceCalendarId
+        );
+        
+        // Add event to client calendar
+        await googleCalendarService.createBedRegistrationEvent(
+          registration,
+          shelterCalendarId,
+          clientCalendarId
+        );
+        
+      } catch (calendarError) {
+        console.error('Failed to set up client calendar sync:', calendarError);
+      }
+      
+    } catch (error) {
+      console.error('Failed to create calendar events:', error);
+    }
+    
     setShowBedRegistrationModal(false);
     loadShelterData(); // Reload to update occupancy
   };
@@ -233,19 +311,88 @@ export const StaffDashboard: React.FC<StaffDashboardProps> = ({
                 </div>
               )}
 
+              {/* Quick Bed Registration Actions */}
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-semibold text-green-800 flex items-center">
+                    <span className="mr-2">🏠</span>
+                    Staff Bed Registration Actions
+                  </h4>
+                  <div className="text-sm text-green-600">Staff Access</div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                  <button
+                    onClick={() => setShowBedRegistrationModal(true)}
+                    className="p-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+                  >
+                    <span className="mr-2">🏠</span>
+                    Register Client
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('shelters')}
+                    className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                  >
+                    <span className="mr-2">🗺️</span>
+                    Find Available Beds
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveTab('shelters');
+                      setShelterViewMode('calendar');
+                    }}
+                    className="p-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium"
+                  >
+                    <span className="mr-2">📅</span>
+                    Schedule Future Stay
+                  </button>
+                  <button
+                    onClick={async () => {
+                      try {
+                        await googleCalendarService.synchronizeCalendars();
+                        alert('Your calendar has been synchronized with all client and facility calendars!');
+                      } catch (error) {
+                        alert('Calendar sync failed. Please try again.');
+                      }
+                    }}
+                    className="p-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium"
+                  >
+                    <span className="mr-2">🔄</span>
+                    Sync Calendars
+                  </button>
+                </div>
+              </div>
+
               {/* Quick Actions */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
-                  <div className="font-medium text-blue-600 mb-2">📋 New Case Note</div>
-                  <div className="text-sm text-gray-600">Document client interactions</div>
+                <button 
+                  onClick={async () => {
+                    // Show calendar overview
+                    try {
+                      const overview = await googleCalendarService.getCalendarOverview(staffId);
+                      console.log('Calendar overview:', overview);
+                      alert(`You have ${overview.upcomingEvents.length} upcoming events. Check console for details.`);
+                    } catch (error) {
+                      console.error('Failed to get calendar overview:', error);
+                    }
+                  }}
+                  className="p-4 border rounded-lg hover:bg-gray-50 text-left"
+                >
+                  <div className="font-medium text-blue-600 mb-2">📋 My Calendar Overview</div>
+                  <div className="text-sm text-gray-600">View upcoming appointments and events</div>
                 </button>
-                <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
+                <button 
+                  onClick={() => {
+                    setActiveTab('shelters');
+                    setShelterViewMode('map');
+                  }}
+                  className="p-4 border rounded-lg hover:bg-gray-50 text-left"
+                >
                   <div className="font-medium text-green-600 mb-2">🏠 Check Shelter Availability</div>
-                  <div className="text-sm text-gray-600">Find available beds</div>
+                  <div className="text-sm text-gray-600">Find available beds across all facilities</div>
                 </button>
                 <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
                   <div className="font-medium text-purple-600 mb-2">📞 Schedule Appointment</div>
-                  <div className="text-sm text-gray-600">Book client meeting</div>
+                  <div className="text-sm text-gray-600">Book client meeting with calendar sync</div>
                 </button>
               </div>
             </div>

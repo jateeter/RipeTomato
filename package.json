@@ -37,7 +37,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:headless": "cypress run --headless",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:firefox": "cypress run --browser firefox",
+    "test:e2e": "start-server-and-test start http://localhost:3000 cy:run",
+    "test:e2e:open": "start-server-and-test start http://localhost:3000 cy:open"
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +66,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "cypress": "^14.5.4",
     "postcss": "^8.5.6",
+    "start-server-and-test": "^2.0.13",
     "tailwindcss": "^3.4.17"
   }
 }

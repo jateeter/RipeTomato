@@ -13,6 +13,7 @@ import { InteractiveCalendar } from './InteractiveCalendar';
 import { ClientBedRegistrationModal, BedRegistration } from './ClientBedRegistrationModal';
 import { OpenMapsComponent } from './OpenMapsComponent';
 import { ShelterList } from './ShelterList';
+import { googleCalendarService } from '../services/googleCalendarService';
 
 interface FacilityRegistrationData {
   facilityId: string;
@@ -73,6 +74,37 @@ export const EnhancedFacilitiesCollection: React.FC<EnhancedFacilitiesCollection
   useEffect(() => {
     loadFacilitiesData();
   }, []);
+
+  useEffect(() => {
+    if (facilities.length > 0) {
+      initializeCalendarSystem();
+    }
+  }, [facilities]);
+
+  const initializeCalendarSystem = async () => {
+    try {
+      await googleCalendarService.initialize();
+      
+      // Wait for facilities to be loaded before creating calendars
+      if (facilities.length === 0) {
+        console.log('📅 Waiting for facilities to load before creating calendars...');
+        return;
+      }
+      
+      // Create calendars for each facility if not exist
+      for (const facility of facilities) {
+        const calendarId = `shelter_${facility.id}`;
+        const existingCalendars = await googleCalendarService.getUserCalendars('system');
+        const hasCalendar = existingCalendars.some(cal => cal.id === calendarId);
+        
+        if (!hasCalendar) {
+          await googleCalendarService.createShelterCalendar(facility);
+        }
+      }
+    } catch (error) {
+      console.error('Failed to initialize calendar system:', error);
+    }
+  };
 
   const loadFacilitiesData = async () => {
     try {
@@ -251,8 +283,57 @@ export const EnhancedFacilitiesCollection: React.FC<EnhancedFacilitiesCollection
     }
   };
 
-  const handleRegistrationComplete = (registration: BedRegistration) => {
+  const handleRegistrationComplete = async (registration: BedRegistration) => {
     console.log('Registration completed:', registration);
+    
+    try {
+      // Create calendar events for the registration
+      const shelterCalendarId = `shelter_${registration.shelterId}`;
+      await googleCalendarService.createBedRegistrationEvent(
+        registration,
+        shelterCalendarId
+      );
+      
+      // Create personal calendar for client if it doesn't exist
+      try {
+        const clientCalendarId = await googleCalendarService.createPersonalCalendar(
+          registration.clientId,
+          'client',
+          {
+            name: registration.clientName,
+            email: `${registration.clientId}@system.local`
+          }
+        );
+        
+        // Add event to client calendar
+        await googleCalendarService.createBedRegistrationEvent(
+          registration,
+          shelterCalendarId,
+          clientCalendarId
+        );
+        
+        // Set up calendar sync between client and service delivery calendars
+        const serviceCalendarId = `service_shelter_services_${registration.shelterId}`;
+        await googleCalendarService.createServiceDeliveryCalendar(
+          userRole === 'manager' ? 'current_manager' : 'system',
+          'shelter_services',
+          registration.shelterId
+        );
+        
+        await googleCalendarService.setupCalendarSync(
+          registration.clientId,
+          clientCalendarId,
+          serviceCalendarId
+        );
+        
+      } catch (calendarError) {
+        console.error('Failed to create client calendar:', calendarError);
+      }
+      
+    } catch (error) {
+      console.error('Failed to create calendar events:', error);
+    }
+    
     setShowRegistrationModal(false);
     // Reload data to reflect changes
     loadFacilitiesData();
@@ -353,6 +434,64 @@ export const EnhancedFacilitiesCollection: React.FC<EnhancedFacilitiesCollection
           </div>
         </div>
       )}
+
+      {/* Bed Registration Action Points */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <h4 className="font-semibold text-blue-800 flex items-center">
+            <span className="mr-2">🏠</span>
+            Client Bed Registration Action Points
+          </h4>
+          <div className="text-sm text-blue-600">
+            {systemMetrics.availableBeds} beds available system-wide
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <button
+            onClick={() => setShowRegistrationModal(true)}
+            className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center"
+          >
+            <span className="mr-2">➕</span>
+            Register Client to Bed
+          </button>
+          <button
+            onClick={() => {
+              setActiveView('calendar');
+              // Auto-select first facility with available beds
+              const availableFacility = facilities.find(f => f.currentUtilization.available > 0);
+              if (availableFacility) setSelectedFacility(availableFacility);
+            }}
+            className="p-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center justify-center"
+          >
+            <span className="mr-2">📅</span>
+            Schedule Future Stay
+          </button>
+          <button
+            onClick={() => {
+              setActiveView('map');
+              // Show all facilities with available beds
+            }}
+            className="p-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium flex items-center justify-center"
+          >
+            <span className="mr-2">🚨</span>
+            Emergency Placement
+          </button>
+          <button
+            onClick={async () => {
+              try {
+                await googleCalendarService.synchronizeCalendars();
+                alert('Calendar synchronization completed successfully!');
+              } catch (error) {
+                alert('Calendar synchronization failed. Please try again.');
+              }
+            }}
+            className="p-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium flex items-center justify-center"
+          >
+            <span className="mr-2">🔄</span>
+            Sync Calendars
+          </button>
+        </div>
+      </div>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

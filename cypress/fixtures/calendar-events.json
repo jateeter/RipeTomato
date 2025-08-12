@@ -1,0 +1,170 @@
+{
+  "bedRegistrationEvent": {
+    "id": "event-001",
+    "summary": "Bed Registration - John Doe",
+    "description": "Client bed registration at Idaho Community Shelter",
+    "start": {
+      "dateTime": "2024-01-15T18:00:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "end": {
+      "dateTime": "2024-01-15T20:00:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "location": "123 Main Street, Boise, ID 83702",
+    "attendees": [
+      {
+        "email": "john.doe@example.com",
+        "displayName": "John Doe",
+        "responseStatus": "accepted"
+      },
+      {
+        "email": "shelter@idaho.org", 
+        "displayName": "Idaho Community Shelter",
+        "responseStatus": "accepted"
+      }
+    ],
+    "extendedProperties": {
+      "private": {
+        "eventType": "bed_registration",
+        "clientId": "client-001",
+        "shelterId": "facility-001",
+        "bedType": "Single",
+        "priority": "normal"
+      }
+    },
+    "reminders": {
+      "useDefault": false,
+      "overrides": [
+        {
+          "method": "email",
+          "minutes": 60
+        },
+        {
+          "method": "popup",
+          "minutes": 15
+        }
+      ]
+    }
+  },
+  "checkInReminder": {
+    "id": "event-002",
+    "summary": "Check-in Reminder - John Doe",
+    "description": "Daily check-in reminder for shelter resident",
+    "start": {
+      "dateTime": "2024-01-16T08:00:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "end": {
+      "dateTime": "2024-01-16T08:30:00-07:00", 
+      "timeZone": "America/Boise"
+    },
+    "location": "123 Main Street, Boise, ID 83702",
+    "recurrence": [
+      "RRULE:FREQ=DAILY;COUNT=7"
+    ],
+    "extendedProperties": {
+      "private": {
+        "eventType": "checkin",
+        "clientId": "client-001",
+        "shelterId": "facility-001",
+        "priority": "normal"
+      }
+    }
+  },
+  "emergencyEvent": {
+    "id": "event-003",
+    "summary": "URGENT - Emergency Placement - James Wilson",
+    "description": "Emergency bed placement - immediate assistance required",
+    "start": {
+      "dateTime": "2024-01-15T16:00:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "end": {
+      "dateTime": "2024-01-15T18:00:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "location": "Emergency Shelter, Boise, ID",
+    "colorId": "11",
+    "extendedProperties": {
+      "private": {
+        "eventType": "emergency",
+        "clientId": "client-003", 
+        "shelterId": "facility-003",
+        "priority": "urgent"
+      }
+    },
+    "reminders": {
+      "useDefault": false,
+      "overrides": [
+        {
+          "method": "popup",
+          "minutes": 0
+        },
+        {
+          "method": "email",
+          "minutes": 5
+        }
+      ]
+    }
+  },
+  "youthEvent": {
+    "id": "event-004",
+    "summary": "Youth Registration - Alex Johnson",
+    "description": "Youth client registration with guardian notification",
+    "start": {
+      "dateTime": "2024-01-16T16:00:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "end": {
+      "dateTime": "2024-01-16T17:30:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "location": "789 Pine Street, Boise, ID 83701",
+    "attendees": [
+      {
+        "email": "alex.johnson@example.com",
+        "displayName": "Alex Johnson",
+        "responseStatus": "accepted"
+      },
+      {
+        "email": "sarah.johnson@example.com",
+        "displayName": "Sarah Johnson (Guardian)",
+        "responseStatus": "accepted"
+      }
+    ],
+    "extendedProperties": {
+      "private": {
+        "eventType": "bed_registration",
+        "clientId": "client-004",
+        "shelterId": "facility-003",
+        "bedType": "Youth",
+        "priority": "high",
+        "requiresGuardian": "true"
+      }
+    }
+  },
+  "staffMeeting": {
+    "id": "event-005",
+    "summary": "Daily Staff Meeting",
+    "description": "Review client registrations and facility status",
+    "start": {
+      "dateTime": "2024-01-16T09:00:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "end": {
+      "dateTime": "2024-01-16T09:30:00-07:00",
+      "timeZone": "America/Boise"
+    },
+    "location": "Staff Conference Room",
+    "recurrence": [
+      "RRULE:FREQ=DAILY;BYDAY=MO,TU,WE,TH,FR"
+    ],
+    "extendedProperties": {
+      "private": {
+        "eventType": "staff_meeting",
+        "priority": "normal"
+      }
+    }
+  }
+}

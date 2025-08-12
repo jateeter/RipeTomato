@@ -1,0 +1,72 @@
+{
+  "validClient": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "dateOfBirth": "1985-06-15",
+    "phone": "+12085551234",
+    "email": "john.doe@example.com",
+    "emergencyContact": {
+      "name": "Jane Doe",
+      "phone": "+12085555678",
+      "relationship": "Spouse"
+    },
+    "bedRegistration": {
+      "shelterName": "Idaho Community Shelter",
+      "checkInDate": "2024-01-15",
+      "checkOutDate": "2024-01-22",
+      "bedType": "Single",
+      "specialRequirements": "Ground floor preferred due to mobility issues"
+    }
+  },
+  "clientWithoutEmail": {
+    "firstName": "Mary",
+    "lastName": "Smith",
+    "dateOfBirth": "1992-03-20",
+    "phone": "+12085551111",
+    "emergencyContact": {
+      "name": "Robert Smith",
+      "phone": "+12085552222",
+      "relationship": "Father"
+    },
+    "bedRegistration": {
+      "shelterName": "Boise Family Shelter",
+      "checkInDate": "2024-01-16",
+      "bedType": "Family",
+      "specialRequirements": "Family with 2 children (ages 5, 8)"
+    }
+  },
+  "urgentClient": {
+    "firstName": "James",
+    "lastName": "Wilson",
+    "dateOfBirth": "1978-11-03",
+    "phone": "+12085553333",
+    "emergencyContact": {
+      "name": "Emergency Services",
+      "phone": "+12085559999",
+      "relationship": "Social Worker"
+    },
+    "bedRegistration": {
+      "shelterName": "Emergency Shelter",
+      "checkInDate": "2024-01-15",
+      "bedType": "Single",
+      "specialRequirements": "Immediate placement needed - referred by emergency services"
+    }
+  },
+  "youthClient": {
+    "firstName": "Alex",
+    "lastName": "Johnson",
+    "dateOfBirth": "2006-08-12",
+    "phone": "+12085554444",
+    "emergencyContact": {
+      "name": "Sarah Johnson",
+      "phone": "+12085555555",
+      "relationship": "Guardian"
+    },
+    "bedRegistration": {
+      "shelterName": "Youth Services Center",
+      "checkInDate": "2024-01-16",
+      "bedType": "Youth",
+      "specialRequirements": "Minor - requires guardian notification for all services"
+    }
+  }
+}
