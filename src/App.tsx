@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CommunityServicesHub } from './components/CommunityServicesHub';
 import ShelterApp from './components/ShelterApp';
 import './App.css';

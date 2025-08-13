@@ -722,7 +722,7 @@ export interface ChartData {
   chartId: string;
   chartType: 'line' | 'bar' | 'pie' | 'area';
   title: string;
-  data: any[];
+  data: Array<{x: string | number; y: number; label?: string}>;
   xAxisLabel?: string;
   yAxisLabel?: string;
 }
@@ -731,7 +731,7 @@ export interface TableData {
   tableId: string;
   title: string;
   headers: string[];
-  rows: any[][];
+  rows: Array<Array<string | number | boolean>>;
 }
 
 export interface ReportAttachment {

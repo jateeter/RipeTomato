@@ -2,6 +2,7 @@
 
 declare namespace Cypress {
   interface Chainable {
+    // Basic registration commands
     navigateToClientRegistration(): Chainable<void>
     fillClientBasicInfo(clientData: any): Chainable<void>
     fillClientEmergencyContact(emergencyContact: any): Chainable<void>
@@ -24,5 +25,26 @@ declare namespace Cypress {
     clearTestData(): Chainable<void>
     mockHMISResponse(fixtures: any): Chainable<void>
     mockGoogleCalendarResponse(): Chainable<void>
+
+    // Comprehensive service scheduling commands
+    scheduleComprehensiveServices(schedule: any): Chainable<void>
+    navigateToComprehensiveServiceRegistration(): Chainable<void>
+    scheduleShelterService(shelterConfig: any): Chainable<void>
+    scheduleMealServices(mealsConfig: any[]): Chainable<void>
+    scheduleTransportationService(transportConfig: any): Chainable<void>
+    confirmAllServices(): Chainable<void>
+    fillEmergencyContact(contactData: any): Chainable<void>
+    
+    // Service mocking commands
+    mockServiceConflicts(): Chainable<void>
+    mockTransportationService(): Chainable<void>
+    mockMealService(): Chainable<void>
+
+    // Service verification commands
+    verifyServiceCoordination(serviceCount: number): Chainable<void>
+    verifyCalendarIntegration(events: string[]): Chainable<void>
+    verifyNotificationsSent(notificationTypes: string[]): Chainable<void>
+    verifyMapIntegration(locations: string[]): Chainable<void>
+    verifyAgentActivation(agentTypes: string[]): Chainable<void>
   }
 }

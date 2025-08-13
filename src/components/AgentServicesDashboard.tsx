@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import { 
   BPMonitoringAgent, 
-  BloodPressureThreshold, 
   BPAlertTrigger, 
-  ParticipantAlert,
   AgentLog,
-  BloodPressureReading,
-  AgentStats
+  BloodPressureReading
 } from '../types/AgentServices';
 import { bloodPressureAgent } from '../services/bloodPressureAgent';
 
