@@ -228,4 +228,175 @@ Cypress.Commands.add('mockGoogleCalendarResponse', () => {
   }).as('createEvent')
 })
 
+// Comprehensive Service Scheduling Commands
+Cypress.Commands.add('scheduleComprehensiveServices', (schedule) => {
+  cy.navigateToComprehensiveServiceRegistration()
+  cy.fillClientBasicInfo(schedule.client)
+  cy.fillEmergencyContact(schedule.emergencyContact)
+  cy.scheduleShelterService(schedule.services.shelter)
+  cy.scheduleMealServices(schedule.services.meals)
+  cy.scheduleTransportationService(schedule.services.transportation)
+  cy.confirmAllServices()
+})
+
+Cypress.Commands.add('navigateToComprehensiveServiceRegistration', () => {
+  cy.get('[data-testid="services-manager-nav"]').click()
+  cy.get('[data-testid="comprehensive-service-registration"]').click()
+})
+
+Cypress.Commands.add('scheduleShelterService', (shelterConfig) => {
+  cy.get('[data-testid="service-type-shelter"]').click()
+  cy.get('[data-testid="facility-search-input"]').type(shelterConfig.facilityName)
+  cy.get(`[data-testid="facility-option-${shelterConfig.facilityName}"]`).click()
+  cy.get('[data-testid="bed-type-select"]').select(shelterConfig.bedType)
+  cy.get('[data-testid="shelter-checkin-date-input"]').type(shelterConfig.checkInDate)
+  cy.get('[data-testid="shelter-checkout-date-input"]').type(shelterConfig.checkOutDate)
+  if (shelterConfig.specialRequirements) {
+    cy.get('[data-testid="shelter-special-requirements-textarea"]').type(shelterConfig.specialRequirements)
+  }
+  cy.get('[data-testid="confirm-shelter-booking"]').click()
+})
+
+Cypress.Commands.add('scheduleMealServices', (mealsConfig) => {
+  cy.get('[data-testid="service-type-meals"]').click()
+  mealsConfig.forEach((meal, index) => {
+    if (index > 0) cy.get('[data-testid="add-meal-button"]').click()
+    cy.get(`[data-testid="meal-type-select-${index}"]`).select(meal.type)
+    cy.get(`[data-testid="meal-date-input-${index}"]`).type(meal.date)
+    cy.get(`[data-testid="meal-time-input-${index}"]`).type(meal.time)
+    if (meal.location) {
+      cy.get(`[data-testid="meal-location-select-${index}"]`).select(meal.location)
+    }
+    if (meal.dietaryRestrictions) {
+      cy.get(`[data-testid="dietary-restrictions-input-${index}"]`).type(meal.dietaryRestrictions)
+    }
+    if (meal.notes) {
+      cy.get(`[data-testid="meal-notes-input-${index}"]`).type(meal.notes)
+    }
+  })
+  cy.get('[data-testid="confirm-meals-booking"]').click()
+})
+
+Cypress.Commands.add('scheduleTransportationService', (transportConfig) => {
+  cy.get('[data-testid="service-type-transportation"]').click()
+  cy.get('[data-testid="transportation-type-select"]').select(transportConfig.type)
+  cy.get('[data-testid="transportation-date-input"]').type(transportConfig.date)
+  cy.get('[data-testid="pickup-time-input"]').type(transportConfig.pickupTime)
+  if (transportConfig.appointmentTime) {
+    cy.get('[data-testid="appointment-time-input"]').type(transportConfig.appointmentTime)
+  }
+  if (transportConfig.returnTime) {
+    cy.get('[data-testid="return-time-input"]').type(transportConfig.returnTime)
+  }
+  if (transportConfig.pickupLocation) {
+    cy.get('[data-testid="pickup-location-input"]').type(transportConfig.pickupLocation)
+  }
+  cy.get('[data-testid="destination-input"]').type(transportConfig.destination)
+  if (transportConfig.destinationAddress) {
+    cy.get('[data-testid="destination-address-input"]').type(transportConfig.destinationAddress)
+  }
+  if (transportConfig.purpose) {
+    cy.get('[data-testid="appointment-purpose-input"]').type(transportConfig.purpose)
+  }
+  if (transportConfig.notes) {
+    cy.get('[data-testid="transportation-notes-textarea"]').type(transportConfig.notes)
+  }
+  cy.get('[data-testid="confirm-transportation-booking"]').click()
+})
+
+Cypress.Commands.add('confirmAllServices', () => {
+  cy.get('[data-testid="review-complete-schedule"]').click()
+  cy.get('[data-testid="confirm-all-services"]').click()
+})
+
+Cypress.Commands.add('fillEmergencyContact', (contactData) => {
+  cy.get('[data-testid="emergency-contact-name-input"]').type(contactData.name)
+  cy.get('[data-testid="emergency-contact-phone-input"]').type(contactData.phone)
+  cy.get('[data-testid="emergency-contact-relationship-select"]').select(contactData.relationship)
+})
+
+// Service mocking commands
+Cypress.Commands.add('mockServiceConflicts', () => {
+  cy.intercept('GET', '**/shelters/availability', {
+    statusCode: 200,
+    body: { availableBeds: 0, conflicts: ['Bed already occupied'] }
+  }).as('shelterConflict')
+})
+
+Cypress.Commands.add('mockTransportationService', () => {
+  cy.intercept('POST', '**/transportation/book', {
+    statusCode: 200,
+    body: { 
+      bookingId: 'TRANS-001',
+      status: 'confirmed',
+      driver: 'Medical Transport Service',
+      vehicle: 'Van #3',
+      estimatedTravelTime: '15 minutes'
+    }
+  }).as('transportationBooking')
+})
+
+Cypress.Commands.add('mockMealService', () => {
+  cy.intercept('POST', '**/meals/reserve', {
+    statusCode: 200,
+    body: {
+      reservationId: 'MEAL-001',
+      status: 'confirmed',
+      dietaryAccommodations: 'Diabetic-friendly menu available',
+      servingLocation: 'Main dining hall'
+    }
+  }).as('mealReservation')
+})
+
+// Service verification commands
+Cypress.Commands.add('verifyServiceCoordination', (serviceCount) => {
+  cy.get('[data-testid="service-coordination-status"]')
+    .should('contain', `${serviceCount} services coordinated`)
+})
+
+Cypress.Commands.add('verifyCalendarIntegration', (events) => {
+  events.forEach(eventTitle => {
+    cy.get('[data-testid="calendar-events"]')
+      .should('contain', eventTitle)
+  })
+})
+
+Cypress.Commands.add('verifyNotificationsSent', (notificationTypes) => {
+  notificationTypes.forEach(type => {
+    cy.get(`[data-testid="notification-${type}"]`)
+      .should('be.visible')
+  })
+})
+
+Cypress.Commands.add('verifyMapIntegration', (locations) => {
+  locations.forEach(location => {
+    cy.get(`[data-testid="map-location-${location}"]`)
+      .should('be.visible')
+  })
+})
+
+Cypress.Commands.add('verifyAgentActivation', (agentTypes) => {
+  agentTypes.forEach(agentType => {
+    cy.get(`[data-testid="agent-${agentType}"]`)
+      .should('contain', 'Active')
+  })
+})
+
+// Additional commands for missing functionality
+Cypress.Commands.add('scheduleService', (serviceType, config) => {
+  cy.get(`[data-testid="service-type-${serviceType}"]`).click()
+  
+  switch(serviceType) {
+    case 'shelter':
+      cy.scheduleShelterService(config)
+      break
+    case 'meals':
+      cy.scheduleMealServices([config])
+      break
+    case 'transportation':
+      cy.scheduleTransportationService(config)
+      break
+  }
+})
+
 // Type definitions for TypeScript support - moved to separate .d.ts file

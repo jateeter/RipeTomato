@@ -344,6 +344,17 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
         person
       ]
     }));
+    
+    // Show temporary success message
+    const successElement = document.createElement('div');
+    successElement.setAttribute('data-testid', 'registration-success-message');
+    successElement.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+    successElement.textContent = `${person.firstName} ${person.lastName} registered successfully!`;
+    document.body.appendChild(successElement);
+    
+    setTimeout(() => {
+      document.body.removeChild(successElement);
+    }, 3000);
 
     // Show success message
     alert(`${person.firstName} ${person.lastName} has been successfully registered as a ${person.role}.`);
@@ -1134,6 +1145,32 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                 </div>
               </div>
 
+              {/* Comprehensive Service Registration */}
+              <div className="border rounded-lg p-6 mb-6">
+                <h4 className="text-lg font-medium mb-4 flex items-center">
+                  <span className="mr-2">🏘️</span>
+                  Comprehensive Service Registration
+                </h4>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h5 className="font-medium text-blue-800">Multi-Service Client Registration</h5>
+                      <p className="text-blue-600 text-sm mt-1">Register clients for shelter, meals, transportation, and other coordinated services</p>
+                    </div>
+                    <button 
+                      data-testid="comprehensive-service-registration"
+                      onClick={() => {
+                        // For now, this opens the basic client registration - in a full implementation this would open a comprehensive service form
+                        handleOpenRegistration('client');
+                      }}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                    >
+                      Start Multi-Service Registration
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               {/* Individual Registrations */}
               <div className="border rounded-lg p-6">
                 <h4 className="text-lg font-medium mb-4 flex items-center">
@@ -1149,6 +1186,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                         Client Registration
                       </h5>
                       <button 
+                        data-testid="client-registration-button"
                         onClick={() => handleOpenRegistration('client')}
                         className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700"
                       >
@@ -1173,6 +1211,21 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                         <div className="font-medium text-lg">0</div>
                       </div>
                     </div>
+                    
+                    {/* Client List */}
+                    {registeredPersons.clients.length > 0 && (
+                      <div className="mt-4">
+                        <h6 className="text-sm font-medium text-gray-700 mb-2">Recent Clients</h6>
+                        <div data-testid="client-list" className="space-y-1 max-h-32 overflow-y-auto">
+                          {registeredPersons.clients.slice(0, 5).map((client, index) => (
+                            <div key={client.id || index} className="text-xs text-gray-600 flex justify-between">
+                              <span>{client.firstName} {client.lastName}</span>
+                              <span>{new Date(client.registrationDate || Date.now()).toLocaleDateString()}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Staff Registration */}

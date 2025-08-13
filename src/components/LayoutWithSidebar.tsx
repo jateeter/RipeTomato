@@ -233,6 +233,7 @@ export const LayoutWithSidebar: React.FC<LayoutWithSidebarProps> = ({
           {serviceMenuItems.map((item) => (
             <button
               key={item.id}
+              data-testid={item.id === 'overview' ? 'services-manager-nav' : `service-nav-${item.id}`}
               onClick={() => onServiceChange(item.id)}
               disabled={!item.available}
               className={`w-full text-left px-4 py-3 hover:bg-blue-50 transition-colors ${

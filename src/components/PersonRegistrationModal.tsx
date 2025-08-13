@@ -106,6 +106,9 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [solidConnected, setSolidConnected] = useState(false);
   const [showPrivacyDetails, setShowPrivacyDetails] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     // Check Solid Pod connection status
@@ -215,12 +218,16 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
       });
 
       console.log(`✅ ${personType} registered successfully:`, registrationData);
-      onSuccess(registrationData);
-      onClose();
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        onSuccess(registrationData);
+        onClose();
+      }, 2000);
 
     } catch (error) {
       console.error(`Failed to register ${personType}:`, error);
-      alert(`Failed to register ${personType}. Please try again.`);
+      setErrorMessage(`Failed to register ${personType}. Please try again.`);
+      setShowErrorMessage(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -373,6 +380,36 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
             </button>
           </div>
           
+          {/* Success Notification */}
+          {showSuccessMessage && (
+            <div data-testid="success-notification" className="mt-3 p-3 bg-green-50 border border-green-200 rounded-md">
+              <div className="flex">
+                <div className="text-green-600">✅</div>
+                <div className="ml-2 text-sm text-green-700">
+                  {personType.charAt(0).toUpperCase() + personType.slice(1)} registered successfully! Redirecting...
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Error Notification */}
+          {showErrorMessage && (
+            <div data-testid="error-notification" className="mt-3 p-3 bg-red-50 border border-red-200 rounded-md">
+              <div className="flex">
+                <div className="text-red-600">❌</div>
+                <div className="ml-2 text-sm text-red-700">
+                  {errorMessage}
+                </div>
+                <button 
+                  onClick={() => setShowErrorMessage(false)}
+                  className="ml-auto text-red-600 hover:text-red-800"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          )}
+          
           {!solidConnected && (
             <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
               <div className="flex">
@@ -398,6 +435,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
                 </label>
                 <input
                   type="text"
+                  data-testid="first-name-input"
                   value={formData.firstName}
                   onChange={(e) => handleInputChange('firstName', e.target.value)}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -413,6 +451,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
                 </label>
                 <input
                   type="text"
+                  data-testid="last-name-input"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange('lastName', e.target.value)}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -430,6 +469,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
                 </label>
                 <input
                   type="email"
+                  data-testid="email-input"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -445,6 +485,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
                 </label>
                 <input
                   type="tel"
+                  data-testid="phone-input"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -461,6 +502,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
               </label>
               <input
                 type="date"
+                data-testid="date-of-birth-input"
                 value={formData.dateOfBirth}
                 onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -552,6 +594,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
                 </label>
                 <input
                   type="text"
+                  data-testid="emergency-contact-name-input"
                   value={formData.emergencyContact.name}
                   onChange={(e) => handleInputChange('emergencyContact.name', e.target.value)}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -567,6 +610,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
                 </label>
                 <input
                   type="text"
+                  data-testid="emergency-contact-relationship-input"
                   value={formData.emergencyContact.relationship}
                   onChange={(e) => handleInputChange('emergencyContact.relationship', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -581,6 +625,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
               </label>
               <input
                 type="tel"
+                data-testid="emergency-contact-phone-input"
                 value={formData.emergencyContact.phone}
                 onChange={(e) => handleInputChange('emergencyContact.phone', e.target.value)}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -667,6 +712,7 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
             </button>
             <button
               type="submit"
+              data-testid="submit-registration-button"
               disabled={isSubmitting || !solidConnected}
               className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
             >
