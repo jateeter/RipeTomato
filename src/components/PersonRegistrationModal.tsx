@@ -11,6 +11,7 @@ import React, { useState, useEffect } from 'react';
 import { solidPodService } from '../services/solidPodService';
 import { solidAuthService } from '../services/solidAuthService';
 import { unifiedDataOwnershipService } from '../services/unifiedDataOwnershipService';
+import { agentManagerService } from '../services/agentManager';
 
 export type PersonType = 'client' | 'staff' | 'manager';
 
@@ -218,11 +219,51 @@ export const PersonRegistrationModal: React.FC<PersonRegistrationModalProps> = (
       });
 
       console.log(`✅ ${personType} registered successfully:`, registrationData);
-      setShowSuccessMessage(true);
-      setTimeout(() => {
-        onSuccess(registrationData);
-        onClose();
-      }, 2000);
+      
+      // Spawn welcome agent for clients
+      if (personType === 'client') {
+        try {
+          console.log('🤖 Spawning welcome agent for new client...');
+          const agentId = await agentManagerService.spawnAgentForClient(registrationData);
+          console.log(`✅ Welcome agent spawned successfully: ${agentId}`);
+          
+          // Add agent info to success message
+          setShowSuccessMessage(true);
+          setTimeout(() => {
+            // Show agent spawn notification
+            const agentElement = document.createElement('div');
+            agentElement.setAttribute('data-testid', 'agent-spawn-notification');
+            agentElement.className = 'fixed top-16 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+            agentElement.textContent = `🤖 Welcome agent ${agentId} activated for ${registrationData.firstName}`;
+            document.body.appendChild(agentElement);
+            
+            setTimeout(() => {
+              if (document.body.contains(agentElement)) {
+                document.body.removeChild(agentElement);
+              }
+            }, 4000);
+            
+            onSuccess(registrationData);
+            onClose();
+          }, 2000);
+          
+        } catch (agentError) {
+          console.warn('⚠️ Failed to spawn welcome agent, but registration completed:', agentError);
+          // Continue with normal success flow even if agent spawn fails
+          setShowSuccessMessage(true);
+          setTimeout(() => {
+            onSuccess(registrationData);
+            onClose();
+          }, 2000);
+        }
+      } else {
+        // Non-client registration - no agent needed
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+          onSuccess(registrationData);
+          onClose();
+        }, 2000);
+      }
 
     } catch (error) {
       console.error(`Failed to register ${personType}:`, error);

@@ -399,4 +399,135 @@ Cypress.Commands.add('scheduleService', (serviceType, config) => {
   }
 })
 
+// Map and facility verification commands
+Cypress.Commands.add('verifyMapWithSatelliteView', () => {
+  cy.get('[data-testid="map-container"]').should('be.visible')
+  cy.get('[data-testid="satellite-layer-toggle"]').click()
+  cy.wait(1000) // Allow satellite layer to load
+})
+
+Cypress.Commands.add('selectFacilityOnMap', (facilityName) => {
+  cy.get(`[data-testid="map-marker-${facilityName.replace(/\s+/g, '-').toLowerCase()}"]`).click()
+})
+
+// Calendar verification commands
+Cypress.Commands.add('verifyCalendarEventCreated', (eventTitle) => {
+  cy.get('[data-testid="calendar-events"]')
+    .should('contain', eventTitle)
+})
+
+// Notification verification commands  
+Cypress.Commands.add('verifyNotificationCenter', (expectedMessage) => {
+  cy.get('[data-testid="notification-center"]').should('be.visible')
+  cy.get('[data-testid="notification-list"]')
+    .should('contain', expectedMessage)
+})
+
+// Integration status verification
+Cypress.Commands.add('verifyIntegrationStatus', () => {
+  cy.get('[data-testid="integration-status-summary"]')
+    .should('be.visible')
+    .and('contain', 'MediaWiki: ✓ Synced')
+    .and('contain', 'HMIS: ✓ Updated')
+})
+
+// Agent testing commands
+Cypress.Commands.add('mockAgentServices', () => {
+  // Mock agent spawning
+  cy.intercept('POST', '**/agent/spawn', {
+    statusCode: 200,
+    body: {
+      agentId: 'agent_test_' + Date.now(),
+      status: 'active',
+      message: 'Agent spawned successfully'
+    }
+  }).as('agentSpawn');
+
+  // Mock agent notifications
+  cy.intercept('GET', '**/agent/notifications/*', {
+    statusCode: 200,
+    body: {
+      notifications: [],
+      count: 0
+    }
+  }).as('agentNotifications');
+
+  // Mock workflow notifications
+  cy.intercept('POST', '**/agent/workflow-notification', {
+    statusCode: 200,
+    body: { success: true }
+  }).as('workflowNotification');
+});
+
+Cypress.Commands.add('registerTestClient', (clientData) => {
+  cy.get('[data-testid="services-manager-nav"]').click();
+  cy.get('[data-testid="tab-configuration"]').click();
+  cy.get('[data-testid="client-registration-button"]').click();
+  
+  // Fill basic info
+  cy.get('[data-testid="first-name-input"]').type(clientData.firstName);
+  cy.get('[data-testid="last-name-input"]').type(clientData.lastName);
+  cy.get('[data-testid="email-input"]').type(clientData.email);
+  cy.get('[data-testid="phone-input"]').type(clientData.phone);
+  cy.get('[data-testid="date-of-birth-input"]').type(clientData.dateOfBirth);
+  
+  // Fill address
+  cy.get('input[placeholder*="Street"]').type(clientData.address.street);
+  cy.get('input[placeholder*="City"]').type(clientData.address.city);
+  cy.get('input[placeholder*="ZIP"]').type(clientData.address.zipCode);
+  
+  // Fill emergency contact
+  cy.get('[data-testid="emergency-contact-name-input"]').type(clientData.emergencyContact.name);
+  cy.get('[data-testid="emergency-contact-relationship-input"]').type(clientData.emergencyContact.relationship);
+  cy.get('[data-testid="emergency-contact-phone-input"]').type(clientData.emergencyContact.phone);
+  
+  // Accept consent
+  cy.get('input[type="checkbox"]').check({ force: true });
+  
+  // Submit
+  cy.get('[data-testid="submit-registration-button"]').click();
+});
+
+Cypress.Commands.add('simulateWorkflowNotification', (type, data) => {
+  cy.request({
+    method: 'POST',
+    url: '/api/test/workflow-notification',
+    body: {
+      type,
+      ...data,
+      timestamp: new Date().toISOString()
+    },
+    failOnStatusCode: false
+  });
+});
+
+Cypress.Commands.add('navigateToClientNotifications', (clientLastName) => {
+  cy.get('[data-testid="tab-clients"]').click();
+  cy.get('[data-testid="client-list"]').contains(clientLastName).click();
+  cy.get('[data-testid="client-notifications-tab"]').click();
+});
+
+Cypress.Commands.add('terminateTestAgent', (agentId) => {
+  cy.request({
+    method: 'POST',
+    url: `/api/test/agent/${agentId}/terminate`,
+    failOnStatusCode: false
+  });
+});
+
+// Agent monitoring commands
+Cypress.Commands.add('checkAgentHealth', () => {
+  cy.get('[data-testid="agent-health-section"]').should('be.visible');
+  cy.get('[data-testid="healthy-agents-count"]').should('exist');
+  cy.get('[data-testid="unhealthy-agents-count"]').should('exist');
+});
+
+Cypress.Commands.add('verifyAgentNotification', (notificationType, expectedContent) => {
+  cy.get('[data-testid="notification-list"]')
+    .should('contain', expectedContent);
+  
+  cy.get(`[data-testid="${notificationType}-notification"]`)
+    .should('be.visible');
+});
+
 // Type definitions for TypeScript support - moved to separate .d.ts file
