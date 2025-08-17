@@ -173,7 +173,7 @@ describe('Client Welcome Agent Workflow', () => {
 
       // Verify welcome notification
       cy.get('[data-testid="notification-list"]')
-        .should('contain', 'Welcome to Idaho Events Services')
+        .should('contain', 'Welcome to Community Services')
         .and('contain', testClientData.firstName)
         .and('contain', 'personal service coordinator agent');
 

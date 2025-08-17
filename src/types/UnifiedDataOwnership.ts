@@ -138,7 +138,14 @@ export type UnifiedDataType =
   | 'access_records'
   | 'consent_records'
   | 'emergency_data'
-  | 'service_history';
+  | 'service_history'
+  | 'agent_configuration'
+  | 'agent_notifications'
+  | 'agent_reminders'
+  | 'service_allocations'
+  | 'staff_notifications'
+  | 'workflow_notifications'
+  | 'agent_registry';
 
 // Unified Data Record Model
 export interface UnifiedDataRecord<T = any> {
@@ -286,6 +293,7 @@ export interface UnifiedDataOwnershipService {
   
   // Data Operations
   storeData<T>(ownerId: string, dataType: UnifiedDataType, data: T): Promise<UnifiedDataRecord<T>>;
+  getData<T>(ownerId: string, dataType: UnifiedDataType, filters?: DataFilter): Promise<T[] | null>;
   retrieveData<T>(ownerId: string, dataType: UnifiedDataType, filters?: DataFilter): Promise<UnifiedDataRecord<T>[]>;
   shareData(recordId: string, recipient: string, permissions: DataPermission): Promise<boolean>;
   deleteData(recordId: string): Promise<boolean>;
@@ -360,6 +368,13 @@ export interface DataTypeMap {
   'consent_records': ConsentData;
   'emergency_data': EmergencyData;
   'service_history': ServiceHistoryData;
+  'agent_configuration': AgentConfigurationData;
+  'agent_notifications': AgentNotificationData;
+  'agent_reminders': AgentReminderData;
+  'service_allocations': ServiceAllocationData;
+  'staff_notifications': StaffNotificationData;
+  'workflow_notifications': WorkflowNotificationData;
+  'agent_registry': AgentRegistryData;
 }
 
 // Specific data type interfaces
@@ -448,6 +463,84 @@ export interface ServiceHistoryData {
   followUpRequired: boolean;
 }
 
+// Agent-related data type interfaces
+export interface AgentConfigurationData {
+  agentId: string;
+  agentType: string;
+  configuration: Record<string, any>;
+  status: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface AgentNotificationData {
+  notificationId: string;
+  agentId: string;
+  type: string;
+  message: string;
+  priority: string;
+  timestamp: Date;
+  read: boolean;
+  metadata?: Record<string, any>;
+}
+
+export interface AgentReminderData {
+  reminderId: string;
+  agentId: string;
+  type: string;
+  title: string;
+  description: string;
+  scheduledFor: Date;
+  status: string;
+  metadata?: Record<string, any>;
+}
+
+export interface ServiceAllocationData {
+  allocationId: string;
+  clientId: string;
+  serviceType: string;
+  status: string;
+  allocatedAt: Date;
+  scheduledFor?: Date;
+  metadata?: Record<string, any>;
+}
+
+export interface StaffNotificationData {
+  notificationId: string;
+  staffId: string;
+  type: string;
+  title: string;
+  message: string;
+  priority: string;
+  timestamp: Date;
+  read: boolean;
+  actionRequired: boolean;
+  metadata?: Record<string, any>;
+}
+
+export interface WorkflowNotificationData {
+  notificationId: string;
+  workflowId: string;
+  type: string;
+  title: string;
+  description: string;
+  status: string;
+  triggeredAt: Date;
+  processedAt?: Date;
+  metadata?: Record<string, any>;
+}
+
+export interface AgentRegistryData {
+  registryId: string;
+  agentId: string;
+  clientId: string;
+  status: string;
+  spawnedAt: Date;
+  lastActivity?: Date;
+  configuration: Record<string, any>;
+  metadata?: Record<string, any>;
+}
+
 // Constants and Enums
 export const UNIFIED_DATA_TYPES: Record<UnifiedDataType, { name: string; description: string; icon: string }> = {
   'personal_identity': { 
@@ -489,6 +582,41 @@ export const UNIFIED_DATA_TYPES: Record<UnifiedDataType, { name: string; descrip
     name: 'Service History', 
     description: 'History of services received and outcomes', 
     icon: '📋' 
+  },
+  'agent_configuration': {
+    name: 'Agent Configuration',
+    description: 'AI agent configuration and settings',
+    icon: '⚙️'
+  },
+  'agent_notifications': {
+    name: 'Agent Notifications',
+    description: 'Notifications from AI agents',
+    icon: '🔔'
+  },
+  'agent_reminders': {
+    name: 'Agent Reminders',
+    description: 'Scheduled reminders from AI agents',
+    icon: '⏰'
+  },
+  'service_allocations': {
+    name: 'Service Allocations',
+    description: 'Allocated services and resources',
+    icon: '🎯'
+  },
+  'staff_notifications': {
+    name: 'Staff Notifications',
+    description: 'Notifications for staff members',
+    icon: '👨‍💼'
+  },
+  'workflow_notifications': {
+    name: 'Workflow Notifications',
+    description: 'Automated workflow notifications',
+    icon: '🔄'
+  },
+  'agent_registry': {
+    name: 'Agent Registry',
+    description: 'Registry of active AI agents',
+    icon: '📝'
   }
 };
 

@@ -15,6 +15,8 @@ jest.mock('../clientWelcomeAgent');
 jest.mock('../unifiedDataOwnershipService');
 
 const mockClientWelcomeAgent = ClientWelcomeAgent as jest.MockedClass<typeof ClientWelcomeAgent>;
+// Mock the static spawnAgent method
+const mockSpawnAgent = jest.fn();
 const mockUnifiedDataOwnership = unifiedDataOwnershipService as jest.Mocked<typeof unifiedDataOwnershipService>;
 
 describe('AgentManagerService', () => {
@@ -68,10 +70,24 @@ describe('AgentManagerService', () => {
     agentManager = new AgentManagerService();
     
     // Setup default mock implementations
-    mockUnifiedDataOwnership.storeData.mockResolvedValue(undefined);
+    mockUnifiedDataOwnership.storeData.mockResolvedValue({
+      recordId: 'test-record',
+      ownerId: 'test-owner',
+      dataType: 'personal_identity',
+      data: {},
+      source: { system: 'shelter', application: 'test', version: '1.0', timestamp: new Date() },
+      integrity: { hash: 'test', verified: true },
+      createdAt: new Date(),
+      lastUpdated: new Date(),
+      version: 1,
+      privacyLevel: 'private',
+      accessLog: []
+    });
     mockUnifiedDataOwnership.getData.mockResolvedValue(null);
     
-    mockClientWelcomeAgent.spawnAgent.mockResolvedValue(mockAgentInstance);
+    // Mock the static spawnAgent method
+    mockSpawnAgent.mockResolvedValue(mockAgentInstance);
+    (ClientWelcomeAgent as any).spawnAgent = mockSpawnAgent;
 
     // Mock console methods to reduce test noise
     jest.spyOn(console, 'log').mockImplementation(() => {});
@@ -88,7 +104,7 @@ describe('AgentManagerService', () => {
       const agentId = await agentManager.spawnAgentForClient(mockClientData);
 
       expect(agentId).toMatch(/^agent_client_test_456_\d+$/);
-      expect(mockClientWelcomeAgent.spawnAgent).toHaveBeenCalledWith(mockClientData);
+      expect(mockSpawnAgent).toHaveBeenCalledWith(mockClientData);
       expect(mockUnifiedDataOwnership.storeData).toHaveBeenCalledWith(
         'system',
         'agent_registry',
@@ -104,11 +120,11 @@ describe('AgentManagerService', () => {
       const secondAgentId = await agentManager.spawnAgentForClient(mockClientData);
 
       expect(firstAgentId).toBe(secondAgentId);
-      expect(mockClientWelcomeAgent.spawnAgent).toHaveBeenCalledTimes(1);
+      expect(mockSpawnAgent).toHaveBeenCalledTimes(1);
     });
 
     it('should handle agent spawn failures gracefully', async () => {
-      mockClientWelcomeAgent.spawnAgent.mockRejectedValue(new Error('Agent spawn failed'));
+      mockSpawnAgent.mockRejectedValue(new Error('Agent spawn failed'));
 
       await expect(agentManager.spawnAgentForClient(mockClientData)).rejects.toThrow('Failed to spawn agent: Agent spawn failed');
     });
@@ -158,7 +174,7 @@ describe('AgentManagerService', () => {
       // Wait for queue processing
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      const spawnCalls = mockClientWelcomeAgent.spawnAgent.mock.calls;
+      const spawnCalls = mockSpawnAgent.mock.calls;
       expect(spawnCalls[0][0].id).toBe('client_high_priority');
       expect(spawnCalls[1][0].id).toBe('client_low_priority');
     });

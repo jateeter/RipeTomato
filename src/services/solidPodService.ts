@@ -146,7 +146,7 @@ class SolidPodDocumentService {
 
       const document: SolidPodDocument = {
         metadata,
-        solidPodUrl: `https://solidcommunity.net/profile/documents/${documentId}`,
+        solidPodUrl: `https://opencommons.net/profile/documents/${documentId}`,
         accessRights: [],
         sharingHistory: [],
         backupStatus: 'backed_up'
@@ -194,7 +194,7 @@ class SolidPodDocumentService {
 
     const document: SolidPodDocument = {
       metadata,
-      solidPodUrl: `https://solidcommunity.net/profile/documents/${documentId}`,
+      solidPodUrl: `https://opencommons.net/profile/documents/${documentId}`,
       accessRights: [],
       sharingHistory: [],
       backupStatus: 'backing_up'
@@ -235,6 +235,15 @@ class SolidPodDocumentService {
     return documentIds
       .map(id => this.documents.get(id))
       .filter((doc): doc is SolidPodDocument => doc !== undefined);
+  }
+
+  /**
+   * Get client's Pod URL
+   */
+  async getClientPodUrl(clientId: string): Promise<string> {
+    // In a real implementation, this would retrieve the Pod URL from client configuration
+    // For now, return a mock URL using OpenCommons.net
+    return `https://${clientId}.opencommons.net/`;
   }
 
   /**
@@ -961,6 +970,18 @@ class SolidPodDocumentService {
    */
   hasPersistentConfiguration(): boolean {
     return localStorage.getItem('solidpod_config') !== null;
+  }
+
+  /**
+   * Clear persistent session configuration
+   */
+  async clearPersistentSession(): Promise<void> {
+    try {
+      localStorage.removeItem('solidpod_config');
+      console.log('🗑️ Persistent Solid Pod session cleared');
+    } catch (error) {
+      console.error('Failed to clear persistent session:', error);
+    }
   }
 
   // Private helper methods

@@ -19,7 +19,7 @@ describe('Basic Agent System Test', () => {
     cy.get('#root').should('exist');
     
     // Check that the app has loaded content (not just loading spinner)
-    cy.get('body').should('contain.text', 'Idaho Events');
+    cy.get('body').should('contain.text', 'Community Services');
   });
 
   it('should have basic navigation elements', () => {

@@ -189,6 +189,11 @@ export const FacilitiesTable: React.FC<FacilitiesTableProps> = ({
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [expandedRow, setExpandedRow] = useState<string | null>(null);
 
+  // Helper function to get nested values from objects
+  const getNestedValue = (obj: any, path: string): any => {
+    return path.split('.').reduce((current, key) => current?.[key], obj);
+  };
+
   // Get unique values for filter dropdowns
   const uniqueTypes = useMemo(() => {
     return Array.from(new Set(facilities.map(f => f.type))).sort();
@@ -280,10 +285,6 @@ export const FacilitiesTable: React.FC<FacilitiesTableProps> = ({
   }, [sortedFacilities, currentPage, pageSize, showPagination]);
 
   const totalPages = Math.ceil(sortedFacilities.length / pageSize);
-
-  const getNestedValue = (obj: any, path: string): any => {
-    return path.split('.').reduce((current, key) => current?.[key], obj);
-  };
 
   const handleSort = (key: string) => {
     setSortConfig(prevConfig => ({

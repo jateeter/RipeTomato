@@ -16,6 +16,13 @@ jest.mock('../unifiedDataOwnershipService');
 jest.mock('../solidPodService');
 jest.mock('../googleCalendarService');
 
+// Mock ClientWelcomeAgent static method
+jest.mock('../clientWelcomeAgent', () => ({
+  ClientWelcomeAgent: {
+    spawnAgent: jest.fn()
+  }
+}));
+
 const mockUnifiedDataOwnership = unifiedDataOwnershipService as jest.Mocked<typeof unifiedDataOwnershipService>;
 const mockSolidPodService = solidPodService as jest.Mocked<typeof solidPodService>;
 const mockGoogleCalendarService = googleCalendarService as jest.Mocked<typeof googleCalendarService>;
@@ -65,12 +72,21 @@ describe('ClientWelcomeAgent', () => {
     
     // Setup default mock implementations
     mockSolidPodService.getClientPodUrl.mockResolvedValue('https://test-pod.solidcommunity.net/');
-    mockUnifiedDataOwnership.storeData.mockResolvedValue(undefined);
-    mockUnifiedDataOwnership.getData.mockResolvedValue(null);
-    mockGoogleCalendarService.createEvent.mockResolvedValue({
-      id: 'test-event-id',
-      summary: 'Test Event'
+    mockUnifiedDataOwnership.storeData.mockResolvedValue({
+      recordId: 'test-record',
+      ownerId: 'test-owner',
+      dataType: 'personal_identity',
+      data: {},
+      source: { system: 'shelter', application: 'test', version: '1.0', timestamp: new Date() },
+      integrity: { hash: 'test', verified: true },
+      createdAt: new Date(),
+      lastUpdated: new Date(),
+      version: 1,
+      privacyLevel: 'private',
+      accessLog: []
     });
+    mockUnifiedDataOwnership.getData.mockResolvedValue(null);
+    mockGoogleCalendarService.createEvent.mockResolvedValue('test-event-id');
 
     // Mock console methods to reduce test noise
     jest.spyOn(console, 'log').mockImplementation(() => {});
@@ -135,7 +151,7 @@ describe('ClientWelcomeAgent', () => {
       
       const notification = notificationCalls[0][2] as AgentNotification;
       expect(notification.type).toBe('welcome');
-      expect(notification.title).toContain('Welcome to Idaho Events Services, John!');
+      expect(notification.title).toContain('Welcome to Community Services, John!');
       expect(notification.message).toContain('Good');
       expect(notification.priority).toBe('high');
     });
@@ -146,7 +162,7 @@ describe('ClientWelcomeAgent', () => {
       
       expect(allocationCalls.length).toBeGreaterThan(0);
       
-      const allocations = allocationCalls[0][2];
+      const allocations = allocationCalls[0][2] as any[];
       expect(Array.isArray(allocations)).toBe(true);
       expect(allocations).toHaveLength(3);
       
@@ -160,10 +176,10 @@ describe('ClientWelcomeAgent', () => {
       expect(mockGoogleCalendarService.createEvent).toHaveBeenCalledTimes(2);
       
       const createEventCalls = mockGoogleCalendarService.createEvent.mock.calls;
-      const eventSummaries = createEventCalls.map(call => call[0].summary);
+      const eventTitles = createEventCalls.map(call => call[0].title);
       
-      expect(eventSummaries).toContain('Daily Check-in - Shelter Services');
-      expect(eventSummaries).toContain('Initial Case Management Meeting');
+      expect(eventTitles).toContain('Daily Check-in - Shelter Services');
+      expect(eventTitles).toContain('Initial Case Management Meeting');
     });
 
     it('should store reminder schedule', async () => {
@@ -172,7 +188,7 @@ describe('ClientWelcomeAgent', () => {
       
       expect(reminderCalls.length).toBeGreaterThan(0);
       
-      const reminders = reminderCalls[0][2];
+      const reminders = reminderCalls[0][2] as any[];
       expect(Array.isArray(reminders)).toBe(true);
       expect(reminders).toHaveLength(3);
       
@@ -399,7 +415,7 @@ describe('ClientWelcomeAgent', () => {
       const message = agent.generateWelcomeMessage(mockClientData);
       
       expect(message).toContain('Good morning, John!');
-      expect(message).toContain('Welcome to Idaho Events Services');
+      expect(message).toContain('Welcome to Community Services');
       expect(message).toContain('personal service coordinator agent');
       expect(message).toContain(mockAgentConfig.agentId);
     });

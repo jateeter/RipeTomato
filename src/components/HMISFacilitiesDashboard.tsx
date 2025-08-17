@@ -19,11 +19,12 @@ import EnhancedOpenStreetMap from './EnhancedOpenStreetMap';
 import FacilitiesTable from './FacilitiesTable';
 import { ClientBedRegistrationModal, BedRegistration } from './ClientBedRegistrationModal';
 import { googleCalendarService } from '../services/googleCalendarService';
+import ErrorBoundary from './ErrorBoundary';
 
 interface HMISFacilitiesDashboardProps {
   userRole?: 'manager' | 'staff' | 'supervisor';
   organizationId?: string;
-  initialView?: 'map' | 'table' | 'split';
+  initialView?: 'map' | 'list' | 'table' | 'split';
   showSync?: boolean;
   showExport?: boolean;
   showRegistration?: boolean;
@@ -52,7 +53,7 @@ export const HMISFacilitiesDashboard: React.FC<HMISFacilitiesDashboardProps> = (
   const [facilities, setFacilities] = useState<HMISOpenCommonsFacility[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentView, setCurrentView] = useState<'map' | 'table' | 'split'>(initialView);
+  const [currentView, setCurrentView] = useState<'map' | 'list' | 'table' | 'split'>(initialView);
   const [selectedFacility, setSelectedFacility] = useState<HMISOpenCommonsFacility | null>(null);
   const [searchParams, setSearchParams] = useState<FacilitySearchParams>({});
   const [syncStatus, setSyncStatus] = useState<SyncStatus>({
@@ -81,6 +82,13 @@ export const HMISFacilitiesDashboard: React.FC<HMISFacilitiesDashboardProps> = (
     loadFacilities();
     initializeSync();
   }, []);
+
+  // Update view when initialView prop changes
+  useEffect(() => {
+    if (initialView !== currentView) {
+      setCurrentView(initialView);
+    }
+  }, [initialView]);
 
   useEffect(() => {
     updateStatistics();
@@ -403,6 +411,16 @@ export const HMISFacilitiesDashboard: React.FC<HMISFacilitiesDashboardProps> = (
             🗺️ Map
           </button>
           <button
+            onClick={() => setCurrentView('list')}
+            className={`px-3 py-2 text-sm rounded-md ${
+              currentView === 'list' 
+                ? 'bg-white text-gray-900 shadow' 
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            📋 List
+          </button>
+          <button
             onClick={() => setCurrentView('table')}
             className={`px-3 py-2 text-sm rounded-md ${
               currentView === 'table' 
@@ -480,16 +498,116 @@ export const HMISFacilitiesDashboard: React.FC<HMISFacilitiesDashboardProps> = (
       {/* Content Views */}
       <div className="flex-1 overflow-hidden">
         {currentView === 'map' && (
-          <EnhancedOpenStreetMap
-            facilities={facilities}
-            onFacilitySelect={handleFacilitySelect}
-            selectedFacility={selectedFacility}
-            showSatellite={true}
-            enableClustering={true}
-            showControls={true}
-            showSearch={true}
-            height="100%"
-          />
+          <ErrorBoundary
+            fallback={
+              <div className="flex items-center justify-center h-96 bg-gray-50 rounded-lg">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">🗺️</div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">Map Unavailable</h3>
+                  <p className="text-gray-600 mb-4">Unable to load the interactive map.</p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  >
+                    Reload Page
+                  </button>
+                </div>
+              </div>
+            }
+          >
+            <EnhancedOpenStreetMap
+              facilities={facilities}
+              onFacilitySelect={handleFacilitySelect}
+              selectedFacility={selectedFacility}
+              showSatellite={true}
+              enableClustering={true}
+              showControls={true}
+              showSearch={true}
+              height="100%"
+            />
+          </ErrorBoundary>
+        )}
+
+        {currentView === 'list' && (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Facilities List</h3>
+            <div className="grid gap-4">
+              {facilities.map((facility) => (
+                <div 
+                  key={facility.id}
+                  className={`border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer ${
+                    selectedFacility?.id === facility.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                  }`}
+                  onClick={() => handleFacilitySelect(facility)}
+                >
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-lg">{facility.name}</h4>
+                      <p className="text-sm text-gray-600 mb-2">{facility.type}</p>
+                      <div className="text-sm space-y-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-gray-500">📍</span>
+                          <span>{facility.address.city}, {facility.address.state}</span>
+                        </div>
+                        {facility.contact.phone && (
+                          <div className="flex items-center space-x-2">
+                            <span className="text-gray-500">📞</span>
+                            <a href={`tel:${facility.contact.phone}`} className="text-blue-600 hover:underline">
+                              {facility.contact.phone}
+                            </a>
+                          </div>
+                        )}
+                        <div className="flex items-center space-x-2">
+                          <span className="text-gray-500">🛏️</span>
+                          <span>
+                            {facility.capacity.available || 0} available / {facility.capacity.total || 0} total beds
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className={`px-2 py-1 rounded text-xs font-medium ${
+                        (facility.capacity.available || 0) > 0 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {(facility.capacity.available || 0) > 0 ? 'Available' : 'Full'}
+                      </div>
+                      {showRegistration && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleFacilityAction(facility, 'register');
+                          }}
+                          className="mt-2 px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                        >
+                          Register
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {facility.services.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-1">
+                      {facility.services.slice(0, 4).map((service, index) => (
+                        <span
+                          key={index}
+                          className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded"
+                        >
+                          {service}
+                        </span>
+                      ))}
+                      {facility.services.length > 4 && (
+                        <span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded">
+                          +{facility.services.length - 4} more
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         )}
 
         {currentView === 'table' && (
@@ -510,16 +628,27 @@ export const HMISFacilitiesDashboard: React.FC<HMISFacilitiesDashboardProps> = (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
             <div className="min-h-0">
               <h3 className="text-lg font-semibold mb-3">Interactive Map</h3>
-              <EnhancedOpenStreetMap
-                facilities={facilities}
-                onFacilitySelect={handleFacilitySelect}
-                selectedFacility={selectedFacility}
-                showSatellite={true}
-                enableClustering={true}
-                showControls={true}
-                showSearch={false}
-                height="calc(100% - 2rem)"
-              />
+              <ErrorBoundary
+                fallback={
+                  <div className="flex items-center justify-center h-64 bg-gray-50 rounded-lg">
+                    <div className="text-center">
+                      <div className="text-2xl mb-2">🗺️</div>
+                      <p className="text-sm text-gray-600">Map unavailable</p>
+                    </div>
+                  </div>
+                }
+              >
+                <EnhancedOpenStreetMap
+                  facilities={facilities}
+                  onFacilitySelect={handleFacilitySelect}
+                  selectedFacility={selectedFacility}
+                  showSatellite={true}
+                  enableClustering={true}
+                  showControls={true}
+                  showSearch={false}
+                  height="calc(100% - 2rem)"
+                />
+              </ErrorBoundary>
             </div>
             <div className="min-h-0 flex flex-col">
               <h3 className="text-lg font-semibold mb-3">Facilities Table</h3>

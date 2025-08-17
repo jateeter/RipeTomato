@@ -424,6 +424,17 @@ class UnifiedDataOwnershipServiceImpl implements UnifiedDataOwnershipService {
   }
 
   /**
+   * Get data by type (returns just the data, not the full record)
+   */
+  async getData<T>(ownerId: string, dataType: UnifiedDataType, filters?: DataFilter): Promise<T[] | null> {
+    const records = await this.retrieveData<T>(ownerId, dataType, filters);
+    if (records.length === 0) {
+      return null;
+    }
+    return records.map(record => record.data);
+  }
+
+  /**
    * Retrieve data with unified modeling
    */
   async retrieveData<T>(ownerId: string, dataType: UnifiedDataType, filters?: DataFilter): Promise<UnifiedDataRecord<T>[]> {

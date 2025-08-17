@@ -4,6 +4,8 @@
  * Tests core agent functionality without complex dependency chains
  */
 
+export {}; // Make this a module
+
 describe('ClientWelcomeAgent - Core Functionality', () => {
   // Mock basic interfaces and types
   const mockClientData = {
@@ -85,7 +87,7 @@ describe('ClientWelcomeAgent - Core Functionality', () => {
 
       const message = `Good ${timeOfDay}, ${clientData.firstName}!
 
-Welcome to Idaho Events Services. I'm your personal service coordinator agent, and I'm here to help you navigate our shelter and support services.
+Welcome to Community Services. I'm your personal service coordinator agent, and I'm here to help you navigate our shelter and support services.
 
 Here's what I'm setting up for you right now:
 
@@ -111,7 +113,7 @@ Your Service Coordinator Agent 🤖`;
     it('should generate morning greeting', () => {
       const message = generateWelcomeMessage(mockClientData, 10);
       expect(message).toContain('Good morning, John!');
-      expect(message).toContain('Welcome to Idaho Events Services');
+      expect(message).toContain('Welcome to Community Services');
       expect(message).toContain('personal service coordinator agent');
     });
 
@@ -193,7 +195,7 @@ Your Service Coordinator Agent 🤖`;
         notificationId: `welcome_agent_test_${Date.now()}`,
         agentId: 'agent_test_123',
         type: 'welcome',
-        title: `Welcome to Idaho Events Services, ${mockClientData.firstName}!`,
+        title: `Welcome to Community Services, ${mockClientData.firstName}!`,
         message: 'Welcome message content...',
         priority: 'high',
         timestamp: new Date(),
@@ -280,7 +282,7 @@ Your Service Coordinator Agent 🤖`;
       expect(events).toHaveLength(2);
       expect(events[0].summary).toContain('Daily Check-in');
       expect(events[0].description).toContain('John Doe');
-      expect(events[0].recurrence[0]).toContain('DAILY');
+      expect(events[0].recurrence?.[0]).toContain('DAILY');
       
       expect(events[1].summary).toContain('Case Management');
       expect(events[1].description).toContain('John Doe');

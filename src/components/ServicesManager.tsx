@@ -36,6 +36,7 @@ import { googleCalendarService } from '../services/googleCalendarService';
 import HMISFacilitiesDashboard from './HMISFacilitiesDashboard';
 import { ShelterRegistrationModal } from './ShelterRegistrationModal';
 import { ShelterRegistrationData } from '../services/mediaWikiService';
+import ServiceDashboardsHub from './ServiceDashboardsHub';
 
 interface ServicesManagerProps {
   managerId: string;
@@ -60,7 +61,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
 }) => {
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'staff' | 'resources' | 'clients' | 'reports' | 'alerts' | 'facilities' | 'hmis_facilities' | 'configuration' | 'shelters'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'services' | 'staff' | 'resources' | 'clients' | 'reports' | 'alerts' | 'facilities' | 'hmis_facilities' | 'service_dashboards' | 'configuration' | 'shelters'>('overview');
   const [selectedTimeRange, setSelectedTimeRange] = useState<'today' | 'week' | 'month'>('today');
 
   // Configuration state
@@ -145,6 +146,9 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
   
   // UI state
   const [showFacilityCalendar, setShowFacilityCalendar] = useState(false);
+  
+  // Facilities view state
+  const [facilitiesViewMode, setFacilitiesViewMode] = useState<'map' | 'list' | 'table' | 'split'>('split');
 
   useEffect(() => {
     loadDashboardData();
@@ -727,6 +731,8 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
               { key: 'clients', label: 'Clients', icon: '👤' },
               { key: 'shelters', label: 'Shelter Services', icon: '🏠' },
               { key: 'facilities', label: 'Facilities Map', icon: '🗺️' },
+              { key: 'hmis_facilities', label: 'HMIS Facilities', icon: '🏥' },
+              { key: 'service_dashboards', label: 'Service Dashboards', icon: '📊' },
               { key: 'reports', label: 'Reports', icon: '📈' },
               { key: 'alerts', label: `Alerts (${dashboardData?.alerts.filter(a => !a.acknowledgedAt).length || 0})`, icon: '🚨' },
               { key: 'configuration', label: 'Configuration', icon: '⚙️' }
@@ -986,36 +992,53 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
               <div className="flex justify-center gap-4 mb-6">
                 <button
                   data-testid="view-facilities-map"
-                  className="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 flex items-center gap-2"
+                  onClick={() => setFacilitiesViewMode('map')}
+                  className={`px-4 py-2 text-sm rounded hover:bg-blue-700 flex items-center gap-2 ${
+                    facilitiesViewMode === 'map' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+                  }`}
                 >
                   🗺️ Map View
                 </button>
                 <button
                   data-testid="view-shelter-list"
-                  className="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 flex items-center gap-2"
+                  onClick={() => setFacilitiesViewMode('list')}
+                  className={`px-4 py-2 text-sm rounded hover:bg-green-700 flex items-center gap-2 ${
+                    facilitiesViewMode === 'list' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'
+                  }`}
                 >
                   📋 List View
                 </button>
+                <button
+                  data-testid="view-facilities-table"
+                  onClick={() => setFacilitiesViewMode('table')}
+                  className={`px-4 py-2 text-sm rounded hover:bg-purple-700 flex items-center gap-2 ${
+                    facilitiesViewMode === 'table' ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-700'
+                  }`}
+                >
+                  📊 Table View
+                </button>
+                <button
+                  data-testid="view-facilities-split"
+                  onClick={() => setFacilitiesViewMode('split')}
+                  className={`px-4 py-2 text-sm rounded hover:bg-orange-700 flex items-center gap-2 ${
+                    facilitiesViewMode === 'split' ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-700'
+                  }`}
+                >
+                  🔄 Split View
+                </button>
               </div>
 
-              {/* Shelter List */}
-              <div data-testid="shelter-list" className="bg-white border rounded-lg p-4 mb-6">
-                <h4 className="font-medium mb-3">Registered Shelters</h4>
-                <div className="space-y-2">
-                  <div className="text-sm text-gray-600 p-3 bg-gray-50 rounded">
-                    No shelters currently registered. Use the "Register New Shelter" button to add the first shelter.
-                  </div>
-                </div>
-              </div>
-
-              {/* Facilities Map */}
+              {/* Dynamic Facilities Display */}
               <div className="bg-white border rounded-lg overflow-hidden">
-                <FacilitiesMap 
-                  height="600px"
-                  showFilters={true}
-                  onFacilitySelect={(facility: HMISFacility) => {
-                    console.log('Selected facility:', facility);
-                  }}
+                <HMISFacilitiesDashboard
+                  userRole="manager"
+                  organizationId={organizationId}
+                  initialView={facilitiesViewMode}
+                  showSync={true}
+                  showExport={true}
+                  showRegistration={true}
+                  height="700px"
+                  className="w-full"
                 />
               </div>
 
@@ -1113,6 +1136,47 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                   recovery centers, health services, and community support facilities in the Portland area.
                 </div>
               </div>
+            </div>
+          )}
+
+          {activeTab === 'hmis_facilities' && (
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-lg font-semibold">HMIS Facilities Dashboard</h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    Comprehensive view of all facilities from HMIS OpenCommons with map, table, and list views
+                  </p>
+                </div>
+              </div>
+
+              {/* HMIS Facilities Dashboard */}
+              <HMISFacilitiesDashboard
+                userRole="manager"
+                organizationId={organizationId}
+                initialView="split"
+                showSync={true}
+                showExport={true}
+                showRegistration={true}
+                height="800px"
+                className="w-full"
+              />
+            </div>
+          )}
+
+          {activeTab === 'service_dashboards' && (
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-lg font-semibold">Service Dashboards</h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    Real-time monitoring of shelter, food, hygiene, and transportation services via agent foraging
+                  </p>
+                </div>
+              </div>
+
+              {/* Service Dashboards Hub */}
+              <ServiceDashboardsHub />
             </div>
           )}
 
@@ -1789,7 +1853,7 @@ export const ServicesManager: React.FC<ServicesManagerProps> = ({
                         <div className="flex items-start space-x-3">
                           <div className="text-blue-600">🤖</div>
                           <div>
-                            <div className="font-medium text-blue-900">Welcome to Idaho Events Services!</div>
+                            <div className="font-medium text-blue-900">Welcome to Community Services!</div>
                             <div className="text-sm text-blue-700 mt-1">
                               Personal service coordinator agent activated. Services being set up:
                               🏠 Shelter Services, 📅 Calendar Setup, 🍽️ Meal Services, 🤝 Case Management

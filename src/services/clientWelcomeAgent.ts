@@ -174,7 +174,7 @@ class ClientWelcomeAgent {
       notificationId: `welcome_${this.agentConfig.agentId}_${Date.now()}`,
       agentId: this.agentConfig.agentId,
       type: 'welcome',
-      title: `Welcome to Idaho Events Services, ${clientData.firstName}!`,
+      title: `Welcome to Community Services, ${clientData.firstName}!`,
       message: welcomeMessage,
       priority: 'high',
       timestamp: new Date(),
@@ -199,7 +199,7 @@ class ClientWelcomeAgent {
 
     return `Good ${timeOfDay}, ${clientData.firstName}!
 
-Welcome to Idaho Events Services. I'm your personal service coordinator agent, and I'm here to help you navigate our shelter and support services.
+Welcome to Community Services. I'm your personal service coordinator agent, and I'm here to help you navigate our shelter and support services.
 
 Here's what I'm setting up for you right now:
 
@@ -281,41 +281,28 @@ Your Service Coordinator Agent 🤖`;
     try {
       // Create check-in reminder for tomorrow
       const checkInEvent = await googleCalendarService.createEvent({
-        summary: 'Daily Check-in - Shelter Services',
+        id: '',
+        title: 'Daily Check-in - Shelter Services',
         description: `Daily check-in with staff for ${clientData.firstName} ${clientData.lastName}`,
-        start: {
-          dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000).toISOString() // Tomorrow 9 AM
-        },
-        end: {
-          dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 9.5 * 60 * 60 * 1000).toISOString() // 9:30 AM
-        },
-        recurrence: ['RRULE:FREQ=DAILY;COUNT=30'], // Daily for 30 days
-        reminders: {
-          useDefault: false,
-          overrides: [
-            { method: 'popup', minutes: 30 },
-            { method: 'email', minutes: 60 }
-          ]
-        }
+        startTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 9 * 60 * 60 * 1000), // Tomorrow 9 AM
+        endTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 9.5 * 60 * 60 * 1000), // 9:30 AM
+        location: 'Shelter Facility',
+        category: 'other',
+        organizer: 'Shelter Staff',
+        isRecurring: true
       });
 
       // Create case management appointment
       const caseManagementEvent = await googleCalendarService.createEvent({
-        summary: 'Initial Case Management Meeting',
+        id: '',
+        title: 'Initial Case Management Meeting',
         description: `Comprehensive intake and service planning session for ${clientData.firstName} ${clientData.lastName}`,
-        start: {
-          dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 14 * 60 * 60 * 1000).toISOString() // Tomorrow 2 PM
-        },
-        end: {
-          dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 15 * 60 * 60 * 1000).toISOString() // 3 PM
-        },
-        reminders: {
-          useDefault: false,
-          overrides: [
-            { method: 'popup', minutes: 60 },
-            { method: 'email', minutes: 120 }
-          ]
-        }
+        startTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 14 * 60 * 60 * 1000), // Tomorrow 2 PM
+        endTime: new Date(Date.now() + 24 * 60 * 60 * 1000 + 15 * 60 * 60 * 1000), // 3 PM
+        location: 'Case Management Office',
+        category: 'other',
+        organizer: 'Case Manager',
+        isRecurring: false
       });
 
       console.log(`📅 Calendar events created for client ${clientData.id}`);

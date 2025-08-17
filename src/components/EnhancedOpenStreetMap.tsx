@@ -182,15 +182,20 @@ export const EnhancedOpenStreetMap: React.FC<EnhancedOpenStreetMapProps> = ({
 
       // Initialize marker cluster if enabled
       if (enableClustering && window.L.markerClusterGroup) {
-        markerClusterRef.current = L.markerClusterGroup({
-          chunkedLoading: true,
-          spiderfyOnMaxZoom: true,
-          showCoverageOnHover: false,
-          zoomToBoundsOnClick: true,
-          maxClusterRadius: 50,
-          iconCreateFunction: createClusterIcon
-        });
-        map.addLayer(markerClusterRef.current);
+        try {
+          markerClusterRef.current = L.markerClusterGroup({
+            chunkedLoading: true,
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+            zoomToBoundsOnClick: true,
+            maxClusterRadius: 50,
+            iconCreateFunction: createClusterIcon
+          });
+          map.addLayer(markerClusterRef.current);
+          console.log('✅ Marker clustering enabled');
+        } catch (clusterError) {
+          console.warn('Failed to initialize marker clustering:', clusterError);
+        }
       }
 
       // Add layer control
@@ -228,46 +233,101 @@ export const EnhancedOpenStreetMap: React.FC<EnhancedOpenStreetMapProps> = ({
         return;
       }
 
-      // Load Leaflet CSS
-      const cssLink = document.createElement('link');
-      cssLink.rel = 'stylesheet';
-      cssLink.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-      document.head.appendChild(cssLink);
+      try {
+        // Load Leaflet CSS
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        cssLink.onerror = () => {
+          console.warn('Failed to load Leaflet CSS, continuing without styles');
+        };
+        document.head.appendChild(cssLink);
 
-      // Load Leaflet JS
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-      script.onload = async () => {
-        // Load marker clustering plugin
-        if (enableClustering) {
-          await loadMarkerClusteringPlugin();
-        }
-        resolve();
-      };
-      script.onerror = reject;
-      document.head.appendChild(script);
+        // Load Leaflet JS
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+        script.onload = async () => {
+          try {
+            // Load marker clustering plugin
+            if (enableClustering) {
+              await loadMarkerClusteringPlugin();
+            }
+            resolve();
+          } catch (clusterError) {
+            console.warn('Failed to load clustering plugin, continuing without clustering:', clusterError);
+            resolve();
+          }
+        };
+        script.onerror = (error) => {
+          console.error('Failed to load Leaflet script:', error);
+          reject(new Error('Failed to load Leaflet library'));
+        };
+        
+        // Set timeout for script loading
+        setTimeout(() => {
+          if (!window.L) {
+            reject(new Error('Leaflet script loading timed out'));
+          }
+        }, 10000);
+        
+        document.head.appendChild(script);
+      } catch (error) {
+        console.error('Error setting up Leaflet assets:', error);
+        reject(error);
+      }
     });
   };
 
   const loadMarkerClusteringPlugin = async (): Promise<void> => {
     return new Promise((resolve, reject) => {
-      // Load clustering CSS
-      const cssLink = document.createElement('link');
-      cssLink.rel = 'stylesheet';
-      cssLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css';
-      document.head.appendChild(cssLink);
+      try {
+        // Load clustering CSS
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css';
+        cssLink.onerror = () => {
+          console.warn('Failed to load MarkerCluster CSS');
+        };
+        document.head.appendChild(cssLink);
 
-      const cssDefaultLink = document.createElement('link');
-      cssDefaultLink.rel = 'stylesheet';
-      cssDefaultLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css';
-      document.head.appendChild(cssDefaultLink);
+        const cssDefaultLink = document.createElement('link');
+        cssDefaultLink.rel = 'stylesheet';
+        cssDefaultLink.href = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css';
+        cssDefaultLink.onerror = () => {
+          console.warn('Failed to load MarkerCluster Default CSS');
+        };
+        document.head.appendChild(cssDefaultLink);
 
-      // Load clustering JS
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js';
-      script.onload = () => resolve();
-      script.onerror = reject;
-      document.head.appendChild(script);
+        // Load clustering JS
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js';
+        script.onload = () => {
+          // Verify the plugin loaded correctly
+          if (window.L && window.L.markerClusterGroup) {
+            resolve();
+          } else {
+            console.warn('MarkerCluster plugin did not load properly');
+            resolve(); // Continue without clustering
+          }
+        };
+        script.onerror = (error) => {
+          console.warn('Failed to load MarkerCluster script:', error);
+          resolve(); // Continue without clustering instead of rejecting
+        };
+        
+        // Set timeout for clustering plugin
+        setTimeout(() => {
+          if (!window.L?.markerClusterGroup) {
+            console.warn('MarkerCluster plugin loading timed out');
+            resolve(); // Continue without clustering
+          }
+        }, 5000);
+        
+        document.head.appendChild(script);
+      } catch (error) {
+        console.warn('Error setting up MarkerCluster plugin:', error);
+        resolve(); // Continue without clustering
+      }
     });
   };
 

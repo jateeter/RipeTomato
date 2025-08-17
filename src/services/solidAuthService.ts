@@ -53,16 +53,21 @@ class SolidAuthService {
     try {
       const provider = oidcIssuer || SOLID_CONFIG.defaultProvider;
       
+      console.log(`🔐 Initiating Solid Pod login with provider: ${provider}`);
+      
       await login({
         redirectUrl: SOLID_CONFIG.redirectUrl,
         oidcIssuer: provider,
         clientName: SOLID_CONFIG.clientName,
+        clientId: SOLID_CONFIG.clientId
       });
       
       // Save persistent session after successful login
       await this.savePersistentSession(provider);
+      
+      console.log('✅ Solid Pod login initiated successfully');
     } catch (error) {
-      console.error('Solid login failed:', error);
+      console.error('❌ Solid login failed:', error);
       throw error;
     }
   }

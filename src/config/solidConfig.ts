@@ -1,21 +1,33 @@
 export const SOLID_CONFIG = {
-  // Default Solid Pod providers
+  // Default Solid Pod providers (prioritizing opencommons.net)
   providers: [
     'https://opencommons.net',
+    'https://solidcommunity.net',
     'https://inrupt.net',
     'https://solidweb.me',
     'https://pod.inrupt.com'
   ],
   
   // Application identifier
-  clientName: 'Homeless Shelter Management System',
-  clientId: 'https://shelter-management.idaho.local',
+  clientName: 'Community Services - Idaho Events',
+  clientId: 'https://community-services.idaho.app',
   
   // Redirect URLs (update for production)
-  redirectUrl: typeof window !== 'undefined' ? window.location.origin + '/solid-callback' : 'http://localhost:3001/solid-callback',
+  redirectUrl: typeof window !== 'undefined' ? window.location.origin + '/solid-callback' : 'http://localhost:3000/solid-callback',
   
-  // Default pod provider for development
+  // Primary pod provider
   defaultProvider: 'https://opencommons.net',
+  
+  // OpenCommons.net specific configuration
+  openCommonsConfig: {
+    issuer: 'https://opencommons.net',
+    registrationEndpoint: 'https://opencommons.net/register',
+    authEndpoint: 'https://opencommons.net/authorize',
+    tokenEndpoint: 'https://opencommons.net/token',
+    userInfoEndpoint: 'https://opencommons.net/userinfo',
+    jwksUri: 'https://opencommons.net/.well-known/jwks',
+    introspectionEndpoint: 'https://opencommons.net/introspect'
+  },
   
   // Data organization structure in pods
   dataStructure: {
