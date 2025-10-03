@@ -1,0 +1,64 @@
+# Docker Compose configuration for CORS Proxy Server
+# Usage:
+#   Development: docker-compose -f docker-compose.proxy.yml up
+#   Production: docker-compose -f docker-compose.proxy.yml -f docker-compose.proxy.prod.yml up
+
+version: '3.8'
+
+services:
+  cors-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env.proxy.development
+    environment:
+      - NODE_ENV=development
+      - ALLOWED_ORIGINS=http://localhost:3000,https://localhost:3000
+    volumes:
+      # Mount proxy server for development hot reload
+      - ./proxy-server.js:/app/proxy-server.js:ro
+    restart: unless-stopped
+    networks:
+      - proxy-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/health', (res) => process.exit(res.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cors-proxy.rule=Host(`proxy.localhost`)"
+      - "traefik.http.services.cors-proxy.loadbalancer.server.port=3001"
+
+  # Optional: Include the main React app for full stack development
+  # react-app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - cors-proxy
+  #   environment:
+  #     - REACT_APP_CORS_PROXY_URL=http://cors-proxy:3001
+  #   networks:
+  #     - proxy-network
+
+networks:
+  proxy-network:
+    driver: bridge
+    name: idaho-events-proxy
+
+# Optional: Add persistent volumes for logs
+# volumes:
+#   proxy-logs:
+#     driver: local

@@ -1,0 +1,27 @@
+{
+  "tasks": {
+    "lint": "deno lint src/utils/ src/types/ --ext=ts",
+    "lint:check": "deno lint src/utils/ src/types/ --ext=ts",
+    "lint:fix": "deno lint src/utils/ src/types/ --ext=ts --fix",
+    "lint:all": "deno lint src/ --ext=ts,tsx,js,jsx --quiet",
+    "fmt": "deno fmt src/utils/ src/types/"
+  },
+  "lint": {
+    "include": ["src/utils/", "src/types/"],
+    "exclude": ["node_modules/", "build/", "dist/", "coverage/", "src/**/*.test.ts", "src/**/*.test.tsx", "src/components/", "src/services/"],
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": ["no-unused-vars", "no-process-global", "no-explicit-any", "prefer-const", "no-empty-interface", "no-window"]
+    }
+  },
+  "fmt": {
+    "include": ["src/utils/", "src/types/"],
+    "exclude": ["node_modules/", "build/", "dist/", "coverage/", "src/components/", "src/services/"],
+    "useTabs": false,
+    "lineWidth": 100,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve"
+  }
+}

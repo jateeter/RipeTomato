@@ -1,0 +1,39 @@
+# Production overrides for Docker Compose
+# Usage: docker-compose -f docker-compose.proxy.yml -f docker-compose.proxy.prod.yml up
+
+version: '3.8'
+
+services:
+  cors-proxy:
+    env_file:
+      - .env.proxy.production
+    environment:
+      - NODE_ENV=production
+      # Override with your production origins
+      - ALLOWED_ORIGINS=https://your-app.com,https://www.your-app.com
+    volumes: []  # Remove development volume mounts
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=10M
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cors-proxy-secure.rule=Host(`api.your-domain.com`)"
+      - "traefik.http.routers.cors-proxy-secure.tls=true"
+      - "traefik.http.routers.cors-proxy-secure.tls.certresolver=letsencrypt"
+      - "traefik.http.middlewares.cors-proxy-secure.headers.SSLRedirect=true"
+      - "traefik.http.services.cors-proxy-secure.loadbalancer.server.port=3001"
