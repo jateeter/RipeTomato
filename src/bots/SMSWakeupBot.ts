@@ -13,7 +13,7 @@
  * @license MIT
  */
 
-import { BaseBotLabBot, BotConfiguration, BotEvent, BotMessage } from '../services/botlabCore';
+import { BaseBotLabBot, type BotConfiguration, type BotEvent, type BotMessage } from '../modules/agents';
 import { smsService, ClientSMSPreferences } from '../services/smsService';
 import { format, addMinutes, isBefore, isAfter } from 'date-fns';
 

@@ -12,14 +12,14 @@
  * @license MIT
  */
 
-import { 
-  enhancedBotLabCore, 
-  EnhancedBotConfiguration 
+import {
+  enhancedBotLabCore,
+  EnhancedBotConfiguration
 } from '../services/enhancedBotlabCore';
-import { 
+import {
   AgentLanguage,
   CrossLanguageMessage
-} from '../services/multiLanguageAgentRuntime';
+} from '../modules/agents';
 
 class WeatherAgentDemo {
   private isRunning = false;

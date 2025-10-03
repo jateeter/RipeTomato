@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SimpleCard } from '../components/SimpleCard';
 import { TouchButton } from '../components/TouchButton';
 import { StatusIndicator } from '../components/StatusIndicator';
@@ -7,7 +6,6 @@ import { LoadingSpinner } from '../components/LoadingSpinner';
 import { ClientDataService, DashboardData } from '../services/ClientDataService';
 
 export const MobileClientDashboard: React.FC = () => {
-  const navigate = useNavigate();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [offline, setOffline] = useState(!navigator.onLine);
@@ -92,7 +90,7 @@ export const MobileClientDashboard: React.FC = () => {
         <TouchButton
           className="mt-4 w-full"
           variant="primary"
-          onClick={() => navigate('/client/bed-status')}
+          onClick={() => alert('Bed management coming soon')}
         >
           Manage Bed Reservation
         </TouchButton>
@@ -124,7 +122,7 @@ export const MobileClientDashboard: React.FC = () => {
         <TouchButton
           className="mt-4 w-full"
           variant="secondary"
-          onClick={() => navigate('/client/services')}
+          onClick={() => alert('Services view coming soon')}
         >
           View All Services
         </TouchButton>
@@ -137,25 +135,25 @@ export const MobileClientDashboard: React.FC = () => {
         <div className="grid grid-cols-2 gap-4">
           <TouchButton
             variant="outline"
-            onClick={() => navigate('/client/calendar')}
+            onClick={() => alert('Calendar coming soon')}
           >
             📅 Calendar
           </TouchButton>
           <TouchButton
             variant="outline"
-            onClick={() => navigate('/client/profile')}
+            onClick={() => alert('Profile coming soon')}
           >
             👤 Profile
           </TouchButton>
           <TouchButton
             variant="outline"
-            onClick={() => navigate('/client/services')}
+            onClick={() => alert('Services coming soon')}
           >
             🏥 Services
           </TouchButton>
           <TouchButton
             variant="outline"
-            onClick={() => navigate('/client/help')}
+            onClick={() => alert('Help coming soon')}
           >
             ❓ Help
           </TouchButton>

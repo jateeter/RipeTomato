@@ -14,15 +14,15 @@
  * @license MIT
  */
 
-import { 
-  enhancedBotLabCore, 
-  EnhancedBotConfiguration 
+import {
+  enhancedBotLabCore,
+  EnhancedBotConfiguration
 } from '../services/enhancedBotlabCore';
-import { 
-  AgentLanguage, 
-  CrossLanguageMessage 
-} from '../services/multiLanguageAgentRuntime';
-import { BotEvent } from '../services/botlabCore';
+import {
+  AgentLanguage,
+  CrossLanguageMessage
+} from '../modules/agents';
+import { type BotEvent } from '../modules/agents';
 
 class MultiLanguageAgentExample {
   private isRunning = false;

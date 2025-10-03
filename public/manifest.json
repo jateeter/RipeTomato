@@ -1,6 +1,7 @@
 {
-  "short_name": "Community Services",
-  "name": "Community Services Hub",
+  "short_name": "Idaho Events",
+  "name": "Idaho Events - Community Services Hub",
+  "description": "Access shelter services, manage your account, and connect with community resources",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,22 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "categories": ["social", "lifestyle"],
+  "prefer_related_applications": false
 }

@@ -3,7 +3,7 @@
  */
 
 import { SMSWakeupBot } from '../SMSWakeupBot';
-import { BotEvent } from '../../services/botlabCore';
+import { type BotEvent } from '../../modules/agents';
 import { smsService } from '../../services/smsService';
 
 // Mock the SMS service
