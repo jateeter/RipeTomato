@@ -17,10 +17,12 @@ export {
 
 // Multi-language runtime
 export {
-  multiLanguageRuntime,
+  multiLanguageAgentRuntime,
+  multiLanguageAgentRuntime as multiLanguageRuntime,
   type AgentContext,
   type AgentConfig,
   type CrossLanguageMessage,
   type RuntimeConfig,
-  type PythonRuntimeConfig
+  type PythonRuntimeConfig,
+  AgentLanguage
 } from './runtime/MultiLanguageRuntime';
