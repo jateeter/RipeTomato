@@ -7,6 +7,7 @@ import SimpleClientRegistration from './components/SimpleClientRegistration';
 import { solidInitializationService } from './services/solidInitializationService';
 import { botInitializationService } from './services/botInitializationService';
 import { testExposureService } from './services/testExposureService';
+import { cacheInitializationService } from './services/cacheInitializationService';
 import { useResponsive } from './hooks/useResponsive';
 import { getContainerClasses, getNavigationClasses, getSafeAreaClasses } from './utils/responsive';
 import './App.css';
@@ -19,6 +20,8 @@ function App() {
   const [solidInitError, setSolidInitError] = useState<string | null>(null);
   const [botInitialized, setBotInitialized] = useState(false);
   const [botInitError, setBotInitError] = useState<string | null>(null);
+  const [cacheInitialized, setCacheInitialized] = useState(false);
+  const [cacheInitError, setCacheInitError] = useState<string | null>(null);
   const { isMobile, isTablet, deviceType, specificDevice } = useResponsive();
 
   useEffect(() => {
@@ -91,6 +94,36 @@ function App() {
     };
 
     initializeBotSystem();
+
+    // Initialize Cache Database
+    const initializeCacheDatabase = async () => {
+      try {
+        console.log('📦 Starting cache database initialization...');
+        const result = await cacheInitializationService.initialize();
+
+        if (result.success) {
+          console.log('✅ Cache database initialization completed successfully');
+          console.log(`   Source: ${result.source}`);
+          if (result.stats) {
+            console.log(`   Locations: ${result.stats.locations}`);
+            console.log(`   Shelters: ${result.stats.shelters}`);
+            console.log(`   Last Sync: ${new Date(result.stats.lastSync).toLocaleString()}`);
+          }
+          setCacheInitialized(true);
+          setCacheInitError(null);
+        } else {
+          console.warn('⚠️ Cache database initialization failed:', result.message);
+          setCacheInitError(result.error || result.message);
+          setCacheInitialized(false);
+        }
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown cache initialization error';
+        console.error('❌ Critical error during cache database initialization:', errorMessage);
+        setCacheInitError(errorMessage);
+      }
+    };
+
+    initializeCacheDatabase();
 
     // Initialize test exposure service for E2E testing
     const initializeTestExposure = async () => {

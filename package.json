@@ -28,6 +28,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "^5.0.1",
+    "sql.js": "^1.13.0",
     "typescript": "^4.9.5",
     "uuid": "^11.1.0",
     "web-vitals": "^2.1.4"
@@ -50,6 +51,8 @@
     "test:e2e:open": "start-server-and-test start http://localhost:3000 cy:open",
     "solid:setup": "node cli/solid-pod-setup.js",
     "solid:setup:help": "node cli/solid-pod-setup.js --help",
+    "cache:populate": "node cli/cache-populate.js",
+    "cache:help": "echo 'Cache Population CLI - Populates local database with shelter and location data'",
     "lint:deno": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task lint",
     "lint:deno:check": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task lint:check",
     "lint:deno:fix": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task lint:fix"
