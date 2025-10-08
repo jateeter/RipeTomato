@@ -3,6 +3,7 @@ import { CommunityServicesHub } from './components/CommunityServicesHub';
 import ShelterApp from './components/ShelterApp';
 import ErrorBoundary from './components/ErrorBoundary';
 import { MobileClientDashboard } from './modules/client/mobile/MobileClientDashboard';
+import SimpleClientRegistration from './components/SimpleClientRegistration';
 import { solidInitializationService } from './services/solidInitializationService';
 import { botInitializationService } from './services/botInitializationService';
 import { testExposureService } from './services/testExposureService';
@@ -10,7 +11,7 @@ import { useResponsive } from './hooks/useResponsive';
 import { getContainerClasses, getNavigationClasses, getSafeAreaClasses } from './utils/responsive';
 import './App.css';
 
-type ActiveView = 'community-hub' | 'legacy-shelter' | 'client-dashboard';
+type ActiveView = 'community-hub' | 'legacy-shelter' | 'client-dashboard' | 'simple-registration';
 
 function App() {
   const [activeView, setActiveView] = useState<ActiveView>('community-hub' as ActiveView);
@@ -104,6 +105,9 @@ function App() {
 
     initializeTestExposure();
 
+    // Register setActiveView for E2E testing
+    testExposureService.registerSetActiveView(setActiveView);
+
     // Cleanup
     return () => {
       window.removeEventListener('error', handleError);
@@ -129,6 +133,17 @@ function App() {
       <ErrorBoundary>
         <div data-testid="client-dashboard-loaded" className={`min-h-mobile-screen ${getSafeAreaClasses()}`}>
           <MobileClientDashboard />
+        </div>
+      </ErrorBoundary>
+    );
+  }
+
+  if (activeView === 'simple-registration') {
+    // Full-screen Simple Client Registration (iPad-optimized)
+    return (
+      <ErrorBoundary>
+        <div data-testid="simple-registration-loaded" className={`min-h-mobile-screen ${getSafeAreaClasses()}`}>
+          <SimpleClientRegistration />
         </div>
       </ErrorBoundary>
     );
