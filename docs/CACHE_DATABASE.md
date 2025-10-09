@@ -2,20 +2,23 @@
 
 ## Overview
 
-The Local Cache Database System provides offline-capable caching for location and shelter data. Using sql.js (pure JavaScript SQLite), it stores:
+The Local Cache Database System provides offline-capable caching for location and shelter data from HMIS OpenCommons. Using localStorage-based JSON caching, it stores:
 
-- **Location Information**: Addresses, coordinates, types (shelter, clinic, service, food)
-- **Shelter Metrics**: Bed capacity, availability, services offered, contact information
+- **500+ HMIS Facilities**: Real data from hmis.opencommons.org
+- **164 Shelters**: Bed capacity, availability, services offered, contact information
+- **240 Service Providers**: Case management, employment, legal, mental health services
+- **68 Health Clinics**: Medical, dental, mental health facilities
+- **28 Food Banks**: Meal programs and food distribution centers
 - **Real-time Updates**: Last sync timestamps, occupancy rates, service metrics
 
 ## Architecture
 
 ### Components
 
-1. **`cacheDatabase.ts`** - Core database service with SQLite operations
-2. **`cacheInitializationService.ts`** - App startup initialization
-3. **`cache-populate.js`** - CLI tool for manual cache population
-4. **localStorage** - Browser persistence layer
+1. **`cacheInitializationService.ts`** - localStorage-based cache management
+2. **`cache-populate.js`** - CLI tool for fetching HMIS data
+3. **`hmisOpenCommonsService.ts`** - MediaWiki API client
+4. **localStorage** - Browser persistence layer (JSON format)
 
 ### Data Flow
 
@@ -475,31 +478,39 @@ Cache data file in public directory:
 - **Size**: ~20-40KB for Portland data
 - **Usage**: Initial load and refresh
 
-## Portland Shelter Data
+## HMIS OpenCommons Data
 
-### Included Locations
+### Data Source
 
-1. **Blanchet House** - 340 NW Glisan St (125 beds)
-2. **Transition Projects - Clark Center** - 655 NW Hoyt St (90 beds)
-3. **Jean's Place** - 4800 NE Glisan St (38 beds, families)
-4. **Outside In** - 1132 SW 13th Ave (clinic)
-5. **Central City Concern - Blackburn Center** - 232 NW 6th Ave (160 beds)
-6. **JOIN Resource Center** - 4110 SE Hawthorne Blvd (services)
-7. **Blanchet Farm** - Carlton, OR (45 beds, rural)
-8. **Salvation Army - Harbor Light Center** - 36 SE 6th Ave (185 beds)
-9. **Sisters Of The Road Cafe** - 133 NW 6th Ave (meals)
-10. **Portland Rescue Mission** - 111 W Burnside St (250 beds)
-11. **Ecumenical Ministries - EMOCHA** - 325 SE 11th Ave (clinic)
-12. **Human Solutions - Family Shelter** - 12350 SE Powell Blvd (60 beds, families)
+All facility data is fetched from **HMIS OpenCommons** (hmis.opencommons.org), a MediaWiki-based database of homeless services maintained by the community.
+
+### Included Data (500+ Facilities)
+
+**By Category:**
+- **164 Shelters**: Emergency, transitional, and permanent supportive housing
+- **240 Service Providers**: Case management, employment, legal aid, mental health
+- **68 Health Clinics**: Medical, dental, mental health, substance abuse treatment
+- **28 Food Banks**: Meal programs, food pantries, nutrition assistance
+
+**Sample Facilities:**
+- Blanchet House
+- Transition Projects
+- Central City Concern
+- Outside In Medical Clinic
+- JOIN Resource Center
+- Portland Rescue Mission
+- And 494 more organizations...
 
 ### Data Accuracy
 
-- **Addresses**: Real Portland addresses
-- **Coordinates**: Accurate GPS coordinates
-- **Phone Numbers**: Real contact numbers
-- **Hours**: Actual operating hours
-- **Bed Counts**: Representative capacity (updated periodically)
-- **Services**: Accurate service offerings
+- **Source**: HMIS OpenCommons MediaWiki API
+- **Addresses**: Extracted from facility infoboxes (when available)
+- **Coordinates**: Parsed from wikitext or defaulted to Portland area
+- **Phone Numbers**: Extracted from contact information
+- **Hours**: Operating hours from facility pages
+- **Capacity**: Bed counts and service capacity where documented
+- **Services**: Service types and specializations
+- **Last Updated**: Sync timestamp tracked per cache refresh
 
 ## Cache Refresh Strategy
 
