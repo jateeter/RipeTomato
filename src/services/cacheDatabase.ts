@@ -3,9 +3,13 @@
  *
  * Provides local SQLite caching for location and shelter data.
  * Uses sql.js for pure JavaScript SQLite implementation.
+ *
+ * NOTE: sql.js is dynamically imported to avoid webpack bundling issues
  */
 
-import initSqlJs, { Database } from 'sql.js';
+// Dynamic import type for sql.js
+type Database = any;
+type SQL = any;
 
 export interface Location {
   id?: number;
@@ -54,6 +58,9 @@ class CacheDatabaseService {
     if (this.db) return; // Already initialized
 
     try {
+      // Dynamically import sql.js to avoid webpack bundling issues
+      const initSqlJs = (await import('sql.js')).default;
+
       // Load sql.js library
       this.SQL = await initSqlJs({
         locateFile: (file: string) => `https://sql.js.org/dist/${file}`
