@@ -67,6 +67,51 @@ async function fetchHMISFacilities() {
 }
 
 /**
+ * Geocode an address using Nominatim (OpenStreetMap)
+ */
+async function geocodeAddress(address) {
+  return new Promise((resolve, reject) => {
+    // Clean up address for geocoding
+    const cleanAddress = encodeURIComponent(address);
+
+    const options = {
+      hostname: 'nominatim.openstreetmap.org',
+      path: `/search?q=${cleanAddress}&format=json&limit=1`,
+      method: 'GET',
+      headers: {
+        'User-Agent': 'IdahoEvents-CachePopulate/1.0'
+      }
+    };
+
+    https.get(options, (res) => {
+      let data = '';
+
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        try {
+          const results = JSON.parse(data);
+          if (results && results.length > 0) {
+            resolve({
+              latitude: parseFloat(results[0].lat),
+              longitude: parseFloat(results[0].lon)
+            });
+          } else {
+            resolve(null);
+          }
+        } catch (error) {
+          resolve(null);
+        }
+      });
+    }).on('error', () => {
+      resolve(null);
+    });
+  });
+}
+
+/**
  * Fetch page content from HMIS MediaWiki
  */
 async function fetchPageContent(pageId) {
@@ -441,11 +486,24 @@ class CachePopulateCLI {
           // Parse facility data
           const facility = parseFacilityData(wikitext, page.title);
 
-          // Skip if no valid location data
-          if (!facility.latitude || !facility.longitude) {
-            // Assign default Portland coordinates if missing (will be geocoded later)
-            facility.latitude = 45.5152 + (Math.random() * 0.05); // Portland area
-            facility.longitude = -122.6784 + (Math.random() * 0.05);
+          // Geocode address if coordinates are missing
+          if ((!facility.latitude || !facility.longitude) && facility.address) {
+            this.print(`    → Geocoding address: ${facility.address.substring(0, 50)}...`, 'dim');
+
+            const geocoded = await geocodeAddress(facility.address);
+            if (geocoded) {
+              facility.latitude = geocoded.latitude;
+              facility.longitude = geocoded.longitude;
+              this.print(`    → ✓ Geocoded: ${facility.latitude.toFixed(4)}, ${facility.longitude.toFixed(4)}`, 'green');
+
+              // Nominatim rate limit: 1 request per second
+              await new Promise(resolve => setTimeout(resolve, 1000));
+            } else {
+              // Assign default Portland coordinates if geocoding fails
+              facility.latitude = 45.5152 + (Math.random() * 0.05);
+              facility.longitude = -122.6784 + (Math.random() * 0.05);
+              this.print(`    → ⚠️  Geocoding failed, using Portland area default`, 'yellow');
+            }
           }
 
           this.print(`\n  ✓ Adding location: ${facility.name}`, 'green');

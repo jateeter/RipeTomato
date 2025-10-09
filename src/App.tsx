@@ -8,6 +8,7 @@ import { solidInitializationService } from './services/solidInitializationServic
 import { botInitializationService } from './services/botInitializationService';
 import { testExposureService } from './services/testExposureService';
 import { cacheInitializationService } from './services/cacheInitializationService';
+import { cachedLocationService } from './services/cachedLocationService';
 import { useResponsive } from './hooks/useResponsive';
 import { getContainerClasses, getNavigationClasses, getSafeAreaClasses } from './utils/responsive';
 import './App.css';
@@ -124,6 +125,31 @@ function App() {
     };
 
     initializeCacheDatabase();
+
+    // Initialize Cached Location Service
+    const initializeCachedLocationService = async () => {
+      try {
+        console.log('📍 Initializing Cached Location Service...');
+        await cachedLocationService.initialize();
+
+        const stats = await cachedLocationService.getCacheStats();
+        console.log('✅ Cached Location Service ready');
+        console.log(`   Locations: ${stats.total_locations}`);
+        console.log(`   Shelters: ${stats.total_shelters}`);
+
+        // Log sample data
+        const shelters = cachedLocationService.getShelters();
+        console.log(`   Shelters with beds: ${shelters.length}`);
+
+        const available = cachedLocationService.getSheltersWithAvailability();
+        console.log(`   Shelters with availability: ${available.length}`);
+
+      } catch (error) {
+        console.error('❌ Cached Location Service initialization failed:', error);
+      }
+    };
+
+    initializeCachedLocationService();
 
     // Initialize test exposure service for E2E testing
     const initializeTestExposure = async () => {
