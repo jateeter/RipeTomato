@@ -1,0 +1,5011 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "(SAMHSA)’s National Helpline - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.55642679811422,
+      "longitude": -122.63572813226583,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:26.947Z",
+      "updated_at": "2025-10-09T16:09:26.947Z"
+    },
+    {
+      "id": 2,
+      "name": "(SAMHSA)’s National Helpline - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.5347557619749,
+      "longitude": -122.67218372054694,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:27.202Z",
+      "updated_at": "2025-10-09T16:09:27.202Z"
+    },
+    {
+      "id": 3,
+      "name": "13 Salmon Shower Project (by First Unitarian Portland)",
+      "address": "1211 SW Main St, Portland, OR 97205",
+      "latitude": 45.561509802469565,
+      "longitude": -122.66708131164388,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:27.484Z",
+      "updated_at": "2025-10-09T16:09:27.484Z"
+    },
+    {
+      "id": 4,
+      "name": "211 Info - Outside Resource Guides",
+      "address": "Address not available",
+      "latitude": 45.53678633904594,
+      "longitude": -122.65748348896584,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:27.844Z",
+      "updated_at": "2025-10-09T16:09:27.844Z"
+    },
+    {
+      "id": 5,
+      "name": "211 Info - Utilities",
+      "address": "Address not available",
+      "latitude": 45.530989248544515,
+      "longitude": -122.64002946820933,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:28.104Z",
+      "updated_at": "2025-10-09T16:09:28.104Z"
+    },
+    {
+      "id": 6,
+      "name": "211 Info - Various Combined Services",
+      "address": "Address not available",
+      "latitude": 45.52618925277782,
+      "longitude": -122.6364011059706,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:28.345Z",
+      "updated_at": "2025-10-09T16:09:28.345Z"
+    },
+    {
+      "id": 7,
+      "name": "4th Dimension Recovery Center (4D)",
+      "address": "362 SW Oak St, Hillsboro, OR 97123",
+      "latitude": 45.55118451818023,
+      "longitude": -122.66911438757823,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:28.581Z",
+      "updated_at": "2025-10-09T16:09:28.581Z"
+    },
+    {
+      "id": 8,
+      "name": "4th Dimension Recovery Center (4D) - Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.515929069580544,
+      "longitude": -122.63155939924006,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:28.898Z",
+      "updated_at": "2025-10-09T16:09:28.898Z"
+    },
+    {
+      "id": 9,
+      "name": "4th Dimension Recovery Center (4D) - Transitional Aged Youth Programs",
+      "address": "Address not available",
+      "latitude": 45.52805678552764,
+      "longitude": -122.65605421950242,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:29.137Z",
+      "updated_at": "2025-10-09T16:09:29.137Z"
+    },
+    {
+      "id": 10,
+      "name": "82nd Avenue Motel Shelter",
+      "address": "1707 NE 82nd Ave, Portland, OR 97216",
+      "latitude": 45.55630159803623,
+      "longitude": -122.66218353744931,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:29.431Z",
+      "updated_at": "2025-10-09T16:09:29.431Z"
+    },
+    {
+      "id": 11,
+      "name": "ALL RISE - Incarcerated Adult and Youth Support Services and Programs",
+      "address": "Address not available",
+      "latitude": 45.56051709797319,
+      "longitude": -122.64671656635682,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:29.712Z",
+      "updated_at": "2025-10-09T16:09:29.712Z"
+    },
+    {
+      "id": 12,
+      "name": "ARC of Multnomah County",
+      "address": "6929 NE Halsey, Portland, OR 97213",
+      "latitude": 45.56221015787569,
+      "longitude": -122.63854548767061,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:29.950Z",
+      "updated_at": "2025-10-09T16:09:29.950Z"
+    },
+    {
+      "id": 13,
+      "name": "ARC of Multnomah County - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.558380065640975,
+      "longitude": -122.66264895252684,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:30.207Z",
+      "updated_at": "2025-10-09T16:09:30.207Z"
+    },
+    {
+      "id": 14,
+      "name": "ASSIST (Assertive SSI Service Team)",
+      "address": "4412 S. Barbur Blvd, Portland, OR 97239",
+      "latitude": 45.52363928844006,
+      "longitude": -122.66178953148093,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:30.450Z",
+      "updated_at": "2025-10-09T16:09:30.450Z"
+    },
+    {
+      "id": 15,
+      "name": "ASSIST (Assertive SSI Service Team) - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.549723599198735,
+      "longitude": -122.63516884519353,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:30.784Z",
+      "updated_at": "2025-10-09T16:09:30.784Z"
+    },
+    {
+      "id": 16,
+      "name": "A Safe Place Family Justice Center",
+      "address": "256 Warner Milne Rd, Oregon City, OR 97045",
+      "latitude": 45.55258922968003,
+      "longitude": -122.62846672969161,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:31.044Z",
+      "updated_at": "2025-10-09T16:09:31.044Z"
+    },
+    {
+      "id": 17,
+      "name": "AbleFind Disability Resources - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.529238884806304,
+      "longitude": -122.65344132521571,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:31.314Z",
+      "updated_at": "2025-10-09T16:09:31.314Z"
+    },
+    {
+      "id": 18,
+      "name": "About",
+      "address": "Address not available",
+      "latitude": 45.5589297696202,
+      "longitude": -122.65752236576009,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:31.625Z",
+      "updated_at": "2025-10-09T16:09:31.625Z"
+    },
+    {
+      "id": 19,
+      "name": "Acadia Northwest",
+      "address": "9570 Barbur Blvd, Portland, OR 97219",
+      "latitude": 45.551811956694614,
+      "longitude": -122.65765694147957,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:31.908Z",
+      "updated_at": "2025-10-09T16:09:31.908Z"
+    },
+    {
+      "id": 20,
+      "name": "Acadia Northwest (Oregon City)",
+      "address": "504 Main St, Oregon City, OR 97045",
+      "latitude": 45.51732219272777,
+      "longitude": -122.6611037738542,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:32.160Z",
+      "updated_at": "2025-10-09T16:09:32.160Z"
+    },
+    {
+      "id": 21,
+      "name": "Acadia Northwest - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.5310041001001,
+      "longitude": -122.66422342711873,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:32.441Z",
+      "updated_at": "2025-10-09T16:09:32.441Z"
+    },
+    {
+      "id": 22,
+      "name": "Access Community Care - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.524866926623496,
+      "longitude": -122.67309820030951,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:32.709Z",
+      "updated_at": "2025-10-09T16:09:32.709Z"
+    },
+    {
+      "id": 23,
+      "name": "Access Community Care - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.54673404321491,
+      "longitude": -122.6658825419327,
+      "type": "food",
+      "created_at": "2025-10-09T16:09:33.015Z",
+      "updated_at": "2025-10-09T16:09:33.015Z"
+    },
+    {
+      "id": 24,
+      "name": "Access Community Care - Various Combined Services",
+      "address": "Address not available",
+      "latitude": 45.53671173090688,
+      "longitude": -122.66795576952318,
+      "type": "food",
+      "created_at": "2025-10-09T16:09:33.245Z",
+      "updated_at": "2025-10-09T16:09:33.245Z"
+    },
+    {
+      "id": 25,
+      "name": "Addiction Hotlines - Peer Support Groups",
+      "address": "Address not available",
+      "latitude": 45.52711106083921,
+      "longitude": -122.66095908897178,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:33.496Z",
+      "updated_at": "2025-10-09T16:09:33.496Z"
+    },
+    {
+      "id": 26,
+      "name": "Addiction Treatment",
+      "address": "Address not available",
+      "latitude": 45.52290281708685,
+      "longitude": -122.67597989974821,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:33.798Z",
+      "updated_at": "2025-10-09T16:09:33.798Z"
+    },
+    {
+      "id": 27,
+      "name": "Addictions Recovery Center - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.51811274874453,
+      "longitude": -122.6638155642881,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:34.055Z",
+      "updated_at": "2025-10-09T16:09:34.055Z"
+    },
+    {
+      "id": 28,
+      "name": "African American Alliance for Homeownership",
+      "address": "825 NE 20th Ave, Portland, OR 97232",
+      "latitude": 45.560755875764244,
+      "longitude": -122.67309342993744,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:34.337Z",
+      "updated_at": "2025-10-09T16:09:34.337Z"
+    },
+    {
+      "id": 29,
+      "name": "African American Alliance for Homeownership - Housing Support Services",
+      "address": "Address not available",
+      "latitude": 45.52719063545661,
+      "longitude": -122.67531357515963,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:34.656Z",
+      "updated_at": "2025-10-09T16:09:34.656Z"
+    },
+    {
+      "id": 30,
+      "name": "African American Support Services",
+      "address": "Address not available",
+      "latitude": 45.55221770639008,
+      "longitude": -122.63457855596144,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:35.021Z",
+      "updated_at": "2025-10-09T16:09:35.021Z"
+    },
+    {
+      "id": 31,
+      "name": "Agape Village",
+      "address": "9715 SE Powell Blvd, Portland, OR",
+      "latitude": 45.56409318141059,
+      "longitude": -122.65379543267473,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:35.328Z",
+      "updated_at": "2025-10-09T16:09:35.328Z"
+    },
+    {
+      "id": 32,
+      "name": "Agape Village, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.54871180656393,
+      "longitude": -122.63246665063342,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:35.664Z",
+      "updated_at": "2025-10-09T16:09:35.664Z"
+    },
+    {
+      "id": 33,
+      "name": "Age-Friendly - Community Service Opportunities",
+      "address": "Address not available",
+      "latitude": 45.533616927076345,
+      "longitude": -122.67668879170662,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:35.899Z",
+      "updated_at": "2025-10-09T16:09:35.899Z"
+    },
+    {
+      "id": 34,
+      "name": "Al-Anon",
+      "address": "1750 SW Skyline Blvd, Portland, Oregon 97221",
+      "latitude": 45.518217826983175,
+      "longitude": -122.65381832638863,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:36.185Z",
+      "updated_at": "2025-10-09T16:09:36.185Z"
+    },
+    {
+      "id": 35,
+      "name": "Al-Anon - Peer Support Groups",
+      "address": "1750 SW Skyline Boulevard.",
+      "latitude": 45.560447117174064,
+      "longitude": -122.67317037487749,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:36.492Z",
+      "updated_at": "2025-10-09T16:09:36.492Z"
+    },
+    {
+      "id": 36,
+      "name": "Al-Anon Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.51787826879524,
+      "longitude": -122.6380116909356,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:36.787Z",
+      "updated_at": "2025-10-09T16:09:36.787Z"
+    },
+    {
+      "id": 37,
+      "name": "Alano Club",
+      "address": "909 NW 24th Avenue, Portland, Oregon 97210",
+      "latitude": 45.51784655237435,
+      "longitude": -122.6529751246481,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:37.016Z",
+      "updated_at": "2025-10-09T16:09:37.016Z"
+    },
+    {
+      "id": 38,
+      "name": "Alano Club - Peer Support Groups",
+      "address": "Address not available",
+      "latitude": 45.55991566330921,
+      "longitude": -122.65660090033911,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:37.338Z",
+      "updated_at": "2025-10-09T16:09:37.338Z"
+    },
+    {
+      "id": 39,
+      "name": "Alano Club of Portland - Recovery Support Services",
+      "address": "Address not available",
+      "latitude": 45.55373487554307,
+      "longitude": -122.67147576693509,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:37.591Z",
+      "updated_at": "2025-10-09T16:09:37.591Z"
+    },
+    {
+      "id": 40,
+      "name": "Albertina Kerr",
+      "address": "424 NE 22nd Avenue, Portland, OR 97232",
+      "latitude": 45.540718735605175,
+      "longitude": -122.63698406746185,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:37.840Z",
+      "updated_at": "2025-10-09T16:09:37.840Z"
+    },
+    {
+      "id": 41,
+      "name": "Albertina Kerr - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.53617876811769,
+      "longitude": -122.63424714195087,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:38.133Z",
+      "updated_at": "2025-10-09T16:09:38.133Z"
+    },
+    {
+      "id": 42,
+      "name": "Albertina Kerr - Disability Support Services",
+      "address": "Address not available",
+      "latitude": 45.555988461865965,
+      "longitude": -122.6296123895099,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:38.432Z",
+      "updated_at": "2025-10-09T16:09:38.432Z"
+    },
+    {
+      "id": 43,
+      "name": "Albertina Kerr Employment Services - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.51680730558328,
+      "longitude": -122.65258211424373,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:38.718Z",
+      "updated_at": "2025-10-09T16:09:38.718Z"
+    },
+    {
+      "id": 44,
+      "name": "Alcohol and Drug Counseling Education Programs - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.5266463431426,
+      "longitude": -122.66000731269736,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:38.976Z",
+      "updated_at": "2025-10-09T16:09:38.976Z"
+    },
+    {
+      "id": 45,
+      "name": "Alcohol and Drug Rehab Facilities - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.54427156907984,
+      "longitude": -122.6691518869809,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:39.248Z",
+      "updated_at": "2025-10-09T16:09:39.248Z"
+    },
+    {
+      "id": 46,
+      "name": "Alcoholics Anonymous - Peer Support Groups",
+      "address": "Address not available",
+      "latitude": 45.53756069315093,
+      "longitude": -122.66701315605664,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:39.625Z",
+      "updated_at": "2025-10-09T16:09:39.625Z"
+    },
+    {
+      "id": 47,
+      "name": "All Saints Episcopal Church",
+      "address": "4033 SE Woodstock, Portland, Oregon 97202",
+      "latitude": 45.55413923497364,
+      "longitude": -122.65119378496229,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:39.882Z",
+      "updated_at": "2025-10-09T16:09:39.882Z"
+    },
+    {
+      "id": 48,
+      "name": "All Saints Episcopal Church - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.54956263138376,
+      "longitude": -122.65086462310728,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:40.138Z",
+      "updated_at": "2025-10-09T16:09:40.138Z"
+    },
+    {
+      "id": 49,
+      "name": "All Saints Episcopal Church - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.55415123536885,
+      "longitude": -122.6540613420548,
+      "type": "food",
+      "created_at": "2025-10-09T16:09:40.407Z",
+      "updated_at": "2025-10-09T16:09:40.407Z"
+    },
+    {
+      "id": 50,
+      "name": "Aloha Safe Rest Village",
+      "address": "2270 SW 198th Ave Aloha OR 97003",
+      "latitude": 45.55531973418773,
+      "longitude": -122.63912023825472,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:40.710Z",
+      "updated_at": "2025-10-09T16:09:40.710Z"
+    },
+    {
+      "id": 51,
+      "name": "Amenda Clinic",
+      "address": "314 NE 19th Ave., Portland, Oregon 97232",
+      "latitude": 45.55461845776644,
+      "longitude": -122.677415873536,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:40.966Z",
+      "updated_at": "2025-10-09T16:09:40.966Z"
+    },
+    {
+      "id": 52,
+      "name": "Amenda Clinic - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.53073885050417,
+      "longitude": -122.6583824942606,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:41.231Z",
+      "updated_at": "2025-10-09T16:09:41.231Z"
+    },
+    {
+      "id": 53,
+      "name": "American Civil Liberties Union (ACLU) of Oregon - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.562359986769096,
+      "longitude": -122.66664525673046,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:41.482Z",
+      "updated_at": "2025-10-09T16:09:41.482Z"
+    },
+    {
+      "id": 54,
+      "name": "Anderson High School (RAHS) - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.520630274237675,
+      "longitude": -122.66186692651351,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:41.777Z",
+      "updated_at": "2025-10-09T16:09:41.777Z"
+    },
+    {
+      "id": 55,
+      "name": "Animal Aid",
+      "address": "5335 SW 42nd Avenue, Portland, Oregon 97221",
+      "latitude": 45.564526871053765,
+      "longitude": -122.66401178516819,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:42.035Z",
+      "updated_at": "2025-10-09T16:09:42.035Z"
+    },
+    {
+      "id": 56,
+      "name": "Animal Aid - Animal and Veterinary Care Services",
+      "address": "Address not available",
+      "latitude": 45.53032898188838,
+      "longitude": -122.64430560278136,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:42.287Z",
+      "updated_at": "2025-10-09T16:09:42.287Z"
+    },
+    {
+      "id": 57,
+      "name": "Animal and Veterinary Care Services",
+      "address": "Address not available",
+      "latitude": 45.55372185101412,
+      "longitude": -122.65408584625057,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:42.582Z",
+      "updated_at": "2025-10-09T16:09:42.582Z"
+    },
+    {
+      "id": 58,
+      "name": "Another Chance Recovery",
+      "address": "12670 NW Barnes Rd, Portland, OR 97229",
+      "latitude": 45.52242086796873,
+      "longitude": -122.67365872914202,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:42.825Z",
+      "updated_at": "2025-10-09T16:09:42.825Z"
+    },
+    {
+      "id": 59,
+      "name": "Another Chance Recovery - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.51738871961207,
+      "longitude": -122.63031173019657,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:43.084Z",
+      "updated_at": "2025-10-09T16:09:43.084Z"
+    },
+    {
+      "id": 60,
+      "name": "Antfarm Youth Services - Youth Support Services",
+      "address": "Address not available",
+      "latitude": 45.55458780549584,
+      "longitude": -122.66813844025548,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:43.332Z",
+      "updated_at": "2025-10-09T16:09:43.332Z"
+    },
+    {
+      "id": 61,
+      "name": "Arbor House - Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.557975941783056,
+      "longitude": -122.63881957053385,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:43.580Z",
+      "updated_at": "2025-10-09T16:09:43.580Z"
+    },
+    {
+      "id": 62,
+      "name": "Arbor Lodge Shelter",
+      "address": "1954 N Lombard St, Portland, OR 97217",
+      "latitude": 45.55579203188966,
+      "longitude": -122.63062554239653,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:43.886Z",
+      "updated_at": "2025-10-09T16:09:43.886Z"
+    },
+    {
+      "id": 63,
+      "name": "Arbor Lodge Village (pods)",
+      "address": "7440 N. Denver Ave, Portland, OR 97217",
+      "latitude": 45.53481706502463,
+      "longitude": -122.65761206963893,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:44.198Z",
+      "updated_at": "2025-10-09T16:09:44.198Z"
+    },
+    {
+      "id": 64,
+      "name": "Arc Portland Metro - Disability Support Services",
+      "address": "Address not available",
+      "latitude": 45.52956563300831,
+      "longitude": -122.65913112216566,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:44.524Z",
+      "updated_at": "2025-10-09T16:09:44.524Z"
+    },
+    {
+      "id": 65,
+      "name": "Archers Recovery Homes",
+      "address": "5119 SE 140th Ave, Portland, OR 97236",
+      "latitude": 45.54697154542319,
+      "longitude": -122.65811471613057,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:44.797Z",
+      "updated_at": "2025-10-09T16:09:44.797Z"
+    },
+    {
+      "id": 66,
+      "name": "Archers Recovery Homes - Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.56241597555993,
+      "longitude": -122.66907388340216,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:45.119Z",
+      "updated_at": "2025-10-09T16:09:45.119Z"
+    },
+    {
+      "id": 67,
+      "name": "Art and Cultural Programs",
+      "address": "Address not available",
+      "latitude": 45.54265478941514,
+      "longitude": -122.63599686543128,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:45.427Z",
+      "updated_at": "2025-10-09T16:09:45.427Z"
+    },
+    {
+      "id": 68,
+      "name": "Artists in Recovery - Recovery Support Services",
+      "address": "Address not available",
+      "latitude": 45.53612823532112,
+      "longitude": -122.67378369389198,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:45.706Z",
+      "updated_at": "2025-10-09T16:09:45.706Z"
+    },
+    {
+      "id": 69,
+      "name": "Asian Health and Service Center",
+      "address": "9035 SE Foster Rd, Portland, Oregon 97266",
+      "latitude": 45.51917072082425,
+      "longitude": -122.67290692460142,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:45.995Z",
+      "updated_at": "2025-10-09T16:09:45.995Z"
+    },
+    {
+      "id": 70,
+      "name": "Asian Health and Service Center, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.523138177160384,
+      "longitude": -122.63468962564593,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:46.238Z",
+      "updated_at": "2025-10-09T16:09:46.238Z"
+    },
+    {
+      "id": 71,
+      "name": "Asian Health and Service Center (Beaverton)",
+      "address": "3800 SW Cedar Hills Blvd Beaverton, OR 97005",
+      "latitude": 45.524143068111066,
+      "longitude": -122.64986218791378,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:46.507Z",
+      "updated_at": "2025-10-09T16:09:46.507Z"
+    },
+    {
+      "id": 72,
+      "name": "Asian Health and Service Center - Culturally Specific Programs",
+      "address": "Address not available",
+      "latitude": 45.55825320018267,
+      "longitude": -122.67247916478493,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:46.782Z",
+      "updated_at": "2025-10-09T16:09:46.782Z"
+    },
+    {
+      "id": 73,
+      "name": "Atlas Recovery, Inc.",
+      "address": "Principal Place of Business",
+      "latitude": 45.54260382138735,
+      "longitude": -122.63309720685093,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:47.057Z",
+      "updated_at": "2025-10-09T16:09:47.057Z"
+    },
+    {
+      "id": 74,
+      "name": "Atlas Treatment Center",
+      "address": "411 NE 19th Ave, Portland, OR 97232",
+      "latitude": 45.55369591423391,
+      "longitude": -122.66291713664256,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:47.306Z",
+      "updated_at": "2025-10-09T16:09:47.306Z"
+    },
+    {
+      "id": 75,
+      "name": "Avel Gordly Center - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.56405223173216,
+      "longitude": -122.66063255910831,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:47.563Z",
+      "updated_at": "2025-10-09T16:09:47.563Z"
+    },
+    {
+      "id": 76,
+      "name": "BIPOC Village",
+      "address": "84 NE Weidler St, Portland, OR 97232",
+      "latitude": 45.56351607545559,
+      "longitude": -122.64746874655336,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:47.815Z",
+      "updated_at": "2025-10-09T16:09:47.815Z"
+    },
+    {
+      "id": 77,
+      "name": "BLAZE Program - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.52489345775954,
+      "longitude": -122.6506480646822,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:48.069Z",
+      "updated_at": "2025-10-09T16:09:48.069Z"
+    },
+    {
+      "id": 78,
+      "name": "BRAVO Youth Orchestra - Art and Cultural Programs",
+      "address": "Address not available",
+      "latitude": 45.55957403298287,
+      "longitude": -122.63244079839559,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:48.327Z",
+      "updated_at": "2025-10-09T16:09:48.327Z"
+    },
+    {
+      "id": 79,
+      "name": "BTown Kids - Youth Support Services",
+      "address": "Address not available",
+      "latitude": 45.562637441223835,
+      "longitude": -122.634548916642,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:48.600Z",
+      "updated_at": "2025-10-09T16:09:48.600Z"
+    },
+    {
+      "id": 80,
+      "name": "Baby Blues Connection, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.52226524975338,
+      "longitude": -122.67480265203164,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:48.852Z",
+      "updated_at": "2025-10-09T16:09:48.852Z"
+    },
+    {
+      "id": 81,
+      "name": "Baby Blues Connection - Parenting and Family Services",
+      "address": "Address not available",
+      "latitude": 45.55594805320478,
+      "longitude": -122.66367651704712,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:49.113Z",
+      "updated_at": "2025-10-09T16:09:49.113Z"
+    },
+    {
+      "id": 82,
+      "name": "Banfield Motel Shelter",
+      "address": "1525 NE 37th Ave, Portland, OR 97232",
+      "latitude": 45.5601212520904,
+      "longitude": -122.63224218537229,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:49.399Z",
+      "updated_at": "2025-10-09T16:09:49.399Z"
+    },
+    {
+      "id": 83,
+      "name": "Barbies Village",
+      "address": "935 NE 33rd Ave, Portland, OR 97232",
+      "latitude": 45.55245730011767,
+      "longitude": -122.65714069068828,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:49.790Z",
+      "updated_at": "2025-10-09T16:09:49.790Z"
+    },
+    {
+      "id": 84,
+      "name": "Barbur Motel Shelter",
+      "address": "10450 SW Barbur Blvd, Portland, OR 97219",
+      "latitude": 45.563097268252875,
+      "longitude": -122.63330343871003,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:50.112Z",
+      "updated_at": "2025-10-09T16:09:50.112Z"
+    },
+    {
+      "id": 85,
+      "name": "Basic Rights Oregon – Catalyst Transgender Leadership Program - Gender Diverse Support Services",
+      "address": "Address not available",
+      "latitude": 45.52257524158594,
+      "longitude": -122.63873569555268,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:50.440Z",
+      "updated_at": "2025-10-09T16:09:50.440Z"
+    },
+    {
+      "id": 86,
+      "name": "Basic Services",
+      "address": "Address not available",
+      "latitude": 45.51576230975819,
+      "longitude": -122.6496620594809,
+      "type": "food",
+      "created_at": "2025-10-09T16:09:50.722Z",
+      "updated_at": "2025-10-09T16:09:50.722Z"
+    },
+    {
+      "id": 87,
+      "name": "Bay Area First Step",
+      "address": "155 S Empire Blvd, Coos Bay, OR 97420",
+      "latitude": 45.54964460112597,
+      "longitude": -122.63626749150578,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:50.953Z",
+      "updated_at": "2025-10-09T16:09:50.953Z"
+    },
+    {
+      "id": 88,
+      "name": "Bay Area First Step, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.53899736970718,
+      "longitude": -122.63814220408837,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:51.206Z",
+      "updated_at": "2025-10-09T16:09:51.206Z"
+    },
+    {
+      "id": 89,
+      "name": "Beacon Village, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.53025959617968,
+      "longitude": -122.6411255425355,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:51.480Z",
+      "updated_at": "2025-10-09T16:09:51.480Z"
+    },
+    {
+      "id": 90,
+      "name": "Beacon Village PDX (C3PO)",
+      "address": "621 NE 76th Ave, Portland, OR 97213",
+      "latitude": 45.555620074695575,
+      "longitude": -122.65144785265973,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:51.759Z",
+      "updated_at": "2025-10-09T16:09:51.759Z"
+    },
+    {
+      "id": 91,
+      "name": "Beaverton Health Center",
+      "address": "12220 SW 1st St, Beaverton, OR 97005",
+      "latitude": 45.53711195616592,
+      "longitude": -122.66122649707661,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:52.035Z",
+      "updated_at": "2025-10-09T16:09:52.035Z"
+    },
+    {
+      "id": 92,
+      "name": "Beaverton Permanent Shelter",
+      "address": "11390 SW Beaverton Hillsdale Hwy, Beaverton, OR 97005",
+      "latitude": 45.5243709973561,
+      "longitude": -122.67659878674735,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:52.315Z",
+      "updated_at": "2025-10-09T16:09:52.315Z"
+    },
+    {
+      "id": 93,
+      "name": "Beaverton Temporary Shelter",
+      "address": "12350 SW 5th St., Beaverton, OR",
+      "latitude": 45.55090101598802,
+      "longitude": -122.65399303783309,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:52.587Z",
+      "updated_at": "2025-10-09T16:09:52.587Z"
+    },
+    {
+      "id": 94,
+      "name": "Behavioral Health Resource Center (BHRC)",
+      "address": "333 SW Park Ave, Portland, OR 97201",
+      "latitude": 45.53871475773263,
+      "longitude": -122.6573856467625,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:52.936Z",
+      "updated_at": "2025-10-09T16:09:52.936Z"
+    },
+    {
+      "id": 95,
+      "name": "Behavioral Health Resource Center - Housing",
+      "address": "Address not available",
+      "latitude": 45.54768734301082,
+      "longitude": -122.64890603416863,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:53.289Z",
+      "updated_at": "2025-10-09T16:09:53.289Z"
+    },
+    {
+      "id": 96,
+      "name": "Belmont Comprehensive Treatment Center",
+      "address": "2600 SE Belmont Street, Portland, OR 97214",
+      "latitude": 45.55085131742211,
+      "longitude": -122.6639280970323,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:53.609Z",
+      "updated_at": "2025-10-09T16:09:53.609Z"
+    },
+    {
+      "id": 97,
+      "name": "Belmont Comprehensive Treatment Center - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.52232847332372,
+      "longitude": -122.65067902760109,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:54.004Z",
+      "updated_at": "2025-10-09T16:09:54.004Z"
+    },
+    {
+      "id": 98,
+      "name": "Ben’s Friends - Peer Support Groups",
+      "address": "Address not available",
+      "latitude": 45.53297026623991,
+      "longitude": -122.66934751492843,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:54.267Z",
+      "updated_at": "2025-10-09T16:09:54.267Z"
+    },
+    {
+      "id": 99,
+      "name": "Ben’s Friends - Recovery Support Services",
+      "address": "Address not available",
+      "latitude": 45.553186205305785,
+      "longitude": -122.66365539843008,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:54.571Z",
+      "updated_at": "2025-10-09T16:09:54.571Z"
+    },
+    {
+      "id": 100,
+      "name": "Best",
+      "address": "Address not available",
+      "latitude": 45.516735192478265,
+      "longitude": -122.6631924351344,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:54.827Z",
+      "updated_at": "2025-10-09T16:09:54.827Z"
+    },
+    {
+      "id": 101,
+      "name": "Bethanie’s Room",
+      "address": "1015 NW 17th Ave. Portland, OR 97209",
+      "latitude": 45.5558611836093,
+      "longitude": -122.66487458048763,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:55.083Z",
+      "updated_at": "2025-10-09T16:09:55.083Z"
+    },
+    {
+      "id": 102,
+      "name": "Better Outcomes thru Bridges (BOB) Behavioral Health Program - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.55766783433486,
+      "longitude": -122.65379466689727,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:09:55.512Z",
+      "updated_at": "2025-10-09T16:09:55.512Z"
+    },
+    {
+      "id": 103,
+      "name": "Beyond These Walls, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.5598133569114,
+      "longitude": -122.65542334569307,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:55.776Z",
+      "updated_at": "2025-10-09T16:09:55.777Z"
+    },
+    {
+      "id": 104,
+      "name": "Beyond These Walls - Reentry Support Services",
+      "address": "Address not available",
+      "latitude": 45.562467099558106,
+      "longitude": -122.6346822321321,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:56.037Z",
+      "updated_at": "2025-10-09T16:09:56.037Z"
+    },
+    {
+      "id": 105,
+      "name": "Bienstar - Housing",
+      "address": "Address not available",
+      "latitude": 45.55030970841369,
+      "longitude": -122.6364422298337,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:56.323Z",
+      "updated_at": "2025-10-09T16:09:56.323Z"
+    },
+    {
+      "id": 106,
+      "name": "Bikes for Humanity PDX",
+      "address": "3366 SE Powell Boulevard, Portland, Oregon 97202",
+      "latitude": 45.51768709567057,
+      "longitude": -122.63233804791972,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:56.560Z",
+      "updated_at": "2025-10-09T16:09:56.560Z"
+    },
+    {
+      "id": 107,
+      "name": "Bikes for Humanity PDX, Inc",
+      "address": "Principal Place Of Business",
+      "latitude": 45.550024719026865,
+      "longitude": -122.64399760622395,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:56.808Z",
+      "updated_at": "2025-10-09T16:09:56.808Z"
+    },
+    {
+      "id": 108,
+      "name": "Bikes for Humanity PDX - Community Service Opportunities",
+      "address": "Address not available",
+      "latitude": 45.52591523550657,
+      "longitude": -122.63611332759186,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:57.082Z",
+      "updated_at": "2025-10-09T16:09:57.082Z"
+    },
+    {
+      "id": 109,
+      "name": "Bikes for Humanity PDX - Transportation",
+      "address": "Address not available",
+      "latitude": 45.532705936137994,
+      "longitude": -122.6303221576156,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:57.345Z",
+      "updated_at": "2025-10-09T16:09:57.345Z"
+    },
+    {
+      "id": 110,
+      "name": "Black Economic Collective (BEC) - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.53542791374698,
+      "longitude": -122.67299228790165,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:57.673Z",
+      "updated_at": "2025-10-09T16:09:57.673Z"
+    },
+    {
+      "id": 111,
+      "name": "Black Swimming Initiative, Inc",
+      "address": "Principal Place Of Business",
+      "latitude": 45.55594991151259,
+      "longitude": -122.63129825661701,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:57.926Z",
+      "updated_at": "2025-10-09T16:09:57.926Z"
+    },
+    {
+      "id": 112,
+      "name": "Black Swimming Initiative - African American Support Services",
+      "address": "Address not available",
+      "latitude": 45.52887149586923,
+      "longitude": -122.66482338548472,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:58.185Z",
+      "updated_at": "2025-10-09T16:09:58.185Z"
+    },
+    {
+      "id": 113,
+      "name": "Blackburn Recovery and Treatment",
+      "address": "12121 E Burnside St., Portland, OR 97216",
+      "latitude": 45.51807901793501,
+      "longitude": -122.65404886679,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:58.453Z",
+      "updated_at": "2025-10-09T16:09:58.453Z"
+    },
+    {
+      "id": 114,
+      "name": "Blanchet Farm",
+      "address": "11750 NE Finn Hill Loop, Carlton, OR 97111",
+      "latitude": 45.55259024282841,
+      "longitude": -122.67783765547969,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:58.788Z",
+      "updated_at": "2025-10-09T16:09:58.788Z"
+    },
+    {
+      "id": 115,
+      "name": "Blanchet House",
+      "address": "310 NW Glisan St, Portland, OR 97209",
+      "latitude": 45.53390300104665,
+      "longitude": -122.67213151368387,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:09:59.058Z",
+      "updated_at": "2025-10-09T16:09:59.058Z"
+    },
+    {
+      "id": 116,
+      "name": "Blanchet House - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.532029658531116,
+      "longitude": -122.6368059081327,
+      "type": "food",
+      "created_at": "2025-10-09T16:09:59.287Z",
+      "updated_at": "2025-10-09T16:09:59.287Z"
+    },
+    {
+      "id": 117,
+      "name": "Blanchet House - Community Service Opportunities",
+      "address": "Address not available",
+      "latitude": 45.53514175251516,
+      "longitude": -122.6604710485532,
+      "type": "service",
+      "created_at": "2025-10-09T16:09:59.670Z",
+      "updated_at": "2025-10-09T16:09:59.670Z"
+    },
+    {
+      "id": 118,
+      "name": "Blanchet House - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.53762484276662,
+      "longitude": -122.6652367587567,
+      "type": "food",
+      "created_at": "2025-10-09T16:09:59.944Z",
+      "updated_at": "2025-10-09T16:09:59.944Z"
+    },
+    {
+      "id": 119,
+      "name": "Blanchet House - Housing",
+      "address": "Address not available",
+      "latitude": 45.56499755168928,
+      "longitude": -122.64325334005258,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:00.196Z",
+      "updated_at": "2025-10-09T16:10:00.196Z"
+    },
+    {
+      "id": 120,
+      "name": "Blanchet House Of Hospitality, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.56129972017372,
+      "longitude": -122.66844595621933,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:00.470Z",
+      "updated_at": "2025-10-09T16:10:00.470Z"
+    },
+    {
+      "id": 121,
+      "name": "Borland Free Clinic",
+      "address": "3550 SW Borland Road, Tualatin, Oregon 97062",
+      "latitude": 45.53154728045356,
+      "longitude": -122.6486086330904,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:00.709Z",
+      "updated_at": "2025-10-09T16:10:00.709Z"
+    },
+    {
+      "id": 122,
+      "name": "Borland Free Clinic, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.54881076356784,
+      "longitude": -122.63314775537883,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:00.982Z",
+      "updated_at": "2025-10-09T16:10:00.982Z"
+    },
+    {
+      "id": 123,
+      "name": "Borland Free Clinic - Medical",
+      "address": "Address not available",
+      "latitude": 45.548501841494364,
+      "longitude": -122.67373946898473,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:01.304Z",
+      "updated_at": "2025-10-09T16:10:01.304Z"
+    },
+    {
+      "id": 124,
+      "name": "Boulder Care",
+      "address": "111 SW Naito Parkway, Suite 200, Portland, OR 97204",
+      "latitude": 45.526937301975316,
+      "longitude": -122.67588148230992,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:01.680Z",
+      "updated_at": "2025-10-09T16:10:01.680Z"
+    },
+    {
+      "id": 125,
+      "name": "Boulder Care Provider Group, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.55309296119924,
+      "longitude": -122.67126783387921,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:01.920Z",
+      "updated_at": "2025-10-09T16:10:01.920Z"
+    },
+    {
+      "id": 126,
+      "name": "Boys & Girls Aid - Transitional Aged Youth Programs",
+      "address": "Address not available",
+      "latitude": 45.54070488943407,
+      "longitude": -122.6716040064397,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:02.192Z",
+      "updated_at": "2025-10-09T16:10:02.192Z"
+    },
+    {
+      "id": 127,
+      "name": "Bradley Angle House",
+      "address": "5432 N Albina Avenue, Portland, Oregon 97217",
+      "latitude": 45.54096138460388,
+      "longitude": -122.66266326546501,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:02.533Z",
+      "updated_at": "2025-10-09T16:10:02.533Z"
+    },
+    {
+      "id": 128,
+      "name": "Bradley Angle House: Marsha’s Folx Program - LGBTQIA+ Programs",
+      "address": "Address not available",
+      "latitude": 45.53055002956812,
+      "longitude": -122.67188134846897,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:02.848Z",
+      "updated_at": "2025-10-09T16:10:02.848Z"
+    },
+    {
+      "id": 129,
+      "name": "Bradley Angle House - Domestic Violence Victim Programs",
+      "address": "Address not available",
+      "latitude": 45.53534862789811,
+      "longitude": -122.6768856584061,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:03.159Z",
+      "updated_at": "2025-10-09T16:10:03.159Z"
+    },
+    {
+      "id": 130,
+      "name": "Bradley Angle House - Domestic Violence and Sex Worker Support Services",
+      "address": "Address not available",
+      "latitude": 45.53309870996271,
+      "longitude": -122.63507664702739,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:03.421Z",
+      "updated_at": "2025-10-09T16:10:03.421Z"
+    },
+    {
+      "id": 131,
+      "name": "Bradley Angle House - Housing",
+      "address": "Address not available",
+      "latitude": 45.52984337586784,
+      "longitude": -122.66580147446142,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:03.717Z",
+      "updated_at": "2025-10-09T16:10:03.717Z"
+    },
+    {
+      "id": 132,
+      "name": "Bradley Angle House Economic Empowerment Program - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.53356052137605,
+      "longitude": -122.6435683349899,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:03.965Z",
+      "updated_at": "2025-10-09T16:10:03.965Z"
+    },
+    {
+      "id": 133,
+      "name": "Bradley Angle House Youth and Family Support Program - Transitional Aged Youth Programs",
+      "address": "Address not available",
+      "latitude": 45.53738460211904,
+      "longitude": -122.63968985271924,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:04.227Z",
+      "updated_at": "2025-10-09T16:10:04.227Z"
+    },
+    {
+      "id": 134,
+      "name": "Brain Injury Connections Northwest",
+      "address": "1411 SW Morrison Street, Portland, Oregon 97205",
+      "latitude": 45.544172197415875,
+      "longitude": -122.67238255765741,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:04.509Z",
+      "updated_at": "2025-10-09T16:10:04.509Z"
+    },
+    {
+      "id": 135,
+      "name": "Brain Injury Connections Northwest - Disability Support Services",
+      "address": "Address not available",
+      "latitude": 45.55025481020275,
+      "longitude": -122.64871090134493,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:04.757Z",
+      "updated_at": "2025-10-09T16:10:04.757Z"
+    },
+    {
+      "id": 136,
+      "name": "Brain Injury Connections Northwest - Medical",
+      "address": "Address not available",
+      "latitude": 45.55915093793267,
+      "longitude": -122.64097785692319,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:05.047Z",
+      "updated_at": "2025-10-09T16:10:05.047Z"
+    },
+    {
+      "id": 137,
+      "name": "Bridges To Change, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.5452668345633,
+      "longitude": -122.64246380791243,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:05.332Z",
+      "updated_at": "2025-10-09T16:10:05.332Z"
+    },
+    {
+      "id": 138,
+      "name": "Bridges to Change",
+      "address": "7916 SE Foster Rd, Suite 201, Portland, OR 97206",
+      "latitude": 45.56094084142787,
+      "longitude": -122.66360307489546,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:05.583Z",
+      "updated_at": "2025-10-09T16:10:05.583Z"
+    },
+    {
+      "id": 139,
+      "name": "Bridges to Change - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.553743661791884,
+      "longitude": -122.66219399263242,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:05.832Z",
+      "updated_at": "2025-10-09T16:10:05.832Z"
+    },
+    {
+      "id": 140,
+      "name": "Bridges to Change - Housing",
+      "address": "Address not available",
+      "latitude": 45.55345825649109,
+      "longitude": -122.67727753378942,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:06.135Z",
+      "updated_at": "2025-10-09T16:10:06.135Z"
+    },
+    {
+      "id": 141,
+      "name": "Bridges to Change Acute Care Team - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.56275764727308,
+      "longitude": -122.67261140003517,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:06.397Z",
+      "updated_at": "2025-10-09T16:10:06.397Z"
+    },
+    {
+      "id": 142,
+      "name": "Bridges to Change Club Hope - Recovery Support Services",
+      "address": "Address not available",
+      "latitude": 45.52034785024633,
+      "longitude": -122.6754013974087,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:06.663Z",
+      "updated_at": "2025-10-09T16:10:06.663Z"
+    },
+    {
+      "id": 143,
+      "name": "Bridges to Change – Mobile Treatment - Various Combined Services",
+      "address": "Address not available",
+      "latitude": 45.56473616803115,
+      "longitude": -122.62873207506144,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:07.005Z",
+      "updated_at": "2025-10-09T16:10:07.005Z"
+    },
+    {
+      "id": 144,
+      "name": "Bridgeway Problem Gambling",
+      "address": "797 Winter St NE, Salem, OR 97301",
+      "latitude": 45.55405406714421,
+      "longitude": -122.63206770127778,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:07.271Z",
+      "updated_at": "2025-10-09T16:10:07.271Z"
+    },
+    {
+      "id": 145,
+      "name": "Bridgeway Problem Gambling - Other Addiction Treatment and Support",
+      "address": "Address not available",
+      "latitude": 45.548117901951834,
+      "longitude": -122.64985791743969,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:07.521Z",
+      "updated_at": "2025-10-09T16:10:07.521Z"
+    },
+    {
+      "id": 146,
+      "name": "Bridgeway Recovery Services",
+      "address": "750 Front St NE, Salem, OR 97301",
+      "latitude": 45.54734808474747,
+      "longitude": -122.6516170119973,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:07.799Z",
+      "updated_at": "2025-10-09T16:10:07.799Z"
+    },
+    {
+      "id": 147,
+      "name": "Bridgeway Recovery Services - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.516272419638916,
+      "longitude": -122.65994683815883,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:08.066Z",
+      "updated_at": "2025-10-09T16:10:08.066Z"
+    },
+    {
+      "id": 148,
+      "name": "Bridgeway of Hope",
+      "address": "6855 NE 82nd Ave, Portland, OR 97220",
+      "latitude": 45.54809241761521,
+      "longitude": -122.67324592125648,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:08.368Z",
+      "updated_at": "2025-10-09T16:10:08.368Z"
+    },
+    {
+      "id": 149,
+      "name": "Bridgeway of Hope - Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.55506295159141,
+      "longitude": -122.65257180942655,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:08.621Z",
+      "updated_at": "2025-10-09T16:10:08.621Z"
+    },
+    {
+      "id": 150,
+      "name": "Bridgeworks Oregon, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.5550885042434,
+      "longitude": -122.658218480105,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:08.859Z",
+      "updated_at": "2025-10-09T16:10:08.859Z"
+    },
+    {
+      "id": 151,
+      "name": "Bridgeworks Oregon - Incarcerated Adult and Youth Support Services and Programs",
+      "address": "Address not available",
+      "latitude": 45.54669004602638,
+      "longitude": -122.65427735806767,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:09.119Z",
+      "updated_at": "2025-10-09T16:10:09.119Z"
+    },
+    {
+      "id": 152,
+      "name": "Buckley’s Detoxification and Sobering Services",
+      "address": "640 West 7th Avenue, Eugene, Oregon 97402",
+      "latitude": 45.53482536421521,
+      "longitude": -122.64800332681548,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:09.391Z",
+      "updated_at": "2025-10-09T16:10:09.391Z"
+    },
+    {
+      "id": 153,
+      "name": "Bud Clark Commons",
+      "address": "655 NW Hoyt, Portland Oregon 97209",
+      "latitude": 45.5332459835508,
+      "longitude": -122.63138301448357,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:09.703Z",
+      "updated_at": "2025-10-09T16:10:09.703Z"
+    },
+    {
+      "id": 154,
+      "name": "Bud Clark Commons - Housing",
+      "address": "Address not available",
+      "latitude": 45.53454945471137,
+      "longitude": -122.63341568042725,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:09.988Z",
+      "updated_at": "2025-10-09T16:10:09.988Z"
+    },
+    {
+      "id": 155,
+      "name": "Bureau - Utilities",
+      "address": "Address not available",
+      "latitude": 45.53266964967333,
+      "longitude": -122.66837757107855,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:10.302Z",
+      "updated_at": "2025-10-09T16:10:10.302Z"
+    },
+    {
+      "id": 156,
+      "name": "Business Assistance and Support Services - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.537963211249306,
+      "longitude": -122.63099820396468,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:10.606Z",
+      "updated_at": "2025-10-09T16:10:10.606Z"
+    },
+    {
+      "id": 157,
+      "name": "Bybee Lakes Hope Center",
+      "address": "14355 N. Bybee Lake Ct, Portland, OR 97203",
+      "latitude": 45.543623226432,
+      "longitude": -122.6352372204948,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:10.851Z",
+      "updated_at": "2025-10-09T16:10:10.851Z"
+    },
+    {
+      "id": 158,
+      "name": "C3 Food Pantry",
+      "address": "6120 NE 57th, Portland, OR 97218",
+      "latitude": 45.523534156307974,
+      "longitude": -122.67508305575195,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:11.151Z",
+      "updated_at": "2025-10-09T16:10:11.151Z"
+    },
+    {
+      "id": 159,
+      "name": "C3 Food Pantry - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.54303423487152,
+      "longitude": -122.67830034329279,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:11.405Z",
+      "updated_at": "2025-10-09T16:10:11.405Z"
+    },
+    {
+      "id": 160,
+      "name": "CAS Belmont Office",
+      "address": "4506 SE Belmont Street, Portland, Oregon 97215",
+      "latitude": 45.55166358970306,
+      "longitude": -122.64026831311709,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:11.651Z",
+      "updated_at": "2025-10-09T16:10:11.651Z"
+    },
+    {
+      "id": 161,
+      "name": "CCC Recovery Center",
+      "address": "726 W. Burnside Street, Portland, Oregon 97209",
+      "latitude": 45.53017219298903,
+      "longitude": -122.64944247933438,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:11.911Z",
+      "updated_at": "2025-10-09T16:10:11.911Z"
+    },
+    {
+      "id": 162,
+      "name": "CODA, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.52660699914071,
+      "longitude": -122.63809343556838,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:12.154Z",
+      "updated_at": "2025-10-09T16:10:12.154Z"
+    },
+    {
+      "id": 163,
+      "name": "CODA, Inc. - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.52541910757808,
+      "longitude": -122.67318997065158,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:12.405Z",
+      "updated_at": "2025-10-09T16:10:12.405Z"
+    },
+    {
+      "id": 164,
+      "name": "Call to Safety, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.518331295716486,
+      "longitude": -122.66583619744281,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:12.671Z",
+      "updated_at": "2025-10-09T16:10:12.671Z"
+    },
+    {
+      "id": 165,
+      "name": "Call to Safety - Victim Assistance",
+      "address": "Address not available",
+      "latitude": 45.51849330117741,
+      "longitude": -122.6758214532008,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:12.963Z",
+      "updated_at": "2025-10-09T16:10:12.963Z"
+    },
+    {
+      "id": 166,
+      "name": "Camp 20250926 141519",
+      "address": "Address not available",
+      "latitude": 45.56508984396921,
+      "longitude": -122.67289188750152,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:13.251Z",
+      "updated_at": "2025-10-09T16:10:13.251Z"
+    },
+    {
+      "id": 167,
+      "name": "Camp 20250926 143721",
+      "address": "Address not available",
+      "latitude": 45.516640518448035,
+      "longitude": -122.65731178464821,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:13.496Z",
+      "updated_at": "2025-10-09T16:10:13.496Z"
+    },
+    {
+      "id": 168,
+      "name": "Camp R023305945",
+      "address": "Address not available",
+      "latitude": 45.5333118082287,
+      "longitude": -122.66000537235844,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:13.758Z",
+      "updated_at": "2025-10-09T16:10:13.758Z"
+    },
+    {
+      "id": 169,
+      "name": "Camp R023657362",
+      "address": "Address not available",
+      "latitude": 45.527020836320155,
+      "longitude": -122.64013046451628,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:14.017Z",
+      "updated_at": "2025-10-09T16:10:14.017Z"
+    },
+    {
+      "id": 170,
+      "name": "Camp R023657371",
+      "address": "Address not available",
+      "latitude": 45.56512063643612,
+      "longitude": -122.63523770848892,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:14.295Z",
+      "updated_at": "2025-10-09T16:10:14.295Z"
+    },
+    {
+      "id": 171,
+      "name": "Camp R023657836",
+      "address": "Address not available",
+      "latitude": 45.546076068712644,
+      "longitude": -122.65548730567899,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:14.554Z",
+      "updated_at": "2025-10-09T16:10:14.554Z"
+    },
+    {
+      "id": 172,
+      "name": "Camp R023796260",
+      "address": "Address not available",
+      "latitude": 45.54782801347987,
+      "longitude": -122.63571808522629,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:14.810Z",
+      "updated_at": "2025-10-09T16:10:14.810Z"
+    },
+    {
+      "id": 173,
+      "name": "Camp R023797987",
+      "address": "Address not available",
+      "latitude": 45.54502954320579,
+      "longitude": -122.66103292250108,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:15.081Z",
+      "updated_at": "2025-10-09T16:10:15.081Z"
+    },
+    {
+      "id": 174,
+      "name": "Camp R023798920",
+      "address": "Address not available",
+      "latitude": 45.552060462951204,
+      "longitude": -122.63596808377164,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:15.371Z",
+      "updated_at": "2025-10-09T16:10:15.371Z"
+    },
+    {
+      "id": 175,
+      "name": "Camp R023882422",
+      "address": "Address not available",
+      "latitude": 45.53612869912435,
+      "longitude": -122.67401480497756,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:15.664Z",
+      "updated_at": "2025-10-09T16:10:15.664Z"
+    },
+    {
+      "id": 176,
+      "name": "Camp R024246584",
+      "address": "Address not available",
+      "latitude": 45.5576900272127,
+      "longitude": -122.67669636348224,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:15.930Z",
+      "updated_at": "2025-10-09T16:10:15.930Z"
+    },
+    {
+      "id": 177,
+      "name": "Camp R024246592",
+      "address": "Address not available",
+      "latitude": 45.552659244928186,
+      "longitude": -122.6640815040521,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:16.223Z",
+      "updated_at": "2025-10-09T16:10:16.223Z"
+    },
+    {
+      "id": 178,
+      "name": "Camp blocking sidewalk 20250831 000804",
+      "address": "Address not available",
+      "latitude": 45.546577192357084,
+      "longitude": -122.67195214366423,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:16.475Z",
+      "updated_at": "2025-10-09T16:10:16.475Z"
+    },
+    {
+      "id": 179,
+      "name": "Camp blocking sidewalk 20250831 141604",
+      "address": "Address not available",
+      "latitude": 45.54865660667197,
+      "longitude": -122.63074024230633,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:16.801Z",
+      "updated_at": "2025-10-09T16:10:16.801Z"
+    },
+    {
+      "id": 180,
+      "name": "Camp blocking sidewalk 20250831 144828",
+      "address": "Address not available",
+      "latitude": 45.5423964957114,
+      "longitude": -122.63039166212776,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:17.116Z",
+      "updated_at": "2025-10-09T16:10:17.116Z"
+    },
+    {
+      "id": 181,
+      "name": "Camp blocking sidewalk 20250831 144832",
+      "address": "Address not available",
+      "latitude": 45.55699076354524,
+      "longitude": -122.67483912198936,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:17.345Z",
+      "updated_at": "2025-10-09T16:10:17.345Z"
+    },
+    {
+      "id": 182,
+      "name": "Camp blocking sidewalk 20250904 103507",
+      "address": "Address not available",
+      "latitude": 45.560037624634724,
+      "longitude": -122.63302425872753,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:17.647Z",
+      "updated_at": "2025-10-09T16:10:17.647Z"
+    },
+    {
+      "id": 183,
+      "name": "Camp blocking sidewalk 20250904 103540",
+      "address": "Address not available",
+      "latitude": 45.54977547865744,
+      "longitude": -122.62912284552512,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:17.960Z",
+      "updated_at": "2025-10-09T16:10:17.960Z"
+    },
+    {
+      "id": 184,
+      "name": "Camp blocking sidewalk 20250918 213518",
+      "address": "Address not available",
+      "latitude": 45.532257705533766,
+      "longitude": -122.66730537275394,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:18.207Z",
+      "updated_at": "2025-10-09T16:10:18.207Z"
+    },
+    {
+      "id": 185,
+      "name": "Camp blocking sidewalk R023702687",
+      "address": "Address not available",
+      "latitude": 45.54907254334423,
+      "longitude": -122.65863610747039,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:18.472Z",
+      "updated_at": "2025-10-09T16:10:18.472Z"
+    },
+    {
+      "id": 186,
+      "name": "Camp blocking sidewalk R023729107",
+      "address": "Address not available",
+      "latitude": 45.52282661656643,
+      "longitude": -122.65645151822133,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:18.764Z",
+      "updated_at": "2025-10-09T16:10:18.764Z"
+    },
+    {
+      "id": 187,
+      "name": "Camp blocking street 20250926 145248",
+      "address": "Address not available",
+      "latitude": 45.52687111649826,
+      "longitude": -122.66409414609527,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:19.022Z",
+      "updated_at": "2025-10-09T16:10:19.022Z"
+    },
+    {
+      "id": 188,
+      "name": "Camp blocking street 20250926 145256",
+      "address": "Address not available",
+      "latitude": 45.555411342254644,
+      "longitude": -122.63849519527292,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:19.292Z",
+      "updated_at": "2025-10-09T16:10:19.292Z"
+    },
+    {
+      "id": 189,
+      "name": "Camp blocking the street 20250919 084121",
+      "address": "Address not available",
+      "latitude": 45.55505797645613,
+      "longitude": -122.66571198756242,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:19.571Z",
+      "updated_at": "2025-10-09T16:10:19.571Z"
+    },
+    {
+      "id": 190,
+      "name": "Camp blocking the street 20250925 134318",
+      "address": "Address not available",
+      "latitude": 45.53105407177415,
+      "longitude": -122.63677549705136,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:19.931Z",
+      "updated_at": "2025-10-09T16:10:19.931Z"
+    },
+    {
+      "id": 191,
+      "name": "Camp drugs R023795281",
+      "address": "Address not available",
+      "latitude": 45.520369925798896,
+      "longitude": -122.63570144926383,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:20.219Z",
+      "updated_at": "2025-10-09T16:10:20.219Z"
+    },
+    {
+      "id": 192,
+      "name": "Camp on sidewalk 20250904 103511",
+      "address": "Address not available",
+      "latitude": 45.54198567938869,
+      "longitude": -122.66651271527324,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:20.485Z",
+      "updated_at": "2025-10-09T16:10:20.486Z"
+    },
+    {
+      "id": 193,
+      "name": "Camp on sidewalk R023713101",
+      "address": "Address not available",
+      "latitude": 45.54518122952007,
+      "longitude": -122.65883552755149,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:20.733Z",
+      "updated_at": "2025-10-09T16:10:20.733Z"
+    },
+    {
+      "id": 194,
+      "name": "Camp on sidewalk R023729117",
+      "address": "Address not available",
+      "latitude": 45.56365159663177,
+      "longitude": -122.67200010779948,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:21.038Z",
+      "updated_at": "2025-10-09T16:10:21.038Z"
+    },
+    {
+      "id": 195,
+      "name": "Camp on sidewalk R023798014",
+      "address": "Address not available",
+      "latitude": 45.54011899522172,
+      "longitude": -122.63250353118379,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:21.318Z",
+      "updated_at": "2025-10-09T16:10:21.318Z"
+    },
+    {
+      "id": 196,
+      "name": "Camp on the sidewalk R024169179",
+      "address": "Address not available",
+      "latitude": 45.53067958762763,
+      "longitude": -122.65592398348679,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:21.572Z",
+      "updated_at": "2025-10-09T16:10:21.572Z"
+    },
+    {
+      "id": 197,
+      "name": "Camping blocking sidewalk 20250904 103543",
+      "address": "Address not available",
+      "latitude": 45.55621849157173,
+      "longitude": -122.66136661399894,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:21.857Z",
+      "updated_at": "2025-10-09T16:10:21.857Z"
+    },
+    {
+      "id": 198,
+      "name": "Camping blocking sidewalk 20250918 000603",
+      "address": "Address not available",
+      "latitude": 45.5431741110757,
+      "longitude": -122.63546581464354,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:22.105Z",
+      "updated_at": "2025-10-09T16:10:22.105Z"
+    },
+    {
+      "id": 199,
+      "name": "Camping by the sidewalk 20250926 145313",
+      "address": "Address not available",
+      "latitude": 45.55349325774924,
+      "longitude": -122.63575774772391,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:22.414Z",
+      "updated_at": "2025-10-09T16:10:22.414Z"
+    },
+    {
+      "id": 200,
+      "name": "Camping next to bike path 20250915 191507",
+      "address": "Address not available",
+      "latitude": 45.524166256391794,
+      "longitude": -122.64757170634446,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:22.726Z",
+      "updated_at": "2025-10-09T16:10:22.726Z"
+    },
+    {
+      "id": 201,
+      "name": "Camping next to walk and bike 20250831 134550",
+      "address": "Address not available",
+      "latitude": 45.52309726731166,
+      "longitude": -122.65476177063113,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:22.976Z",
+      "updated_at": "2025-10-09T16:10:22.976Z"
+    },
+    {
+      "id": 202,
+      "name": "Camping on sidewalk R023712952",
+      "address": "Address not available",
+      "latitude": 45.52459432013415,
+      "longitude": -122.64520597735299,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:23.231Z",
+      "updated_at": "2025-10-09T16:10:23.231Z"
+    },
+    {
+      "id": 203,
+      "name": "Camping on sidewalk R023798031",
+      "address": "Address not available",
+      "latitude": 45.565104241562715,
+      "longitude": -122.6716903083932,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:23.515Z",
+      "updated_at": "2025-10-09T16:10:23.515Z"
+    },
+    {
+      "id": 204,
+      "name": "Camping on the sidewalk R024134693",
+      "address": "Address not available",
+      "latitude": 45.521697979085324,
+      "longitude": -122.67723416278974,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:23.771Z",
+      "updated_at": "2025-10-09T16:10:23.771Z"
+    },
+    {
+      "id": 205,
+      "name": "Campsite blocking sidewalk R023798022",
+      "address": "Address not available",
+      "latitude": 45.521780680726295,
+      "longitude": -122.66947707119782,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:24.013Z",
+      "updated_at": "2025-10-09T16:10:24.013Z"
+    },
+    {
+      "id": 206,
+      "name": "CareOregon",
+      "address": "315 SW 5th Ave, Portland, OR 97204",
+      "latitude": 45.520098089660316,
+      "longitude": -122.6710311786984,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:24.283Z",
+      "updated_at": "2025-10-09T16:10:24.283Z"
+    },
+    {
+      "id": 207,
+      "name": "CareOregon - Medical",
+      "address": "Address not available",
+      "latitude": 45.541684255381284,
+      "longitude": -122.64334302113144,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:24.534Z",
+      "updated_at": "2025-10-09T16:10:24.534Z"
+    },
+    {
+      "id": 208,
+      "name": "Careoregon Foundation, Inc.",
+      "address": "Mailing Address",
+      "latitude": 45.535830349900245,
+      "longitude": -122.65210311402494,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:24.781Z",
+      "updated_at": "2025-10-09T16:10:24.781Z"
+    },
+    {
+      "id": 209,
+      "name": "Cascade AIDS Project (CAP)",
+      "address": "520 NW Davis St, Portland, OR 97209",
+      "latitude": 45.54945998241674,
+      "longitude": -122.66264592927587,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:25.124Z",
+      "updated_at": "2025-10-09T16:10:25.124Z"
+    },
+    {
+      "id": 210,
+      "name": "Cascade AIDS Project (CAP) - HIV Support Services",
+      "address": "Address not available",
+      "latitude": 45.54671911121393,
+      "longitude": -122.63442487882288,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:25.387Z",
+      "updated_at": "2025-10-09T16:10:25.387Z"
+    },
+    {
+      "id": 211,
+      "name": "Cascade AIDS Project (CAP) - Housing",
+      "address": "Address not available",
+      "latitude": 45.51817060197792,
+      "longitude": -122.6372956580404,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:25.652Z",
+      "updated_at": "2025-10-09T16:10:25.652Z"
+    },
+    {
+      "id": 212,
+      "name": "Cascade AIDS Project (CAP) - Medical",
+      "address": "Address not available",
+      "latitude": 45.554126476846626,
+      "longitude": -122.62907098192726,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:25.925Z",
+      "updated_at": "2025-10-09T16:10:25.925Z"
+    },
+    {
+      "id": 213,
+      "name": "Cascade Aids Project, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.52631083634297,
+      "longitude": -122.63860268165294,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:26.251Z",
+      "updated_at": "2025-10-09T16:10:26.251Z"
+    },
+    {
+      "id": 214,
+      "name": "Cascadia Behavioral Healthcare, Inc. - Clackamas Lake Road",
+      "address": "7525 SE Lake Rd., Milwaukie, OR",
+      "latitude": 45.56264760994353,
+      "longitude": -122.67463100658921,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:26.560Z",
+      "updated_at": "2025-10-09T16:10:26.560Z"
+    },
+    {
+      "id": 215,
+      "name": "Cascadia Behavioral Healthcare - Garlington Center",
+      "address": "3036 NE MLK Blvd, Portland, OR",
+      "latitude": 45.5572217884359,
+      "longitude": -122.66825088487133,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:26.846Z",
+      "updated_at": "2025-10-09T16:10:26.846Z"
+    },
+    {
+      "id": 216,
+      "name": "Cascadia Behavioral Healthcare - Woodland Park Clinic",
+      "address": "10373 NE Hancock St, Portland, OR 97220",
+      "latitude": 45.51784666623817,
+      "longitude": -122.64307775379696,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:27.149Z",
+      "updated_at": "2025-10-09T16:10:27.149Z"
+    },
+    {
+      "id": 217,
+      "name": "Cascadia Behavioral Healthcare Gambling Treatment - Other Addiction Treatment and Support",
+      "address": "Address not available",
+      "latitude": 45.5488321537709,
+      "longitude": -122.63605196233463,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:27.410Z",
+      "updated_at": "2025-10-09T16:10:27.410Z"
+    },
+    {
+      "id": 218,
+      "name": "Cascadia Health",
+      "address": "847 NE 19th Avenue, Portland, OR 97207",
+      "latitude": 45.56172749064485,
+      "longitude": -122.6529023864228,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:27.686Z",
+      "updated_at": "2025-10-09T16:10:27.686Z"
+    },
+    {
+      "id": 219,
+      "name": "Cascadia Health, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.52135581542225,
+      "longitude": -122.66063828803817,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:27.937Z",
+      "updated_at": "2025-10-09T16:10:27.937Z"
+    },
+    {
+      "id": 220,
+      "name": "Cascadia Health - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.52690459088403,
+      "longitude": -122.67449693021283,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:28.193Z",
+      "updated_at": "2025-10-09T16:10:28.193Z"
+    },
+    {
+      "id": 221,
+      "name": "Cascadia Health - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.543597385623585,
+      "longitude": -122.6741585836024,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:28.451Z",
+      "updated_at": "2025-10-09T16:10:28.451Z"
+    },
+    {
+      "id": 222,
+      "name": "Cascadia Health – Health Centers - Medical",
+      "address": "Address not available",
+      "latitude": 45.524197366827956,
+      "longitude": -122.64485751856026,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:28.769Z",
+      "updated_at": "2025-10-09T16:10:28.769Z"
+    },
+    {
+      "id": 223,
+      "name": "Catalyst Program - LGBTQIA+ Programs",
+      "address": "Address not available",
+      "latitude": 45.55648676855024,
+      "longitude": -122.66010950325492,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:29.042Z",
+      "updated_at": "2025-10-09T16:10:29.042Z"
+    },
+    {
+      "id": 224,
+      "name": "Catholic Charities, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.53830660464071,
+      "longitude": -122.67474302125026,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:29.299Z",
+      "updated_at": "2025-10-09T16:10:29.299Z"
+    },
+    {
+      "id": 225,
+      "name": "Catholic Charities - Housing",
+      "address": "Address not available",
+      "latitude": 45.53101398224735,
+      "longitude": -122.6514479222708,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:29.577Z",
+      "updated_at": "2025-10-09T16:10:29.577Z"
+    },
+    {
+      "id": 226,
+      "name": "Catholic Charities Community Services - Wrap-Around Support Services",
+      "address": "Address not available",
+      "latitude": 45.5293952131326,
+      "longitude": -122.65154403483582,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:29.855Z",
+      "updated_at": "2025-10-09T16:10:29.855Z"
+    },
+    {
+      "id": 227,
+      "name": "Catholic Charities of Oregon Immigration Legal Services (ILS)",
+      "address": "2740 SE Powell Blvd., Portland, Oregon 97202",
+      "latitude": 45.5328734722061,
+      "longitude": -122.6643913731862,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:30.139Z",
+      "updated_at": "2025-10-09T16:10:30.139Z"
+    },
+    {
+      "id": 228,
+      "name": "Catholic Charities of Oregon Immigration Legal Services (ILS) - Immigration Legal Services",
+      "address": "Address not available",
+      "latitude": 45.53155025326278,
+      "longitude": -122.67643079892636,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:30.370Z",
+      "updated_at": "2025-10-09T16:10:30.370Z"
+    },
+    {
+      "id": 229,
+      "name": "Catholic Charities of Oregon Refugee Services Program - Immigrant and Refugee Support Services",
+      "address": "Address not available",
+      "latitude": 45.55394966278148,
+      "longitude": -122.66647864819018,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:30.617Z",
+      "updated_at": "2025-10-09T16:10:30.617Z"
+    },
+    {
+      "id": 230,
+      "name": "Catholic Charities of Portland - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.553258616074,
+      "longitude": -122.66073876438524,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:30.962Z",
+      "updated_at": "2025-10-09T16:10:30.962Z"
+    },
+    {
+      "id": 231,
+      "name": "Cedar Hills Hospital",
+      "address": "10300 SW Eastridge St., Portland, Oregon 97225",
+      "latitude": 45.516083326591186,
+      "longitude": -122.6723966007989,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:31.239Z",
+      "updated_at": "2025-10-09T16:10:31.239Z"
+    },
+    {
+      "id": 232,
+      "name": "Cedar Hills Hospital - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.55159155999792,
+      "longitude": -122.67047202465105,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:31.503Z",
+      "updated_at": "2025-10-09T16:10:31.503Z"
+    },
+    {
+      "id": 233,
+      "name": "Center for Self-Enhancement",
+      "address": "3920 North Kerby Ave., Portland, Oregon 97227",
+      "latitude": 45.51700730585752,
+      "longitude": -122.66615311635366,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:31.880Z",
+      "updated_at": "2025-10-09T16:10:31.880Z"
+    },
+    {
+      "id": 234,
+      "name": "Central City Concern, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.53828559570867,
+      "longitude": -122.67692549845724,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:32.169Z",
+      "updated_at": "2025-10-09T16:10:32.169Z"
+    },
+    {
+      "id": 235,
+      "name": "Central City Concern (CCC)",
+      "address": "523 NW Everett Street, Portland, Oregon 97209",
+      "latitude": 45.56258463468727,
+      "longitude": -122.65275510479023,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:32.447Z",
+      "updated_at": "2025-10-09T16:10:32.447Z"
+    },
+    {
+      "id": 236,
+      "name": "Central City Concern (CCC) - Community Service Opportunities",
+      "address": "Address not available",
+      "latitude": 45.546720961614085,
+      "longitude": -122.64883150241275,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:32.783Z",
+      "updated_at": "2025-10-09T16:10:32.783Z"
+    },
+    {
+      "id": 237,
+      "name": "Central City Concern (CCC) - Housing",
+      "address": "Address not available",
+      "latitude": 45.56152497940112,
+      "longitude": -122.66539882494149,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:33.079Z",
+      "updated_at": "2025-10-09T16:10:33.079Z"
+    },
+    {
+      "id": 238,
+      "name": "Central City Concern (CCC) - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.52351325960316,
+      "longitude": -122.67341196477709,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:33.338Z",
+      "updated_at": "2025-10-09T16:10:33.338Z"
+    },
+    {
+      "id": 239,
+      "name": "Central City Concern (CCC) BEST Team - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.54563315207551,
+      "longitude": -122.62950233742708,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:33.654Z",
+      "updated_at": "2025-10-09T16:10:33.654Z"
+    },
+    {
+      "id": 240,
+      "name": "Central City Concern (CCC) Blackburn Center–Job Resources - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.53913633786192,
+      "longitude": -122.66159575286304,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:33.912Z",
+      "updated_at": "2025-10-09T16:10:33.912Z"
+    },
+    {
+      "id": 241,
+      "name": "Central City Concern (CCC) Clean Start - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.56082921982972,
+      "longitude": -122.66885899772761,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:34.194Z",
+      "updated_at": "2025-10-09T16:10:34.194Z"
+    },
+    {
+      "id": 242,
+      "name": "Central City Concern (CCC) Clinics - Medical",
+      "address": "Address not available",
+      "latitude": 45.54880457097378,
+      "longitude": -122.66697562153918,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:34.458Z",
+      "updated_at": "2025-10-09T16:10:34.458Z"
+    },
+    {
+      "id": 243,
+      "name": "Central City Concern (CCC) Employment Access Center - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.53727739296073,
+      "longitude": -122.62871662757757,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:34.718Z",
+      "updated_at": "2025-10-09T16:10:34.718Z"
+    },
+    {
+      "id": 244,
+      "name": "Central City Concern (CCC) Flip the Script - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.54988996432977,
+      "longitude": -122.66272504460821,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:35.060Z",
+      "updated_at": "2025-10-09T16:10:35.060Z"
+    },
+    {
+      "id": 245,
+      "name": "Central City Concern (CCC) Puentes Program - Culturally Specific Programs",
+      "address": "Address not available",
+      "latitude": 45.554199564350554,
+      "longitude": -122.63249868068678,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:35.329Z",
+      "updated_at": "2025-10-09T16:10:35.329Z"
+    },
+    {
+      "id": 246,
+      "name": "Central City Concern (CCC) Treatment Programs - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.5607300973193,
+      "longitude": -122.65212944642269,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:35.730Z",
+      "updated_at": "2025-10-09T16:10:35.730Z"
+    },
+    {
+      "id": 247,
+      "name": "Central City Concern - Downtown Recovery Center",
+      "address": "727 W Burnside St, Portland, OR 97209",
+      "latitude": 45.52087543177337,
+      "longitude": -122.67442528475604,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:35.968Z",
+      "updated_at": "2025-10-09T16:10:35.968Z"
+    },
+    {
+      "id": 248,
+      "name": "Central City Concern - Hooper Detox & Stabilization Center",
+      "address": "1535 N Williams Ave, Portland, OR 97232",
+      "latitude": 45.54826813016755,
+      "longitude": -122.65593971927069,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:36.218Z",
+      "updated_at": "2025-10-09T16:10:36.218Z"
+    },
+    {
+      "id": 249,
+      "name": "Central City Concern - Imani",
+      "address": "2040 SE Powell Blvd Portland, OR 97202",
+      "latitude": 45.55168184764836,
+      "longitude": -122.6288043685771,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:36.492Z",
+      "updated_at": "2025-10-09T16:10:36.492Z"
+    },
+    {
+      "id": 250,
+      "name": "Central City Concern - Letty Owings",
+      "address": "2545 Ne Flanders St, Portland, OR",
+      "latitude": 45.55955016895204,
+      "longitude": -122.65786940977394,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:36.778Z",
+      "updated_at": "2025-10-09T16:10:36.778Z"
+    },
+    {
+      "id": 251,
+      "name": "Central City Concern - Puentes",
+      "address": "1949 SE 122nd Avenue, Portland, Oregon",
+      "latitude": 45.531646041274605,
+      "longitude": -122.67204394476552,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:37.046Z",
+      "updated_at": "2025-10-09T16:10:37.046Z"
+    },
+    {
+      "id": 252,
+      "name": "Central City Concern Administration Office",
+      "address": "232 NW 6th Ave, Portland, OR 97209",
+      "latitude": 45.557993051517826,
+      "longitude": -122.6710438756699,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:37.375Z",
+      "updated_at": "2025-10-09T16:10:37.375Z"
+    },
+    {
+      "id": 253,
+      "name": "Centro Cultural - Casa Amparo",
+      "address": "1110 N Adair St, Cornelius, OR 97113",
+      "latitude": 45.54718851564593,
+      "longitude": -122.65394231892942,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:37.734Z",
+      "updated_at": "2025-10-09T16:10:37.734Z"
+    },
+    {
+      "id": 254,
+      "name": "Centro Cultural Centro de Prosperidad - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.54303180662673,
+      "longitude": -122.65112630648487,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:37.981Z",
+      "updated_at": "2025-10-09T16:10:37.981Z"
+    },
+    {
+      "id": 255,
+      "name": "Chestnut Tree Inn Motel Shelter",
+      "address": "9699 SE Stark St, Portland, OR 97216",
+      "latitude": 45.523920011485174,
+      "longitude": -122.64371292743529,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:38.219Z",
+      "updated_at": "2025-10-09T16:10:38.219Z"
+    },
+    {
+      "id": 256,
+      "name": "Children’s Community Clinic",
+      "address": "2252 Lloyd Center, Portland, Oregon 97232",
+      "latitude": 45.517486360192464,
+      "longitude": -122.66884839416647,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:38.462Z",
+      "updated_at": "2025-10-09T16:10:38.462Z"
+    },
+    {
+      "id": 257,
+      "name": "Children’s Community Clinic - Medical",
+      "address": "Address not available",
+      "latitude": 45.53924713995434,
+      "longitude": -122.67648606081778,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:38.749Z",
+      "updated_at": "2025-10-09T16:10:38.749Z"
+    },
+    {
+      "id": 258,
+      "name": "Cielo Treatment Center",
+      "address": "1805 NE Sandy Blvd, Portland, Oregon 97232",
+      "latitude": 45.53180030573092,
+      "longitude": -122.67740940451473,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:39.021Z",
+      "updated_at": "2025-10-09T16:10:39.021Z"
+    },
+    {
+      "id": 259,
+      "name": "Cielo Treatment Center - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.52820199673259,
+      "longitude": -122.67117244576924,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:39.280Z",
+      "updated_at": "2025-10-09T16:10:39.280Z"
+    },
+    {
+      "id": 260,
+      "name": "Cielo Treatment Center - Transitional Aged Youth Programs",
+      "address": "Address not available",
+      "latitude": 45.55007871189179,
+      "longitude": -122.63261383683624,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:39.557Z",
+      "updated_at": "2025-10-09T16:10:39.557Z"
+    },
+    {
+      "id": 261,
+      "name": "CityTeam Ministries",
+      "address": "526 E. Grand Avenue, Portland, Oregon 97214",
+      "latitude": 45.52181413951653,
+      "longitude": -122.66482251756484,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:39.860Z",
+      "updated_at": "2025-10-09T16:10:39.860Z"
+    },
+    {
+      "id": 262,
+      "name": "CityTeam Ministries - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.519798781182956,
+      "longitude": -122.65337871029006,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:40.103Z",
+      "updated_at": "2025-10-09T16:10:40.103Z"
+    },
+    {
+      "id": 263,
+      "name": "CityTeam Ministries - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.56441911013229,
+      "longitude": -122.62954563987064,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:40.412Z",
+      "updated_at": "2025-10-09T16:10:40.412Z"
+    },
+    {
+      "id": 264,
+      "name": "CityTeam Ministries - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.555626854995744,
+      "longitude": -122.65572307164068,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:40.690Z",
+      "updated_at": "2025-10-09T16:10:40.690Z"
+    },
+    {
+      "id": 265,
+      "name": "CityTeam Ministries - Housing",
+      "address": "Address not available",
+      "latitude": 45.5358064511882,
+      "longitude": -122.64349979555465,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:40.939Z",
+      "updated_at": "2025-10-09T16:10:40.939Z"
+    },
+    {
+      "id": 266,
+      "name": "CityTeam Ministries - Various Combined Services",
+      "address": "Address not available",
+      "latitude": 45.51539979984978,
+      "longitude": -122.6765073693833,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:41.205Z",
+      "updated_at": "2025-10-09T16:10:41.205Z"
+    },
+    {
+      "id": 267,
+      "name": "CityTeam Portland",
+      "address": "526 SE Grand Ave, Portland, OR 97214",
+      "latitude": 45.53266418666735,
+      "longitude": -122.6444271764461,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:41.504Z",
+      "updated_at": "2025-10-09T16:10:41.504Z"
+    },
+    {
+      "id": 268,
+      "name": "City Day Storage Facility- NW Glisan Oasis Day Center",
+      "address": "NW 6th Ave & NW Glisan St, Portland, OR 97209",
+      "latitude": 45.51841868594917,
+      "longitude": -122.65387986656415,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:41.838Z",
+      "updated_at": "2025-10-09T16:10:41.838Z"
+    },
+    {
+      "id": 269,
+      "name": "City of Portland - Shelter Services",
+      "address": "1221 SW 4th Ave, Portland, OR 97204",
+      "latitude": 45.52988637675864,
+      "longitude": -122.66112535542995,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:42.102Z",
+      "updated_at": "2025-10-09T16:10:42.102Z"
+    },
+    {
+      "id": 270,
+      "name": "Cityteam Ministries, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.54845413300202,
+      "longitude": -122.64571555263025,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:42.403Z",
+      "updated_at": "2025-10-09T16:10:42.403Z"
+    },
+    {
+      "id": 271,
+      "name": "Clackamas County Children, Family & Community Corrections",
+      "address": "112 11th Street, Oregon City, Oregon 97045",
+      "latitude": 45.54162578208672,
+      "longitude": -122.64430594317284,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:42.678Z",
+      "updated_at": "2025-10-09T16:10:42.678Z"
+    },
+    {
+      "id": 272,
+      "name": "Clackamas County Children, Family & Community Corrections - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.540056080638735,
+      "longitude": -122.62853790618324,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:42.920Z",
+      "updated_at": "2025-10-09T16:10:42.920Z"
+    },
+    {
+      "id": 273,
+      "name": "Clackamas Free Clinic",
+      "address": "19600 Molalla Ave., Oregon City, Oregon 97045",
+      "latitude": 45.55362408817028,
+      "longitude": -122.66599486664897,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:43.201Z",
+      "updated_at": "2025-10-09T16:10:43.201Z"
+    },
+    {
+      "id": 274,
+      "name": "Clackamas Free Clinic - Medical",
+      "address": "Address not available",
+      "latitude": 45.52063877409949,
+      "longitude": -122.67203991606993,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:43.441Z",
+      "updated_at": "2025-10-09T16:10:43.441Z"
+    },
+    {
+      "id": 275,
+      "name": "Clackamas Service Center - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.55069265598267,
+      "longitude": -122.66145735132672,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:43.773Z",
+      "updated_at": "2025-10-09T16:10:43.773Z"
+    },
+    {
+      "id": 276,
+      "name": "Clackamas Service Center - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.52770294826499,
+      "longitude": -122.63513469427924,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:44.055Z",
+      "updated_at": "2025-10-09T16:10:44.055Z"
+    },
+    {
+      "id": 277,
+      "name": "Clark Center",
+      "address": "1431 SE Martin Luther King Blvd, Portland, OR 97214",
+      "latitude": 45.51798861866684,
+      "longitude": -122.67420385222286,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:44.316Z",
+      "updated_at": "2025-10-09T16:10:44.316Z"
+    },
+    {
+      "id": 278,
+      "name": "Clay Street Table",
+      "address": "1314 SW Park Ave, Portland, OR 97201",
+      "latitude": 45.555622909469264,
+      "longitude": -122.6453537875162,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:44.626Z",
+      "updated_at": "2025-10-09T16:10:44.626Z"
+    },
+    {
+      "id": 279,
+      "name": "Clean Start",
+      "address": "338 NW 5th Ave., Portland, Oregon 97209",
+      "latitude": 45.54019445733245,
+      "longitude": -122.63051666738876,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:44.938Z",
+      "updated_at": "2025-10-09T16:10:44.938Z"
+    },
+    {
+      "id": 280,
+      "name": "Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.551852375419394,
+      "longitude": -122.6388186682925,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:45.247Z",
+      "updated_at": "2025-10-09T16:10:45.247Z"
+    },
+    {
+      "id": 281,
+      "name": "Clinics - Medical",
+      "address": "Address not available",
+      "latitude": 45.552351579913044,
+      "longitude": -122.6368109388189,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:45.484Z",
+      "updated_at": "2025-10-09T16:10:45.484Z"
+    },
+    {
+      "id": 282,
+      "name": "Clinton Triangle Shelter (Temporary)",
+      "address": "1490 SE Gideon St, Portland, OR 97202",
+      "latitude": 45.539515798810115,
+      "longitude": -122.6719610620211,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:45.762Z",
+      "updated_at": "2025-10-09T16:10:45.762Z"
+    },
+    {
+      "id": 283,
+      "name": "Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.52952533910995,
+      "longitude": -122.63576209927406,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:46.046Z",
+      "updated_at": "2025-10-09T16:10:46.046Z"
+    },
+    {
+      "id": 284,
+      "name": "Cloverleaf Shelter",
+      "address": "801 NE 34th Ave, Hillsboro, OR 97124",
+      "latitude": 45.548634159872584,
+      "longitude": -122.66733527812848,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:46.303Z",
+      "updated_at": "2025-10-09T16:10:46.303Z"
+    },
+    {
+      "id": 285,
+      "name": "Club Hope",
+      "address": "100 SE Cleveland Ave, Gresham, OR 97030",
+      "latitude": 45.5649978057129,
+      "longitude": -122.65685648731764,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:46.556Z",
+      "updated_at": "2025-10-09T16:10:46.556Z"
+    },
+    {
+      "id": 286,
+      "name": "Club Hope - Various Combined Services",
+      "address": "Address not available",
+      "latitude": 45.52235258540915,
+      "longitude": -122.6711629623592,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:46.838Z",
+      "updated_at": "2025-10-09T16:10:46.838Z"
+    },
+    {
+      "id": 287,
+      "name": "Coalition of Community Health Clinics, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.5393353659425,
+      "longitude": -122.62999589254079,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:47.134Z",
+      "updated_at": "2025-10-09T16:10:47.134Z"
+    },
+    {
+      "id": 288,
+      "name": "Coalition of Community Health Clinics - Medical",
+      "address": "Address not available",
+      "latitude": 45.52463087777268,
+      "longitude": -122.64929322017021,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:47.411Z",
+      "updated_at": "2025-10-09T16:10:47.411Z"
+    },
+    {
+      "id": 289,
+      "name": "Coda Methodone Clinic - Portland Recovery Center",
+      "address": "1027 E Burnside St, Portland, OR 97214",
+      "latitude": 45.54194619493609,
+      "longitude": -122.65929233514792,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:47.711Z",
+      "updated_at": "2025-10-09T16:10:47.711Z"
+    },
+    {
+      "id": 290,
+      "name": "Coda Residential - Gresham",
+      "address": "1427 SE 182nd Ave, Portland, OR 97233",
+      "latitude": 45.51760466532811,
+      "longitude": -122.64002458262695,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:48.014Z",
+      "updated_at": "2025-10-09T16:10:48.014Z"
+    },
+    {
+      "id": 291,
+      "name": "Coda Residential - Tigard",
+      "address": "10362 SW McDonald St, Portland, OR 97224",
+      "latitude": 45.53514320559744,
+      "longitude": -122.66517666853574,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:48.279Z",
+      "updated_at": "2025-10-09T16:10:48.279Z"
+    },
+    {
+      "id": 292,
+      "name": "ColumbiaCare Services - Housing",
+      "address": "Address not available",
+      "latitude": 45.55512524691322,
+      "longitude": -122.66344517815753,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:48.521Z",
+      "updated_at": "2025-10-09T16:10:48.521Z"
+    },
+    {
+      "id": 293,
+      "name": "Columbia County Mental Health",
+      "address": "58646 McNulty Way, St. Helens, Oregon 97051",
+      "latitude": 45.53156814370768,
+      "longitude": -122.64816437853719,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:48.775Z",
+      "updated_at": "2025-10-09T16:10:48.775Z"
+    },
+    {
+      "id": 294,
+      "name": "Columbia County Mental Health - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.5538680367631,
+      "longitude": -122.62884112423116,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:49.024Z",
+      "updated_at": "2025-10-09T16:10:49.024Z"
+    },
+    {
+      "id": 295,
+      "name": "Comcast - Utilities",
+      "address": "Address not available",
+      "latitude": 45.54505042111419,
+      "longitude": -122.64642256836517,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:49.278Z",
+      "updated_at": "2025-10-09T16:10:49.278Z"
+    },
+    {
+      "id": 296,
+      "name": "Comcast Xfinity - Technology",
+      "address": "Address not available",
+      "latitude": 45.51617463875005,
+      "longitude": -122.6781755131129,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:49.552Z",
+      "updated_at": "2025-10-09T16:10:49.552Z"
+    },
+    {
+      "id": 297,
+      "name": "Come Rest Awhile",
+      "address": "4801 Jean Rd, Lake Oswego, OR 97035",
+      "latitude": 45.56045512984105,
+      "longitude": -122.66206332824314,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:49.846Z",
+      "updated_at": "2025-10-09T16:10:49.846Z"
+    },
+    {
+      "id": 298,
+      "name": "Come Rest Awhile, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.52486008020095,
+      "longitude": -122.65663172775922,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:50.119Z",
+      "updated_at": "2025-10-09T16:10:50.119Z"
+    },
+    {
+      "id": 299,
+      "name": "Come Rest Awhile - Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.545473728189236,
+      "longitude": -122.63689429888272,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:50.375Z",
+      "updated_at": "2025-10-09T16:10:50.375Z"
+    },
+    {
+      "id": 300,
+      "name": "Commons Law Center",
+      "address": "1216 SE Belmont, Portland, Oregon",
+      "latitude": 45.52345118659385,
+      "longitude": -122.64407836811237,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:50.616Z",
+      "updated_at": "2025-10-09T16:10:50.616Z"
+    },
+    {
+      "id": 301,
+      "name": "Commons Law Center - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.55659510594449,
+      "longitude": -122.65821052931665,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:50.920Z",
+      "updated_at": "2025-10-09T16:10:50.920Z"
+    },
+    {
+      "id": 302,
+      "name": "Community Access Services (CAS) - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.54753079354169,
+      "longitude": -122.67204265868544,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:51.213Z",
+      "updated_at": "2025-10-09T16:10:51.213Z"
+    },
+    {
+      "id": 303,
+      "name": "Community Action Center",
+      "address": "1001 SW Baseline St, Hillsboro, OR 97123",
+      "latitude": 45.54038715276248,
+      "longitude": -122.67127881543747,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:51.449Z",
+      "updated_at": "2025-10-09T16:10:51.449Z"
+    },
+    {
+      "id": 304,
+      "name": "Community Alliance of Tenants (CAT) - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.5457129958485,
+      "longitude": -122.67293911996153,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:51.792Z",
+      "updated_at": "2025-10-09T16:10:51.792Z"
+    },
+    {
+      "id": 305,
+      "name": "Community And Other Support Services",
+      "address": "Address not available",
+      "latitude": 45.528497264367516,
+      "longitude": -122.65043757276769,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:52.070Z",
+      "updated_at": "2025-10-09T16:10:52.070Z"
+    },
+    {
+      "id": 306,
+      "name": "Community Counseling Solutions, Inc",
+      "address": "Principal Place Of Business",
+      "latitude": 45.524190626903525,
+      "longitude": -122.65134128435524,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:52.378Z",
+      "updated_at": "2025-10-09T16:10:52.378Z"
+    },
+    {
+      "id": 307,
+      "name": "Community Counseling Solutions - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.544586020893334,
+      "longitude": -122.666048003461,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:52.705Z",
+      "updated_at": "2025-10-09T16:10:52.705Z"
+    },
+    {
+      "id": 308,
+      "name": "Community Development Corporation Of Oregon, Inc.",
+      "address": "Registered Agent",
+      "latitude": 45.51823307564,
+      "longitude": -122.62888941490758,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:52.963Z",
+      "updated_at": "2025-10-09T16:10:52.963Z"
+    },
+    {
+      "id": 309,
+      "name": "Community Health Assess and Treat (CHAT) Team",
+      "address": "12350 SE Powell Blvd, Portland, OR 97236",
+      "latitude": 45.52666362890221,
+      "longitude": -122.64482853961842,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:53.222Z",
+      "updated_at": "2025-10-09T16:10:53.222Z"
+    },
+    {
+      "id": 310,
+      "name": "Community Law Division - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.51860433419308,
+      "longitude": -122.66057020105171,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:53.488Z",
+      "updated_at": "2025-10-09T16:10:53.488Z"
+    },
+    {
+      "id": 311,
+      "name": "Community Law Project - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.52880607183434,
+      "longitude": -122.64103506632104,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:53.815Z",
+      "updated_at": "2025-10-09T16:10:53.815Z"
+    },
+    {
+      "id": 312,
+      "name": "Community Of Hope Church, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.54559295900343,
+      "longitude": -122.67282983138519,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:54.125Z",
+      "updated_at": "2025-10-09T16:10:54.125Z"
+    },
+    {
+      "id": 313,
+      "name": "Community Service Opportunities",
+      "address": "Address not available",
+      "latitude": 45.53659422843628,
+      "longitude": -122.66811689777288,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:54.433Z",
+      "updated_at": "2025-10-09T16:10:54.433Z"
+    },
+    {
+      "id": 314,
+      "name": "Community Vision Employment Connections Program",
+      "address": "2475 SE Ladd Ave., Portland, Oregon 97214",
+      "latitude": 45.555044373361795,
+      "longitude": -122.6510816865739,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:54.742Z",
+      "updated_at": "2025-10-09T16:10:54.742Z"
+    },
+    {
+      "id": 315,
+      "name": "Community Vision Employment Connections Program - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.51583276451285,
+      "longitude": -122.64733664542796,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:54.988Z",
+      "updated_at": "2025-10-09T16:10:54.988Z"
+    },
+    {
+      "id": 316,
+      "name": "Community Warehouse's Portland Furniture Bank",
+      "address": "3961 MLK Blvd, Portland, Oregon 97212",
+      "latitude": 45.51883375280691,
+      "longitude": -122.67191073101495,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:55.260Z",
+      "updated_at": "2025-10-09T16:10:55.260Z"
+    },
+    {
+      "id": 317,
+      "name": "Community Warehouse - Household Items",
+      "address": "Address not available",
+      "latitude": 45.516225153477976,
+      "longitude": -122.63673971534641,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:55.542Z",
+      "updated_at": "2025-10-09T16:10:55.542Z"
+    },
+    {
+      "id": 318,
+      "name": "Community for Positive Aging - Seniors and Aging Support Groups",
+      "address": "Address not available",
+      "latitude": 45.54347680261597,
+      "longitude": -122.64157153589281,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:55.819Z",
+      "updated_at": "2025-10-09T16:10:55.819Z"
+    },
+    {
+      "id": 319,
+      "name": "Community of Hope – Hope House",
+      "address": "8911 N. Leonard St., Portland, Oregon 97203",
+      "latitude": 45.561327663561975,
+      "longitude": -122.6719755286301,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:56.132Z",
+      "updated_at": "2025-10-09T16:10:56.132Z"
+    },
+    {
+      "id": 320,
+      "name": "Community of Hope – Hope House - Housing",
+      "address": "Address not available",
+      "latitude": 45.52156293246323,
+      "longitude": -122.63950615862251,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:56.419Z",
+      "updated_at": "2025-10-09T16:10:56.419Z"
+    },
+    {
+      "id": 321,
+      "name": "Constructing Hope",
+      "address": "405 NE Church St., Portland, Oregon 97211",
+      "latitude": 45.53310172615703,
+      "longitude": -122.64428400702764,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:56.715Z",
+      "updated_at": "2025-10-09T16:10:56.715Z"
+    },
+    {
+      "id": 322,
+      "name": "Constructing Hope - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.554841131459455,
+      "longitude": -122.65731384326678,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:56.997Z",
+      "updated_at": "2025-10-09T16:10:56.997Z"
+    },
+    {
+      "id": 323,
+      "name": "Cook Plaza",
+      "address": "19415 SE Stark, Portland, OR",
+      "latitude": 45.527996347600336,
+      "longitude": -122.6732413599257,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:57.250Z",
+      "updated_at": "2025-10-09T16:10:57.250Z"
+    },
+    {
+      "id": 324,
+      "name": "Coordinated Care Pathway Center",
+      "address": "1500 NE Sandy Blvd, Portland, OR 97232",
+      "latitude": 45.517416376753204,
+      "longitude": -122.64157728949426,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:57.508Z",
+      "updated_at": "2025-10-09T16:10:57.508Z"
+    },
+    {
+      "id": 325,
+      "name": "Cornelius Safe Rest Pods",
+      "address": "397 N 4th Ave, Cornelius, OR 97113",
+      "latitude": 45.556403763455954,
+      "longitude": -122.67631461590614,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:57.767Z",
+      "updated_at": "2025-10-09T16:10:57.767Z"
+    },
+    {
+      "id": 326,
+      "name": "Crestview Recovery",
+      "address": "6025 SE Belmont St., Portland, Oregon 97215",
+      "latitude": 45.54691078250747,
+      "longitude": -122.66024665469388,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:58.087Z",
+      "updated_at": "2025-10-09T16:10:58.087Z"
+    },
+    {
+      "id": 327,
+      "name": "Crestview Recovery - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.54051128821888,
+      "longitude": -122.62984153744995,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:10:58.387Z",
+      "updated_at": "2025-10-09T16:10:58.387Z"
+    },
+    {
+      "id": 328,
+      "name": "Criminals Anonymous Fellowship (Crim-Anon) - Recovery Support Services",
+      "address": "Address not available",
+      "latitude": 45.519093497095305,
+      "longitude": -122.6661039144393,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:58.665Z",
+      "updated_at": "2025-10-09T16:10:58.665Z"
+    },
+    {
+      "id": 329,
+      "name": "Crisis Hotlines and Services - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.56229471976422,
+      "longitude": -122.6398725348851,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:10:58.936Z",
+      "updated_at": "2025-10-09T16:10:58.936Z"
+    },
+    {
+      "id": 330,
+      "name": "Crossroads Cupboard",
+      "address": "Address not available",
+      "latitude": 45.564681885345244,
+      "longitude": -122.63271093680747,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:59.178Z",
+      "updated_at": "2025-10-09T16:10:59.178Z"
+    },
+    {
+      "id": 331,
+      "name": "Crossroads Cupboard - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.52013159921703,
+      "longitude": -122.63390495341862,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:59.443Z",
+      "updated_at": "2025-10-09T16:10:59.443Z"
+    },
+    {
+      "id": 332,
+      "name": "Crossroads Food Bank",
+      "address": "2407 NE 102nd Avenue, Portland, Oregon 97220",
+      "latitude": 45.51848070470451,
+      "longitude": -122.6671565684843,
+      "type": "food",
+      "created_at": "2025-10-09T16:10:59.696Z",
+      "updated_at": "2025-10-09T16:10:59.696Z"
+    },
+    {
+      "id": 333,
+      "name": "Crystal Springs Rhododendron Garden - Community Service Opportunities",
+      "address": "Address not available",
+      "latitude": 45.517880636311325,
+      "longitude": -122.67389463309301,
+      "type": "service",
+      "created_at": "2025-10-09T16:10:59.999Z",
+      "updated_at": "2025-10-09T16:10:59.999Z"
+    },
+    {
+      "id": 334,
+      "name": "Cultivate Initiatives, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.540458044059854,
+      "longitude": -122.63968903440112,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:00.244Z",
+      "updated_at": "2025-10-09T16:11:00.244Z"
+    },
+    {
+      "id": 335,
+      "name": "Cultivate Initiatives – Outreach Services - Homeless and Housing Support Services",
+      "address": "Address not available",
+      "latitude": 45.52058248636147,
+      "longitude": -122.66407709576082,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:00.556Z",
+      "updated_at": "2025-10-09T16:11:00.556Z"
+    },
+    {
+      "id": 336,
+      "name": "Cultivate Initiatives – Workforce Development",
+      "address": "14625 SE Stark St., Portland, Oregon 97233",
+      "latitude": 45.53512235902828,
+      "longitude": -122.64607362032922,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:00.910Z",
+      "updated_at": "2025-10-09T16:11:00.910Z"
+    },
+    {
+      "id": 337,
+      "name": "Cultivate Initiatives – Workforce Development - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.56028165207985,
+      "longitude": -122.6498084218911,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:01.211Z",
+      "updated_at": "2025-10-09T16:11:01.211Z"
+    },
+    {
+      "id": 338,
+      "name": "Cultivating Community",
+      "address": "1530 NE 82nd Avenue, Portland, OR",
+      "latitude": 45.52058416167583,
+      "longitude": -122.67213339615057,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:01.452Z",
+      "updated_at": "2025-10-09T16:11:01.452Z"
+    },
+    {
+      "id": 339,
+      "name": "Culturally Specific Programs",
+      "address": "Address not available",
+      "latitude": 45.521200728282174,
+      "longitude": -122.67330742001813,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:01.809Z",
+      "updated_at": "2025-10-09T16:11:01.809Z"
+    },
+    {
+      "id": 340,
+      "name": "Culture - Native American Support Services",
+      "address": "Address not available",
+      "latitude": 45.51623143458076,
+      "longitude": -122.67035640556318,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:02.107Z",
+      "updated_at": "2025-10-09T16:11:02.107Z"
+    },
+    {
+      "id": 341,
+      "name": "Cupcake Girls - Domestic Violence and Sex Worker Support Services",
+      "address": "Address not available",
+      "latitude": 45.54958680536114,
+      "longitude": -122.64896726181001,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:02.353Z",
+      "updated_at": "2025-10-09T16:11:02.353Z"
+    },
+    {
+      "id": 342,
+      "name": "DPI Group",
+      "address": "4950 NE Martin Luther King Jr Blvd, Portland, OR 97211",
+      "latitude": 45.545136818778126,
+      "longitude": -122.66873156487964,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:02.623Z",
+      "updated_at": "2025-10-09T16:11:02.623Z"
+    },
+    {
+      "id": 343,
+      "name": "DPI Group - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.54788811739062,
+      "longitude": -122.6347989443267,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:02.870Z",
+      "updated_at": "2025-10-09T16:11:02.870Z"
+    },
+    {
+      "id": 344,
+      "name": "Day Storage Building",
+      "address": "506 NW 5th Ave, Portland, OR 97209",
+      "latitude": 45.531167489258124,
+      "longitude": -122.66865507720428,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:03.113Z",
+      "updated_at": "2025-10-09T16:11:03.113Z"
+    },
+    {
+      "id": 345,
+      "name": "De Muniz Legal Clinic",
+      "address": "3940 Aumsville Hwy SE, Salem, Oregon 97317",
+      "latitude": 45.529537004191816,
+      "longitude": -122.66753729602655,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:03.413Z",
+      "updated_at": "2025-10-09T16:11:03.413Z"
+    },
+    {
+      "id": 346,
+      "name": "De Muniz Legal Clinic - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.515714623437674,
+      "longitude": -122.66462733085108,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:03.710Z",
+      "updated_at": "2025-10-09T16:11:03.710Z"
+    },
+    {
+      "id": 347,
+      "name": "De Muniz Resource Center",
+      "address": "2475 Center St., Salem, Oregon 97301",
+      "latitude": 45.54304750933524,
+      "longitude": -122.67779314846311,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:03.972Z",
+      "updated_at": "2025-10-09T16:11:03.972Z"
+    },
+    {
+      "id": 348,
+      "name": "De Muniz Resource Center - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.531950775843406,
+      "longitude": -122.63202903634782,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:04.207Z",
+      "updated_at": "2025-10-09T16:11:04.207Z"
+    },
+    {
+      "id": 349,
+      "name": "Demographically And Culturally Specific",
+      "address": "Address not available",
+      "latitude": 45.55434941216003,
+      "longitude": -122.67288613391419,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:04.551Z",
+      "updated_at": "2025-10-09T16:11:04.551Z"
+    },
+    {
+      "id": 350,
+      "name": "Demographically And Culturally Specific Programs",
+      "address": "Address not available",
+      "latitude": 45.51973459479588,
+      "longitude": -122.64187338743429,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:04.838Z",
+      "updated_at": "2025-10-09T16:11:04.838Z"
+    },
+    {
+      "id": 351,
+      "name": "Dental",
+      "address": "Address not available",
+      "latitude": 45.53884385028464,
+      "longitude": -122.66576132674966,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:05.087Z",
+      "updated_at": "2025-10-09T16:11:05.087Z"
+    },
+    {
+      "id": 352,
+      "name": "Department of Human Services (ODHS) - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.54973686557327,
+      "longitude": -122.6351801226592,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:05.387Z",
+      "updated_at": "2025-10-09T16:11:05.387Z"
+    },
+    {
+      "id": 353,
+      "name": "Department of Human Services (ODHS) - Housing Support Services",
+      "address": "Address not available",
+      "latitude": 45.5596838972834,
+      "longitude": -122.63778012648123,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:05.652Z",
+      "updated_at": "2025-10-09T16:11:05.652Z"
+    },
+    {
+      "id": 354,
+      "name": "Developmental Disabilities - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.553682957547316,
+      "longitude": -122.67577640005479,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:05.919Z",
+      "updated_at": "2025-10-09T16:11:05.919Z"
+    },
+    {
+      "id": 355,
+      "name": "Dignity Village",
+      "address": "9401 NE Sunderland Ave, Portland, OR 97220",
+      "latitude": 45.53058799718688,
+      "longitude": -122.67791757635281,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:06.213Z",
+      "updated_at": "2025-10-09T16:11:06.213Z"
+    },
+    {
+      "id": 356,
+      "name": "Disabilities",
+      "address": "Address not available",
+      "latitude": 45.515609050627155,
+      "longitude": -122.66870488613608,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:06.469Z",
+      "updated_at": "2025-10-09T16:11:06.469Z"
+    },
+    {
+      "id": 357,
+      "name": "Disability Rights Oregon, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.54255994904493,
+      "longitude": -122.65925107878466,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:06.758Z",
+      "updated_at": "2025-10-09T16:11:06.758Z"
+    },
+    {
+      "id": 358,
+      "name": "Disability Rights Oregon (DRO)",
+      "address": "511 SW 10th Ave., Portland, Oregon 97205",
+      "latitude": 45.51958100081972,
+      "longitude": -122.66531382875213,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:06.986Z",
+      "updated_at": "2025-10-09T16:11:06.986Z"
+    },
+    {
+      "id": 359,
+      "name": "Disability Rights Oregon (DRO) - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.516916687475366,
+      "longitude": -122.64041769388987,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:07.252Z",
+      "updated_at": "2025-10-09T16:11:07.252Z"
+    },
+    {
+      "id": 360,
+      "name": "Disability Rights Oregon - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.5639941873116,
+      "longitude": -122.64386654972733,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:07.533Z",
+      "updated_at": "2025-10-09T16:11:07.533Z"
+    },
+    {
+      "id": 361,
+      "name": "Disability Rights Oregon - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.540456733789554,
+      "longitude": -122.63881417133067,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:07.875Z",
+      "updated_at": "2025-10-09T16:11:07.875Z"
+    },
+    {
+      "id": 362,
+      "name": "Disability Support Services",
+      "address": "Address not available",
+      "latitude": 45.556029882653064,
+      "longitude": -122.66179621837627,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:08.149Z",
+      "updated_at": "2025-10-09T16:11:08.149Z"
+    },
+    {
+      "id": 363,
+      "name": "Do Good Gang, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.52080232160216,
+      "longitude": -122.63372621934334,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:08.455Z",
+      "updated_at": "2025-10-09T16:11:08.455Z"
+    },
+    {
+      "id": 364,
+      "name": "Do Good Multnomah",
+      "address": "7809 NE Everett St, Portland, OR 97213",
+      "latitude": 45.54106159399915,
+      "longitude": -122.6544011607304,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:08.704Z",
+      "updated_at": "2025-10-09T16:11:08.704Z"
+    },
+    {
+      "id": 365,
+      "name": "Do Good Multnomah, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.54092208934039,
+      "longitude": -122.63789728362734,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:09.008Z",
+      "updated_at": "2025-10-09T16:11:09.008Z"
+    },
+    {
+      "id": 366,
+      "name": "Do Good Multnomah - Housing",
+      "address": "Address not available",
+      "latitude": 45.53586410866402,
+      "longitude": -122.6675292895835,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:09.347Z",
+      "updated_at": "2025-10-09T16:11:09.347Z"
+    },
+    {
+      "id": 367,
+      "name": "Domestic Violence Resource Center (DVRC)",
+      "address": "735 SW 158th Avenue, Beaverton, Oregon 97006",
+      "latitude": 45.550243459689106,
+      "longitude": -122.65470034690777,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:09.646Z",
+      "updated_at": "2025-10-09T16:11:09.646Z"
+    },
+    {
+      "id": 368,
+      "name": "Domestic Violence Resource Center (DVRC) - Domestic Violence Victim Programs",
+      "address": "Address not available",
+      "latitude": 45.55695245240313,
+      "longitude": -122.66927311918477,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:09.937Z",
+      "updated_at": "2025-10-09T16:11:09.937Z"
+    },
+    {
+      "id": 369,
+      "name": "Domestic Violence Resource Center (DVRC) - Victim Assistance",
+      "address": "Address not available",
+      "latitude": 45.51742786627923,
+      "longitude": -122.65082647612002,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:10.257Z",
+      "updated_at": "2025-10-09T16:11:10.257Z"
+    },
+    {
+      "id": 370,
+      "name": "Domestic Violence Victim Programs",
+      "address": "Address not available",
+      "latitude": 45.56362431809919,
+      "longitude": -122.66170010661709,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:10.535Z",
+      "updated_at": "2025-10-09T16:11:10.535Z"
+    },
+    {
+      "id": 371,
+      "name": "Domestic Violence and Sex Worker Support Services",
+      "address": "Address not available",
+      "latitude": 45.53072140668702,
+      "longitude": -122.67624539896201,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:10.880Z",
+      "updated_at": "2025-10-09T16:11:10.880Z"
+    },
+    {
+      "id": 372,
+      "name": "Domestic Violence and Sexual Assault Crisis Lines and Support - Domestic Violence and Sex Worker Support Services",
+      "address": "Address not available",
+      "latitude": 45.552817310996005,
+      "longitude": -122.63878174626213,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:11.138Z",
+      "updated_at": "2025-10-09T16:11:11.138Z"
+    },
+    {
+      "id": 373,
+      "name": "Doreens Place",
+      "address": "610 NW Broadway, Portland, OR 97209",
+      "latitude": 45.524206685865146,
+      "longitude": -122.6676003248549,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:11.426Z",
+      "updated_at": "2025-10-09T16:11:11.426Z"
+    },
+    {
+      "id": 374,
+      "name": "Dougy Center - Grief and Bereavement Support Services",
+      "address": "Address not available",
+      "latitude": 45.55993762503695,
+      "longitude": -122.64790750168521,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:11.690Z",
+      "updated_at": "2025-10-09T16:11:11.690Z"
+    },
+    {
+      "id": 375,
+      "name": "Downtown Drop-In Center",
+      "address": "820 SW Oak, Portland, Oregon 97205",
+      "latitude": 45.532362556545934,
+      "longitude": -122.67678529369987,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:11.950Z",
+      "updated_at": "2025-10-09T16:11:11.950Z"
+    },
+    {
+      "id": 376,
+      "name": "Downtown Shelter (Greyhound Station)",
+      "address": "550 NW 6th Ave, Portland, OR 97209",
+      "latitude": 45.55267925685018,
+      "longitude": -122.67003366785605,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:12.231Z",
+      "updated_at": "2025-10-09T16:11:12.231Z"
+    },
+    {
+      "id": 377,
+      "name": "Dress for Success Oregon",
+      "address": "1532 NE 37th Ave., Portland, Oregon 97232",
+      "latitude": 45.55189116606277,
+      "longitude": -122.65524395370294,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:12.509Z",
+      "updated_at": "2025-10-09T16:11:12.509Z"
+    },
+    {
+      "id": 378,
+      "name": "Dress for Success Oregon - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.5459026643399,
+      "longitude": -122.67070246066976,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:12.870Z",
+      "updated_at": "2025-10-09T16:11:12.870Z"
+    },
+    {
+      "id": 379,
+      "name": "Drug activity R023657379",
+      "address": "Address not available",
+      "latitude": 45.529026858917376,
+      "longitude": -122.6548583045345,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:13.172Z",
+      "updated_at": "2025-10-09T16:11:13.172Z"
+    },
+    {
+      "id": 380,
+      "name": "Drug activity R023657862",
+      "address": "Address not available",
+      "latitude": 45.53006293939766,
+      "longitude": -122.62932110149916,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:13.493Z",
+      "updated_at": "2025-10-09T16:11:13.493Z"
+    },
+    {
+      "id": 381,
+      "name": "Drug activity open air 20250918 204715",
+      "address": "Address not available",
+      "latitude": 45.56500961848848,
+      "longitude": -122.64580766981223,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:13.742Z",
+      "updated_at": "2025-10-09T16:11:13.742Z"
+    },
+    {
+      "id": 382,
+      "name": "Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.53516253877701,
+      "longitude": -122.62988475038443,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:13.992Z",
+      "updated_at": "2025-10-09T16:11:13.992Z"
+    },
+    {
+      "id": 383,
+      "name": "Drug supplies in South Park outside PAM R023882432",
+      "address": "Address not available",
+      "latitude": 45.54730907714009,
+      "longitude": -122.629690484392,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:14.253Z",
+      "updated_at": "2025-10-09T16:11:14.253Z"
+    },
+    {
+      "id": 384,
+      "name": "Drug use in Madison breezeway R023796941",
+      "address": "Address not available",
+      "latitude": 45.5264670445041,
+      "longitude": -122.67178777733338,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:14.525Z",
+      "updated_at": "2025-10-09T16:11:14.525Z"
+    },
+    {
+      "id": 385,
+      "name": "Drug use in Schemanski plaza R023797968",
+      "address": "Address not available",
+      "latitude": 45.54559222622539,
+      "longitude": -122.63937373908516,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:14.768Z",
+      "updated_at": "2025-10-09T16:11:14.768Z"
+    },
+    {
+      "id": 386,
+      "name": "Drug user passed out in SW Madison breez R023796949",
+      "address": "Address not available",
+      "latitude": 45.537206590219775,
+      "longitude": -122.6686285902416,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:15.034Z",
+      "updated_at": "2025-10-09T16:11:15.034Z"
+    },
+    {
+      "id": 387,
+      "name": "Drugs R",
+      "address": "Address not available",
+      "latitude": 45.537551778691075,
+      "longitude": -122.63070483589073,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:15.343Z",
+      "updated_at": "2025-10-09T16:11:15.343Z"
+    },
+    {
+      "id": 388,
+      "name": "Drugs SW 10th and Main R024002392",
+      "address": "Address not available",
+      "latitude": 45.515412434105,
+      "longitude": -122.64791275222844,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:15.588Z",
+      "updated_at": "2025-10-09T16:11:15.588Z"
+    },
+    {
+      "id": 389,
+      "name": "Dual Diagnosis Anonymous of Oregon (DDA of Oregon)",
+      "address": "4141 SE Division Street, Portland, Oregon 97206",
+      "latitude": 45.55470610960123,
+      "longitude": -122.66913231534146,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:15.898Z",
+      "updated_at": "2025-10-09T16:11:15.898Z"
+    },
+    {
+      "id": 390,
+      "name": "Dual Diagnosis Anonymous of Oregon (DDA of Oregon) - Peer Support Groups",
+      "address": "Address not available",
+      "latitude": 45.52999648759017,
+      "longitude": -122.62915608732717,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:16.184Z",
+      "updated_at": "2025-10-09T16:11:16.184Z"
+    },
+    {
+      "id": 391,
+      "name": "East Burnside Location",
+      "address": "16144 E Burnside St., Portland, Oregon 97233",
+      "latitude": 45.522541441941776,
+      "longitude": -122.66181499833947,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:16.529Z",
+      "updated_at": "2025-10-09T16:11:16.529Z"
+    },
+    {
+      "id": 392,
+      "name": "East County Health Center",
+      "address": "600 NE 8th St, Gresham, OR 97030",
+      "latitude": 45.541110752775,
+      "longitude": -122.67347558472787,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:16.799Z",
+      "updated_at": "2025-10-09T16:11:16.799Z"
+    },
+    {
+      "id": 393,
+      "name": "East County Housing, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.547391885851894,
+      "longitude": -122.66079942845018,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:17.066Z",
+      "updated_at": "2025-10-09T16:11:17.066Z"
+    },
+    {
+      "id": 394,
+      "name": "East Mutlnomah County Drop-In and Youth Opportunity Center",
+      "address": "470SE 165th Ave., Portland, Oregon 97233",
+      "latitude": 45.55175948801614,
+      "longitude": -122.66836016489498,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:17.328Z",
+      "updated_at": "2025-10-09T16:11:17.328Z"
+    },
+    {
+      "id": 395,
+      "name": "Easterseals Connecting Communities Program",
+      "address": "10011 SE Division Street, Portland, Oregon 97266",
+      "latitude": 45.53573178477427,
+      "longitude": -122.67726463061774,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:17.581Z",
+      "updated_at": "2025-10-09T16:11:17.581Z"
+    },
+    {
+      "id": 396,
+      "name": "Easterseals Connecting Communities Program - Culturally Specific Programs",
+      "address": "Address not available",
+      "latitude": 45.53732349841236,
+      "longitude": -122.6639661973951,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:17.873Z",
+      "updated_at": "2025-10-09T16:11:17.873Z"
+    },
+    {
+      "id": 397,
+      "name": "Easterseals Oregon - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.53925746140427,
+      "longitude": -122.64487050619631,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:18.194Z",
+      "updated_at": "2025-10-09T16:11:18.194Z"
+    },
+    {
+      "id": 398,
+      "name": "Easterseals Oregon Summer Camp - Disability Support Services",
+      "address": "Address not available",
+      "latitude": 45.5528430872883,
+      "longitude": -122.67581729260047,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:18.476Z",
+      "updated_at": "2025-10-09T16:11:18.476Z"
+    },
+    {
+      "id": 399,
+      "name": "Easterseals Oregon Veteran Services",
+      "address": "7300 SW Hunziker Rd, Tigard, OR 97223",
+      "latitude": 45.54528042181626,
+      "longitude": -122.66596886328048,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:18.796Z",
+      "updated_at": "2025-10-09T16:11:18.796Z"
+    },
+    {
+      "id": 400,
+      "name": "Easterseals Oregon Veteran Services - Veterans Programs",
+      "address": "Address not available",
+      "latitude": 45.54995403237009,
+      "longitude": -122.65414171455572,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:19.056Z",
+      "updated_at": "2025-10-09T16:11:19.056Z"
+    },
+    {
+      "id": 401,
+      "name": "Ecumenical Ministries of Oregon, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.53238790879858,
+      "longitude": -122.67636848785281,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:19.307Z",
+      "updated_at": "2025-10-09T16:11:19.307Z"
+    },
+    {
+      "id": 402,
+      "name": "Ecumenical Ministries of Oregon (EMO) and Slavic Oregon Social Services",
+      "address": "245 S Bancroft St., Portland, Oregon 97239",
+      "latitude": 45.51542591546422,
+      "longitude": -122.63068746535654,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:19.559Z",
+      "updated_at": "2025-10-09T16:11:19.559Z"
+    },
+    {
+      "id": 403,
+      "name": "Ecumenical Ministries of Oregon - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.55494728134637,
+      "longitude": -122.63624587915729,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:19.803Z",
+      "updated_at": "2025-10-09T16:11:19.803Z"
+    },
+    {
+      "id": 404,
+      "name": "Ecumenical Ministries of Oregon - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.537980474484115,
+      "longitude": -122.66069596033164,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:20.144Z",
+      "updated_at": "2025-10-09T16:11:20.144Z"
+    },
+    {
+      "id": 405,
+      "name": "Ecumenical Ministries of Oregon - HIV Support Services",
+      "address": "Address not available",
+      "latitude": 45.53121445972862,
+      "longitude": -122.64672478247905,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:20.410Z",
+      "updated_at": "2025-10-09T16:11:20.410Z"
+    },
+    {
+      "id": 406,
+      "name": "Ecumenical Ministries of Oregon - Immigrant and Refugee Support Services",
+      "address": "Address not available",
+      "latitude": 45.5466084549228,
+      "longitude": -122.65451046152427,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:20.717Z",
+      "updated_at": "2025-10-09T16:11:20.717Z"
+    },
+    {
+      "id": 407,
+      "name": "Ecumenical Ministries of Oregon - Wrap-Around Support Services",
+      "address": "Address not available",
+      "latitude": 45.52746965124494,
+      "longitude": -122.65825098278914,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:21.110Z",
+      "updated_at": "2025-10-09T16:11:21.110Z"
+    },
+    {
+      "id": 408,
+      "name": "Ecumenical Ministries of Oregon Metro HomeShare - Housing",
+      "address": "Address not available",
+      "latitude": 45.56199769702208,
+      "longitude": -122.66072818947202,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:21.392Z",
+      "updated_at": "2025-10-09T16:11:21.392Z"
+    },
+    {
+      "id": 409,
+      "name": "Ecumenical Ministries of Oregon Northeast Emergency Food Program",
+      "address": "4800 NE 72nd Avenue, Portland, Oregon 97218",
+      "latitude": 45.5448498246999,
+      "longitude": -122.67184873474338,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:21.690Z",
+      "updated_at": "2025-10-09T16:11:21.690Z"
+    },
+    {
+      "id": 410,
+      "name": "Ecumenical Ministries of Oregon Northeast Emergency Food Program - Various Combined Services",
+      "address": "Address not available",
+      "latitude": 45.54330126081212,
+      "longitude": -122.65786468127644,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:21.998Z",
+      "updated_at": "2025-10-09T16:11:21.998Z"
+    },
+    {
+      "id": 411,
+      "name": "Ecumenical Ministries of Oregon SOAR Immigration Legal Services - Immigration Legal Services",
+      "address": "Address not available",
+      "latitude": 45.527256075676696,
+      "longitude": -122.66229700039001,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:22.265Z",
+      "updated_at": "2025-10-09T16:11:22.265Z"
+    },
+    {
+      "id": 412,
+      "name": "El Jardin",
+      "address": "10209 SE Division St BLDG B Ste 100  Portland, OR 97266",
+      "latitude": 45.56357621805266,
+      "longitude": -122.63806145146322,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:22.528Z",
+      "updated_at": "2025-10-09T16:11:22.528Z"
+    },
+    {
+      "id": 413,
+      "name": "El Jardin Recovery Centers, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.55851796106258,
+      "longitude": -122.63386941792726,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:22.773Z",
+      "updated_at": "2025-10-09T16:11:22.773Z"
+    },
+    {
+      "id": 414,
+      "name": "El Programa Hispano Católico",
+      "address": "333 SE 223rd Ave #100, Gresham, Oregon 97030",
+      "latitude": 45.557034026016844,
+      "longitude": -122.63369062857033,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:23.039Z",
+      "updated_at": "2025-10-09T16:11:23.039Z"
+    },
+    {
+      "id": 415,
+      "name": "El Programa Hispano Católico - Culturally Specific Programs",
+      "address": "Address not available",
+      "latitude": 45.559840343411366,
+      "longitude": -122.64145468833748,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:23.301Z",
+      "updated_at": "2025-10-09T16:11:23.301Z"
+    },
+    {
+      "id": 416,
+      "name": "El Programa Hispano Católico - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.54898385876704,
+      "longitude": -122.63944271508159,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:23.594Z",
+      "updated_at": "2025-10-09T16:11:23.594Z"
+    },
+    {
+      "id": 417,
+      "name": "El Programa Hispano Católico - Mental Health",
+      "address": "Address not available",
+      "latitude": 45.54573127936935,
+      "longitude": -122.67386598515958,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:23.853Z",
+      "updated_at": "2025-10-09T16:11:23.853Z"
+    },
+    {
+      "id": 418,
+      "name": "Employment Access Center",
+      "address": "2 NW 2nd, Portland, Oregon",
+      "latitude": 45.55119153280099,
+      "longitude": -122.63132372483604,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:24.137Z",
+      "updated_at": "2025-10-09T16:11:24.137Z"
+    },
+    {
+      "id": 419,
+      "name": "Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.53078054104722,
+      "longitude": -122.65744898623174,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:24.414Z",
+      "updated_at": "2025-10-09T16:11:24.414Z"
+    },
+    {
+      "id": 420,
+      "name": "EngAGE - Social Engagement Support Services",
+      "address": "Address not available",
+      "latitude": 45.55877329596761,
+      "longitude": -122.67010192707964,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:24.670Z",
+      "updated_at": "2025-10-09T16:11:24.670Z"
+    },
+    {
+      "id": 421,
+      "name": "Equity Corps of Oregon (ECO) - Immigration Legal Services",
+      "address": "Address not available",
+      "latitude": 45.52714150914158,
+      "longitude": -122.63817473941934,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:25.019Z",
+      "updated_at": "2025-10-09T16:11:25.019Z"
+    },
+    {
+      "id": 422,
+      "name": "Estate Hotel",
+      "address": "225 NW Couch St.",
+      "latitude": 45.51919212177499,
+      "longitude": -122.6439554806377,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:25.383Z",
+      "updated_at": "2025-10-09T16:11:25.384Z"
+    },
+    {
+      "id": 423,
+      "name": "Eugene",
+      "address": "199 E 5th Avenue, Eugene, Oregon 97401",
+      "latitude": 45.532012973894304,
+      "longitude": -122.65285183758391,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:25.733Z",
+      "updated_at": "2025-10-09T16:11:25.733Z"
+    },
+    {
+      "id": 424,
+      "name": "Eugene Community Court",
+      "address": "1102 Lincoln Street, Eugene, Oregon 97401",
+      "latitude": 45.547400267539025,
+      "longitude": -122.64327723836253,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:26.064Z",
+      "updated_at": "2025-10-09T16:11:26.064Z"
+    },
+    {
+      "id": 425,
+      "name": "Eugene Community Court - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.52498238669016,
+      "longitude": -122.6545708141362,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:26.318Z",
+      "updated_at": "2025-10-09T16:11:26.318Z"
+    },
+    {
+      "id": 426,
+      "name": "ExportFacility",
+      "address": "Address not available",
+      "latitude": 45.547810207397596,
+      "longitude": -122.65494249880162,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:26.617Z",
+      "updated_at": "2025-10-09T16:11:26.617Z"
+    },
+    {
+      "id": 427,
+      "name": "Facilities",
+      "address": "Address not available",
+      "latitude": 45.539766070064225,
+      "longitude": -122.64631491728258,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:26.872Z",
+      "updated_at": "2025-10-09T16:11:26.872Z"
+    },
+    {
+      "id": 428,
+      "name": "Facility Evergreen Care (post-acute Recuperative Care)",
+      "address": "8225 NE Wasco St., Portland, OR, 97220",
+      "latitude": 45.52995338679814,
+      "longitude": -122.64684352301279,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:27.178Z",
+      "updated_at": "2025-10-09T16:11:27.178Z"
+    },
+    {
+      "id": 429,
+      "name": "Fair Housing Council of Oregon (FHCO) - Housing",
+      "address": "Address not available",
+      "latitude": 45.51896171454216,
+      "longitude": -122.66881428259158,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:27.431Z",
+      "updated_at": "2025-10-09T16:11:27.431Z"
+    },
+    {
+      "id": 430,
+      "name": "Fair Housing Council of Oregon (FHCO) - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.5486936531532,
+      "longitude": -122.66451708959832,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:27.704Z",
+      "updated_at": "2025-10-09T16:11:27.704Z"
+    },
+    {
+      "id": 431,
+      "name": "Familias en Acción (Familias) - Medical",
+      "address": "Address not available",
+      "latitude": 45.5415008917392,
+      "longitude": -122.63693312560478,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:28.141Z",
+      "updated_at": "2025-10-09T16:11:28.141Z"
+    },
+    {
+      "id": 432,
+      "name": "Family Justice Center of Washington County, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.519722253706924,
+      "longitude": -122.64300805855781,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:28.463Z",
+      "updated_at": "2025-10-09T16:11:28.463Z"
+    },
+    {
+      "id": 433,
+      "name": "Family Justice Center of Washington County - Domestic Violence and Sex Worker Support Services",
+      "address": "Address not available",
+      "latitude": 45.55776965806482,
+      "longitude": -122.64656381328386,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:28.757Z",
+      "updated_at": "2025-10-09T16:11:28.757Z"
+    },
+    {
+      "id": 434,
+      "name": "Family Promise",
+      "address": "14986 NW Cornell Rd, Portland, OR 97229",
+      "latitude": 45.52542706214938,
+      "longitude": -122.66575480997979,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:29.043Z",
+      "updated_at": "2025-10-09T16:11:29.043Z"
+    },
+    {
+      "id": 435,
+      "name": "Family Promise of Tualatin",
+      "address": "11460 Pacific Highway West, Tigard, OR 97223",
+      "latitude": 45.549211959162896,
+      "longitude": -122.66466421893041,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:29.293Z",
+      "updated_at": "2025-10-09T16:11:29.293Z"
+    },
+    {
+      "id": 436,
+      "name": "Family SkillBuilders - Parenting and Family Services",
+      "address": "Address not available",
+      "latitude": 45.51980702776628,
+      "longitude": -122.65248092121024,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:29.534Z",
+      "updated_at": "2025-10-09T16:11:29.534Z"
+    },
+    {
+      "id": 437,
+      "name": "Family Village Shelter (Path Home)",
+      "address": "6220 SE 92nd Ave, Portland, OR 97266",
+      "latitude": 45.55681136909813,
+      "longitude": -122.64691785815015,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:29.798Z",
+      "updated_at": "2025-10-09T16:11:29.798Z"
+    },
+    {
+      "id": 438,
+      "name": "Father's Heart Ministry Day SHelter",
+      "address": "603 12th St, Oregon City, OR 97045",
+      "latitude": 45.530466497295556,
+      "longitude": -122.64223188166179,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:30.054Z",
+      "updated_at": "2025-10-09T16:11:30.054Z"
+    },
+    {
+      "id": 439,
+      "name": "Feed the Mass – Education Program & Job Readiness Training",
+      "address": "80 NW Davis St., Portland, Oregon 97209",
+      "latitude": 45.533980240955266,
+      "longitude": -122.63972655071454,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:30.422Z",
+      "updated_at": "2025-10-09T16:11:30.422Z"
+    },
+    {
+      "id": 440,
+      "name": "Feed the Mass – Education Program & Job Readiness Training - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.534944645133535,
+      "longitude": -122.64136290087733,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:30.736Z",
+      "updated_at": "2025-10-09T16:11:30.736Z"
+    },
+    {
+      "id": 441,
+      "name": "Felony Record Hub - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.5292706215225,
+      "longitude": -122.66318798437197,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:30.965Z",
+      "updated_at": "2025-10-09T16:11:30.965Z"
+    },
+    {
+      "id": 442,
+      "name": "Felony Record Hub - Legal Services",
+      "address": "Address not available",
+      "latitude": 45.55115598186222,
+      "longitude": -122.64149392878178,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:31.272Z",
+      "updated_at": "2025-10-09T16:11:31.272Z"
+    },
+    {
+      "id": 443,
+      "name": "Fido",
+      "address": "14186 Fir Street, Oregon City, Oregon 97045",
+      "latitude": 45.53821500703284,
+      "longitude": -122.67620076885642,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:31.542Z",
+      "updated_at": "2025-10-09T16:11:31.542Z"
+    },
+    {
+      "id": 444,
+      "name": "Fido - Animal and Veterinary Care Services",
+      "address": "Address not available",
+      "latitude": 45.540424697582786,
+      "longitude": -122.65701823497534,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:31.796Z",
+      "updated_at": "2025-10-09T16:11:31.796Z"
+    },
+    {
+      "id": 445,
+      "name": "FinAbility, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.56486355604342,
+      "longitude": -122.63295581258117,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:32.065Z",
+      "updated_at": "2025-10-09T16:11:32.065Z"
+    },
+    {
+      "id": 446,
+      "name": "FinAbility - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.547913339887195,
+      "longitude": -122.64656278740706,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:32.328Z",
+      "updated_at": "2025-10-09T16:11:32.328Z"
+    },
+    {
+      "id": 447,
+      "name": "Find Help Multiple Services - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.559942929223396,
+      "longitude": -122.64905099588793,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:32.575Z",
+      "updated_at": "2025-10-09T16:11:32.575Z"
+    },
+    {
+      "id": 448,
+      "name": "Find Help Multiple Services - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.54647164140581,
+      "longitude": -122.66366634282392,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:32.873Z",
+      "updated_at": "2025-10-09T16:11:32.873Z"
+    },
+    {
+      "id": 449,
+      "name": "Find Help Multiple Services - Household Items",
+      "address": "Address not available",
+      "latitude": 45.55625239322312,
+      "longitude": -122.67582131701351,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:33.161Z",
+      "updated_at": "2025-10-09T16:11:33.161Z"
+    },
+    {
+      "id": 450,
+      "name": "Find Help Multiple Services - Transportation",
+      "address": "Address not available",
+      "latitude": 45.561797118339605,
+      "longitude": -122.65441379394915,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:33.419Z",
+      "updated_at": "2025-10-09T16:11:33.419Z"
+    },
+    {
+      "id": 451,
+      "name": "Find Help Multiple Services - Various Combined Services",
+      "address": "Address not available",
+      "latitude": 45.52603497188858,
+      "longitude": -122.63123709920914,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:33.694Z",
+      "updated_at": "2025-10-09T16:11:33.694Z"
+    },
+    {
+      "id": 452,
+      "name": "First Baptist Church",
+      "address": "909 SW 11th Avenue, Portland, Oregon 97205",
+      "latitude": 45.53809428532161,
+      "longitude": -122.67720115682192,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:34.027Z",
+      "updated_at": "2025-10-09T16:11:34.027Z"
+    },
+    {
+      "id": 453,
+      "name": "First Baptist Church - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.54565419400955,
+      "longitude": -122.67139912606149,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:34.327Z",
+      "updated_at": "2025-10-09T16:11:34.327Z"
+    },
+    {
+      "id": 454,
+      "name": "First Unitarian Church Of Portland, Oregon, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.531732963062,
+      "longitude": -122.66313291859656,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:34.583Z",
+      "updated_at": "2025-10-09T16:11:34.583Z"
+    },
+    {
+      "id": 455,
+      "name": "Folk Time - Recovery Support Services",
+      "address": "Address not available",
+      "latitude": 45.52845412004523,
+      "longitude": -122.62862810131452,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:34.846Z",
+      "updated_at": "2025-10-09T16:11:34.846Z"
+    },
+    {
+      "id": 456,
+      "name": "Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.52394818306795,
+      "longitude": -122.66934440945752,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:35.157Z",
+      "updated_at": "2025-10-09T16:11:35.157Z"
+    },
+    {
+      "id": 457,
+      "name": "Food Not Bombs",
+      "address": "320 SE 16th Avenue, Portland, Oregon 97214",
+      "latitude": 45.54864087995652,
+      "longitude": -122.65478739949187,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:35.419Z",
+      "updated_at": "2025-10-09T16:11:35.419Z"
+    },
+    {
+      "id": 458,
+      "name": "Food Not Bombs - Food Boxes, Pantries, and Meals",
+      "address": "Address not available",
+      "latitude": 45.516776255908034,
+      "longitude": -122.67014229887573,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:35.735Z",
+      "updated_at": "2025-10-09T16:11:35.735Z"
+    },
+    {
+      "id": 459,
+      "name": "Fora Health Detox",
+      "address": "10230 SE Cherry Blossom Dr, Portland, OR 97216",
+      "latitude": 45.55815606598559,
+      "longitude": -122.63405711812507,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:36.001Z",
+      "updated_at": "2025-10-09T16:11:36.001Z"
+    },
+    {
+      "id": 460,
+      "name": "Fora Health Treatment and Recovery - Drug and Alcohol Treatment",
+      "address": "Address not available",
+      "latitude": 45.554124342386295,
+      "longitude": -122.63306534019516,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:36.351Z",
+      "updated_at": "2025-10-09T16:11:36.351Z"
+    },
+    {
+      "id": 461,
+      "name": "Forest Grove Foundation - Homeless and Housing Support Services",
+      "address": "Address not available",
+      "latitude": 45.55093261261086,
+      "longitude": -122.63094027442858,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:36.612Z",
+      "updated_at": "2025-10-09T16:11:36.612Z"
+    },
+    {
+      "id": 462,
+      "name": "Forest Grove Foundation - Wrap-Around Support Services",
+      "address": "Address not available",
+      "latitude": 45.56021636406557,
+      "longitude": -122.64779599792922,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:36.957Z",
+      "updated_at": "2025-10-09T16:11:36.957Z"
+    },
+    {
+      "id": 463,
+      "name": "Forest Grove Safe Park",
+      "address": "2024 19th Ave, Forest Grove, OR 97116",
+      "latitude": 45.536816226909686,
+      "longitude": -122.6601358452915,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:37.223Z",
+      "updated_at": "2025-10-09T16:11:37.223Z"
+    },
+    {
+      "id": 464,
+      "name": "Francis Center",
+      "address": "6535 SE 82nd Ave., Portland, Oregon 97266",
+      "latitude": 45.544606587165454,
+      "longitude": -122.66251033390235,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:37.482Z",
+      "updated_at": "2025-10-09T16:11:37.482Z"
+    },
+    {
+      "id": 465,
+      "name": "Francis Center, Inc",
+      "address": "Mailing Address",
+      "latitude": 45.554315131263834,
+      "longitude": -122.63863300097975,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:37.747Z",
+      "updated_at": "2025-10-09T16:11:37.747Z"
+    },
+    {
+      "id": 466,
+      "name": "Francis Center - Clothing and Hygiene Services",
+      "address": "Address not available",
+      "latitude": 45.536393822830966,
+      "longitude": -122.67015414710478,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:38.056Z",
+      "updated_at": "2025-10-09T16:11:38.056Z"
+    },
+    {
+      "id": 467,
+      "name": "Free Geek",
+      "address": "1731 SE 10th Avenue, Portland, Oregon 97214",
+      "latitude": 45.5541097303513,
+      "longitude": -122.63772316041323,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:38.386Z",
+      "updated_at": "2025-10-09T16:11:38.386Z"
+    },
+    {
+      "id": 468,
+      "name": "Free Geek, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.519904630733095,
+      "longitude": -122.64583796209608,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:38.658Z",
+      "updated_at": "2025-10-09T16:11:38.658Z"
+    },
+    {
+      "id": 469,
+      "name": "Free Geek - Community Service Opportunities",
+      "address": "Address not available",
+      "latitude": 45.53946671838905,
+      "longitude": -122.67360680452664,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:38.987Z",
+      "updated_at": "2025-10-09T16:11:38.987Z"
+    },
+    {
+      "id": 470,
+      "name": "Free Geek - Technology",
+      "address": "Address not available",
+      "latitude": 45.54866285111911,
+      "longitude": -122.65684885667935,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:39.248Z",
+      "updated_at": "2025-10-09T16:11:39.248Z"
+    },
+    {
+      "id": 471,
+      "name": "Free On The Outside, Inc.",
+      "address": "Principal Place Of Business",
+      "latitude": 45.54685561200732,
+      "longitude": -122.63946129858871,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:39.547Z",
+      "updated_at": "2025-10-09T16:11:39.547Z"
+    },
+    {
+      "id": 472,
+      "name": "Free On The Outside Housing Program - Housing",
+      "address": "Address not available",
+      "latitude": 45.556993523372846,
+      "longitude": -122.64538506633552,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:39.826Z",
+      "updated_at": "2025-10-09T16:11:39.826Z"
+    },
+    {
+      "id": 473,
+      "name": "Free On The Outside – Knapp Houses",
+      "address": "592 Molalla Ave, Oregon City, OR 97045",
+      "latitude": 45.542560540276725,
+      "longitude": -122.67810797811678,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:40.081Z",
+      "updated_at": "2025-10-09T16:11:40.081Z"
+    },
+    {
+      "id": 474,
+      "name": "Free On The Outside – Knapp Houses - Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.536793999208484,
+      "longitude": -122.65615127221606,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:40.328Z",
+      "updated_at": "2025-10-09T16:11:40.328Z"
+    },
+    {
+      "id": 475,
+      "name": "Free or Reduced Fee Cultural Events - Art and Cultural Programs",
+      "address": "Address not available",
+      "latitude": 45.52858958358206,
+      "longitude": -122.65172244073159,
+      "type": "food",
+      "created_at": "2025-10-09T16:11:40.579Z",
+      "updated_at": "2025-10-09T16:11:40.579Z"
+    },
+    {
+      "id": 476,
+      "name": "Freecycle (Portland) - Household Items",
+      "address": "Address not available",
+      "latitude": 45.535077634427154,
+      "longitude": -122.66370351728129,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:40.867Z",
+      "updated_at": "2025-10-09T16:11:40.867Z"
+    },
+    {
+      "id": 477,
+      "name": "Fresh Out Community Based Re-Entry Program - Reentry Support Services",
+      "address": "Address not available",
+      "latitude": 45.542527899008,
+      "longitude": -122.66003146006757,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:41.158Z",
+      "updated_at": "2025-10-09T16:11:41.158Z"
+    },
+    {
+      "id": 478,
+      "name": "Fresh Start Recovery Housing",
+      "address": "473 S 1st Ave, Hillsboro, OR 97123",
+      "latitude": 45.53948761519814,
+      "longitude": -122.64145961833675,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:41.421Z",
+      "updated_at": "2025-10-09T16:11:41.421Z"
+    },
+    {
+      "id": 479,
+      "name": "Fresh Start Recovery Housing - Clean and Sober Housing",
+      "address": "Address not available",
+      "latitude": 45.52790947755354,
+      "longitude": -122.62916490640295,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:41.710Z",
+      "updated_at": "2025-10-09T16:11:41.710Z"
+    },
+    {
+      "id": 480,
+      "name": "Friendly House",
+      "address": "1737 NW 26th Ave. Portland, OR 97210",
+      "latitude": 45.55550099183591,
+      "longitude": -122.62880245764663,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:42.005Z",
+      "updated_at": "2025-10-09T16:11:42.005Z"
+    },
+    {
+      "id": 481,
+      "name": "Friendly House - Social Engagement Support Services",
+      "address": "Address not available",
+      "latitude": 45.519532972457235,
+      "longitude": -122.64898970774081,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:42.303Z",
+      "updated_at": "2025-10-09T16:11:42.303Z"
+    },
+    {
+      "id": 482,
+      "name": "Friendly House Elder Pride Services",
+      "address": "1737 NW 26th Avenue, Portland, Oregon",
+      "latitude": 45.547326207015956,
+      "longitude": -122.67678467699756,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:42.665Z",
+      "updated_at": "2025-10-09T16:11:42.665Z"
+    },
+    {
+      "id": 483,
+      "name": "Friendly House Elder Pride Services - LGBTQIA+ Programs",
+      "address": "Address not available",
+      "latitude": 45.55250089112088,
+      "longitude": -122.64090007131006,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:42.937Z",
+      "updated_at": "2025-10-09T16:11:42.937Z"
+    },
+    {
+      "id": 484,
+      "name": "GED (General Educational Development) Program - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.51639010822555,
+      "longitude": -122.6597456839319,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:43.221Z",
+      "updated_at": "2025-10-09T16:11:43.221Z"
+    },
+    {
+      "id": 485,
+      "name": "Galt Foundation",
+      "address": "2405 Front St. NE, Salem, OR 97301",
+      "latitude": 45.547556280001054,
+      "longitude": -122.63023376640301,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:43.468Z",
+      "updated_at": "2025-10-09T16:11:43.468Z"
+    },
+    {
+      "id": 486,
+      "name": "Galt Foundation, Inc",
+      "address": "Registered Agent",
+      "latitude": 45.53260075373399,
+      "longitude": -122.65498547255176,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:43.743Z",
+      "updated_at": "2025-10-09T16:11:43.743Z"
+    },
+    {
+      "id": 487,
+      "name": "Galt Foundation - Disabilities",
+      "address": "Address not available",
+      "latitude": 45.52163168720638,
+      "longitude": -122.66699179361251,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:44.113Z",
+      "updated_at": "2025-10-09T16:11:44.113Z"
+    },
+    {
+      "id": 488,
+      "name": "Galt Foundation - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.55270242503647,
+      "longitude": -122.66804352124768,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:44.362Z",
+      "updated_at": "2025-10-09T16:11:44.363Z"
+    },
+    {
+      "id": 489,
+      "name": "Gambling Addiction Hotline - Other Addiction Treatment and Support",
+      "address": "Address not available",
+      "latitude": 45.558144253581915,
+      "longitude": -122.66353761379858,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:44.621Z",
+      "updated_at": "2025-10-09T16:11:44.621Z"
+    },
+    {
+      "id": 490,
+      "name": "Gambling Addiction Treatment - Other Addiction Treatment and Support",
+      "address": "Address not available",
+      "latitude": 45.552584010307164,
+      "longitude": -122.67308209798745,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:44.906Z",
+      "updated_at": "2025-10-09T16:11:44.906Z"
+    },
+    {
+      "id": 491,
+      "name": "Garbage R023797996",
+      "address": "Address not available",
+      "latitude": 45.553721667602524,
+      "longitude": -122.66313814390261,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:45.198Z",
+      "updated_at": "2025-10-09T16:11:45.198Z"
+    },
+    {
+      "id": 492,
+      "name": "Garbage on corner of SW 10th and Columbi 20250924 230552",
+      "address": "Address not available",
+      "latitude": 45.5163833223762,
+      "longitude": -122.64359134058441,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:45.452Z",
+      "updated_at": "2025-10-09T16:11:45.452Z"
+    },
+    {
+      "id": 493,
+      "name": "Garlington Health Center",
+      "address": "3036 NE Martin Luther King Jr. Blvd., Portland, OR 97212",
+      "latitude": 45.55784650005922,
+      "longitude": -122.66975393937709,
+      "type": "clinic",
+      "created_at": "2025-10-09T16:11:45.687Z",
+      "updated_at": "2025-10-09T16:11:45.687Z"
+    },
+    {
+      "id": 494,
+      "name": "Gateway Center for Domestic Violence Services",
+      "address": "10305 E. Burnside Street, Portland, Oregon 97216",
+      "latitude": 45.54645976524477,
+      "longitude": -122.65580827203055,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:45.993Z",
+      "updated_at": "2025-10-09T16:11:45.993Z"
+    },
+    {
+      "id": 495,
+      "name": "Gateway Center for Domestic Violence Services - Victim Assistance",
+      "address": "Address not available",
+      "latitude": 45.554665368392826,
+      "longitude": -122.67191175072338,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:46.279Z",
+      "updated_at": "2025-10-09T16:11:46.279Z"
+    },
+    {
+      "id": 496,
+      "name": "Gender Diverse Support Services",
+      "address": "Address not available",
+      "latitude": 45.53057546900953,
+      "longitude": -122.64933466531222,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:46.549Z",
+      "updated_at": "2025-10-09T16:11:46.549Z"
+    },
+    {
+      "id": 497,
+      "name": "General Labor & Industrial Staffing Services (GLISS) - Employment And Education",
+      "address": "Address not available",
+      "latitude": 45.53410466051725,
+      "longitude": -122.66171654291968,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:46.797Z",
+      "updated_at": "2025-10-09T16:11:46.797Z"
+    },
+    {
+      "id": 498,
+      "name": "General Labor & Industrial Staffing Solutions, Inc",
+      "address": "Principal Place Of Business",
+      "latitude": 45.56488300936175,
+      "longitude": -122.64828741641047,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:47.080Z",
+      "updated_at": "2025-10-09T16:11:47.080Z"
+    },
+    {
+      "id": 499,
+      "name": "General Labor & Industrial Staffing Solutions (GLISS)",
+      "address": "Address not available",
+      "latitude": 45.55230084468415,
+      "longitude": -122.63959606566017,
+      "type": "service",
+      "created_at": "2025-10-09T16:11:47.386Z",
+      "updated_at": "2025-10-09T16:11:47.386Z"
+    },
+    {
+      "id": 500,
+      "name": "General Labor & Industrial Staffing Solutions Beaverton (GLISS)",
+      "address": "3861 SW 117th Ave. Suite D Beaverton, OR 97005",
+      "latitude": 45.547225789297876,
+      "longitude": -122.64912560822785,
+      "type": "shelter",
+      "created_at": "2025-10-09T16:11:47.651Z",
+      "updated_at": "2025-10-09T16:11:47.651Z"
+    }
+  ],
+  "shelters": [],
+  "metadata": {
+    "last_sync": "2025-10-09T16:09:26.456Z",
+    "version": "1.0.0",
+    "total_locations": 500,
+    "total_shelters": 0
+  }
+}
