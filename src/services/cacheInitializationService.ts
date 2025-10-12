@@ -62,6 +62,7 @@ interface CacheData {
 class CacheInitializationService {
   private initialized = false;
   private readonly CACHE_KEY = 'cache_data';
+  private readonly CACHE_VERSION = '2.0.0'; // Increment to invalidate old caches
   private readonly CACHE_MAX_AGE_HOURS = 24;
 
   /**
@@ -83,17 +84,26 @@ class CacheInitializationService {
 
       if (cachedData && this.isCacheFresh(cachedData)) {
         console.log('✅ Using fresh cache from localStorage');
-        this.initialized = true;
-        return {
-          success: true,
-          message: 'Fresh cache loaded from localStorage',
-          source: 'database',
-          stats: {
-            locations: cachedData.metadata.total_locations,
-            shelters: cachedData.metadata.total_shelters,
-            lastSync: cachedData.metadata.last_sync
-          }
-        };
+
+        // Verify we have enough data
+        if (cachedData.locations.length < 400) {
+          console.warn(`⚠️ Cache has only ${cachedData.locations.length} locations (expected > 400), reloading from file...`);
+          // Clear stale cache
+          localStorage.removeItem(this.CACHE_KEY);
+          // Fall through to reload from file
+        } else {
+          this.initialized = true;
+          return {
+            success: true,
+            message: 'Fresh cache loaded from localStorage',
+            source: 'database',
+            stats: {
+              locations: cachedData.metadata.total_locations,
+              shelters: cachedData.metadata.total_shelters,
+              lastSync: cachedData.metadata.last_sync
+            }
+          };
+        }
       }
 
       // Step 2: Try to load from public cache file
@@ -131,9 +141,15 @@ class CacheInitializationService {
   private loadFromLocalStorage(): CacheData | null {
     try {
       const cached = localStorage.getItem(this.CACHE_KEY);
-      if (!cached) return null;
-      return JSON.parse(cached);
-    } catch {
+      if (!cached) {
+        console.log('📦 No cache data in localStorage');
+        return null;
+      }
+      const data = JSON.parse(cached);
+      console.log(`📦 Found cache in localStorage: ${data.locations?.length || 0} locations, version ${data.metadata?.version || 'unknown'}`);
+      return data;
+    } catch (error) {
+      console.error('Failed to load cache from localStorage:', error);
       return null;
     }
   }
@@ -153,6 +169,12 @@ class CacheInitializationService {
    * Check if cache is fresh
    */
   private isCacheFresh(data: CacheData): boolean {
+    // Check version first - invalidate if version doesn't match
+    if (data.metadata.version !== this.CACHE_VERSION) {
+      console.log(`🔄 Cache version mismatch (${data.metadata.version} vs ${this.CACHE_VERSION}), invalidating...`);
+      return false;
+    }
+
     const lastSync = new Date(data.metadata.last_sync);
     const now = new Date();
     const hoursDiff = (now.getTime() - lastSync.getTime()) / (1000 * 60 * 60);
@@ -170,12 +192,61 @@ class CacheInitializationService {
         throw new Error(`Failed to fetch cache file: ${response.status}`);
       }
 
-      const cacheData: CacheData = await response.json();
+      const rawData = await response.json();
+
+      // Handle both cache formats: with metadata or just locations array
+      const locations: Location[] = rawData.locations || rawData.facilities || [];
+      const shelters = locations.filter((loc: Location) => loc.type === 'shelter');
+
+      // Build proper CacheData structure
+      const cacheData: CacheData = {
+        locations: locations,
+        shelters: shelters.map((loc: Location, idx: number) => ({
+          id: loc.id || idx + 1,
+          location_id: loc.id || idx + 1,
+          name: loc.name,
+          capacity: 50, // Default capacity
+          available_beds: 10, // Default available
+          occupied_beds: 40, // Default occupied
+          services: JSON.stringify(['shelter']),
+          phone: '',
+          hours: '24/7',
+          eligibility: 'All individuals',
+          metrics: JSON.stringify({ average_stay_days: 30, success_rate: 0.70 }),
+          last_updated: loc.updated_at || new Date().toISOString(),
+          created_at: loc.created_at || new Date().toISOString()
+        })),
+        metadata: rawData.metadata || {
+          last_sync: new Date().toISOString(),
+          version: this.CACHE_VERSION,
+          total_locations: locations.length,
+          total_shelters: shelters.length
+        }
+      };
+
+      // Update metadata with correct version and current timestamp
+      cacheData.metadata.version = this.CACHE_VERSION;
+      cacheData.metadata.last_sync = new Date().toISOString();
+      cacheData.metadata.total_locations = locations.length;
+      cacheData.metadata.total_shelters = shelters.length;
 
       // Save to localStorage
       this.saveToLocalStorage(cacheData);
 
-      console.log(`✅ Loaded ${cacheData.metadata.total_locations} locations and ${cacheData.metadata.total_shelters} shelters from file`);
+      console.log(`✅ Loaded ${locations.length} locations (${shelters.length} shelters) from file`);
+
+      // Log breakdown by type
+      const typeBreakdown: Record<string, number> = {};
+      locations.forEach((loc: Location) => {
+        typeBreakdown[loc.type] = (typeBreakdown[loc.type] || 0) + 1;
+      });
+      console.log('📊 Location types:', typeBreakdown);
+
+      // Count geocoded locations
+      const geocoded = locations.filter((loc: Location) =>
+        loc.latitude !== 0 && loc.longitude !== 0
+      ).length;
+      console.log(`📍 Geocoded: ${geocoded}/${locations.length} (${Math.round(geocoded/locations.length*100)}%)`);
 
       return {
         success: true,

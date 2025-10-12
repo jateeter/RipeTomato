@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HMIS Cache Status Monitor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .header p {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .status-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .status-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .status-card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .status-icon {
+      font-size: 2.5em;
+      margin-right: 15px;
+    }
+
+    .status-title {
+      font-size: 0.9em;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .status-value {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #667eea;
+      margin: 10px 0;
+    }
+
+    .status-subtitle {
+      font-size: 0.9em;
+      color: #999;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    .status-indicator.green {
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+    }
+
+    .status-indicator.yellow {
+      background: #f59e0b;
+      box-shadow: 0 0 10px #f59e0b;
+    }
+
+    .status-indicator.red {
+      background: #ef4444;
+      box-shadow: 0 0 10px #ef4444;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .cache-details {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    .cache-details h2 {
+      margin-bottom: 20px;
+      color: #667eea;
+      display: flex;
+      align-items: center;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-weight: 500;
+      color: #666;
+    }
+
+    .detail-value {
+      color: #333;
+      font-weight: 600;
+    }
+
+    .facility-list {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .facility-list h2 {
+      margin-bottom: 20px;
+      color: #667eea;
+      position: sticky;
+      top: 0;
+      background: white;
+      padding-bottom: 10px;
+      z-index: 10;
+    }
+
+    .facility-item {
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: #f9fafb;
+      border-left: 4px solid #667eea;
+      transition: background 0.3s ease;
+    }
+
+    .facility-item:hover {
+      background: #f3f4f6;
+    }
+
+    .facility-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .facility-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.85em;
+      color: #666;
+      flex-wrap: wrap;
+    }
+
+    .facility-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .refresh-button {
+      background: white;
+      color: #667eea;
+      border: 2px solid white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .refresh-button:hover {
+      background: #667eea;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .refresh-button:active {
+      transform: scale(0.95);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: white;
+      font-size: 1.2em;
+    }
+
+    .error {
+      background: #fee;
+      color: #c00;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border: 2px solid #fcc;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transition: width 0.3s ease;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .badge.warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge.info {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.8em;
+      }
+
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-value {
+        font-size: 2em;
+      }
+    }
+
+    /* Scrollbar styling */
+    .facility-list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .facility-list::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .facility-list::-webkit-scrollbar-thumb {
+      background: #667eea;
+      border-radius: 10px;
+    }
+
+    .facility-list::-webkit-scrollbar-thumb:hover {
+      background: #764ba2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🏥 HMIS Cache Status Monitor</h1>
+      <p>Real-time monitoring of Idaho HMIS facility cache</p>
+    </div>
+
+    <div id="loading" class="loading">
+      <div>⏳ Loading cache data...</div>
+    </div>
+
+    <div id="content" style="display: none;">
+      <!-- Status Cards -->
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-card-header">
+            <div class="status-icon">🏢</div>
+            <div class="status-title">Total Facilities</div>
+          </div>
+          <div class="status-value" id="totalFacilities">0</div>
+          <div class="status-subtitle">Cached facilities</div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-header">
+            <div class="status-icon">📍</div>
+            <div class="status-title">With Coordinates</div>
+          </div>
+          <div class="status-value" id="withCoordinates">0</div>
+          <div class="status-subtitle">
+            <span id="coordinatePercent">0</span>% geocoded
+            <div class="progress-bar">
+              <div class="progress-fill" id="coordinateProgress" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-header">
+            <div class="status-icon">🗂️</div>
+            <div class="status-title">Cache Status</div>
+          </div>
+          <div class="status-value" style="font-size: 1.5em;">
+            <span class="status-indicator green" id="cacheIndicator"></span>
+            <span id="cacheStatus">Active</span>
+          </div>
+          <div class="status-subtitle">Last updated: <span id="lastUpdated">-</span></div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-header">
+            <div class="status-icon">📊</div>
+            <div class="status-title">Data Size</div>
+          </div>
+          <div class="status-value" id="dataSize" style="font-size: 1.8em;">0 KB</div>
+          <div class="status-subtitle">Cache file size</div>
+        </div>
+      </div>
+
+      <!-- Cache Details -->
+      <div class="cache-details">
+        <h2>📋 Cache Details</h2>
+        <div class="detail-row">
+          <span class="detail-label">Cache File Location</span>
+          <span class="detail-value">/public/cache-data.json</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Data Source</span>
+          <span class="detail-value">HMIS OpenCommons API</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Geocoding Service</span>
+          <span class="detail-value">Nominatim (OpenStreetMap)</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Cache Generation</span>
+          <span class="detail-value" id="cacheGeneration">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Facilities with Phone</span>
+          <span class="detail-value" id="withPhone">0</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Facilities with Email</span>
+          <span class="detail-value" id="withEmail">0</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Unique Cities</span>
+          <span class="detail-value" id="uniqueCities">0</span>
+        </div>
+      </div>
+
+      <!-- Facility List -->
+      <div class="facility-list">
+        <h2>📍 Cached Facilities</h2>
+        <div id="facilityListContent"></div>
+      </div>
+
+      <br>
+      <button class="refresh-button" onclick="loadCacheData()">🔄 Refresh Data</button>
+    </div>
+
+    <div id="error" style="display: none;"></div>
+  </div>
+
+  <script>
+    async function loadCacheData() {
+      const loading = document.getElementById('loading');
+      const content = document.getElementById('content');
+      const errorDiv = document.getElementById('error');
+
+      loading.style.display = 'block';
+      content.style.display = 'none';
+      errorDiv.style.display = 'none';
+
+      try {
+        // Load cache data
+        const response = await fetch('/cache-data.json');
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Calculate statistics (handle both 'facilities' and 'locations' keys)
+        const facilities = data.facilities || data.locations || [];
+        const totalFacilities = facilities.length;
+        const withCoordinates = facilities.filter(f => f.latitude && f.longitude).length;
+        const coordinatePercent = totalFacilities > 0
+          ? Math.round((withCoordinates / totalFacilities) * 100)
+          : 0;
+
+        const withPhone = facilities.filter(f => f.phone).length;
+        const withEmail = facilities.filter(f => f.email).length;
+
+        // Extract city from address if not in separate field
+        const cities = new Set();
+        facilities.forEach(f => {
+          if (f.city) cities.add(f.city);
+          else if (f.address && f.address.includes(',')) {
+            const parts = f.address.split(',');
+            if (parts.length >= 2) cities.add(parts[parts.length - 2].trim());
+          }
+        });
+        const uniqueCities = cities.size;
+
+        // Get file size
+        const contentLength = response.headers.get('content-length');
+        const dataSize = contentLength
+          ? (parseInt(contentLength) / 1024).toFixed(2) + ' KB'
+          : 'Unknown';
+
+        // Update UI
+        document.getElementById('totalFacilities').textContent = totalFacilities.toLocaleString();
+        document.getElementById('withCoordinates').textContent = withCoordinates.toLocaleString();
+        document.getElementById('coordinatePercent').textContent = coordinatePercent;
+        document.getElementById('coordinateProgress').style.width = coordinatePercent + '%';
+        document.getElementById('dataSize').textContent = dataSize;
+        document.getElementById('withPhone').textContent = withPhone.toLocaleString();
+        document.getElementById('withEmail').textContent = withEmail.toLocaleString();
+        document.getElementById('uniqueCities').textContent = uniqueCities;
+
+        // Update cache status
+        const lastUpdated = data.metadata?.generated || 'Unknown';
+        document.getElementById('lastUpdated').textContent = new Date(lastUpdated).toLocaleString();
+        document.getElementById('cacheGeneration').textContent = new Date(lastUpdated).toLocaleString();
+
+        // Update status indicator based on data freshness
+        const indicator = document.getElementById('cacheIndicator');
+        const status = document.getElementById('cacheStatus');
+        const generatedDate = new Date(lastUpdated);
+        const hoursSinceUpdate = (Date.now() - generatedDate.getTime()) / (1000 * 60 * 60);
+
+        if (hoursSinceUpdate < 24) {
+          indicator.className = 'status-indicator green';
+          status.textContent = 'Fresh';
+        } else if (hoursSinceUpdate < 168) { // 7 days
+          indicator.className = 'status-indicator yellow';
+          status.textContent = 'Active';
+        } else {
+          indicator.className = 'status-indicator red';
+          status.textContent = 'Stale';
+        }
+
+        // Render facility list
+        renderFacilityList(facilities);
+
+        loading.style.display = 'none';
+        content.style.display = 'block';
+
+      } catch (error) {
+        console.error('Error loading cache data:', error);
+        loading.style.display = 'none';
+        errorDiv.style.display = 'block';
+        errorDiv.className = 'error';
+        errorDiv.innerHTML = `
+          <strong>⚠️ Error loading cache data:</strong><br>
+          ${error.message}<br><br>
+          <em>Make sure the cache file exists at /public/cache-data.json and the server is running.</em>
+        `;
+      }
+    }
+
+    function renderFacilityList(facilities) {
+      const container = document.getElementById('facilityListContent');
+
+      if (facilities.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #999;">No facilities found in cache.</p>';
+        return;
+      }
+
+      // Sort facilities by name
+      const sortedFacilities = [...facilities].sort((a, b) =>
+        (a.name || '').localeCompare(b.name || '')
+      );
+
+      container.innerHTML = sortedFacilities.map(facility => {
+        const hasCoords = facility.latitude && facility.longitude;
+        const hasPhone = !!facility.phone;
+        const hasEmail = !!facility.email;
+
+        return `
+          <div class="facility-item">
+            <div class="facility-name">
+              ${facility.name || 'Unnamed Facility'}
+              ${hasCoords ? '<span class="badge success">Geocoded</span>' : '<span class="badge warning">No Coords</span>'}
+            </div>
+            <div class="facility-meta">
+              ${facility.address ? `<span>📍 ${facility.address}</span>` : ''}
+              ${facility.city ? `<span>🏙️ ${facility.city}</span>` : ''}
+              ${facility.state ? `<span>📌 ${facility.state}</span>` : ''}
+              ${facility.zipcode ? `<span>🔢 ${facility.zipcode}</span>` : ''}
+            </div>
+            <div class="facility-meta" style="margin-top: 5px;">
+              ${hasPhone ? `<span>📞 ${facility.phone}</span>` : ''}
+              ${hasEmail ? `<span>📧 ${facility.email}</span>` : ''}
+              ${hasCoords ? `<span class="badge info">Lat: ${facility.latitude?.toFixed(4)}, Lon: ${facility.longitude?.toFixed(4)}</span>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Auto-refresh every 5 minutes
+    setInterval(loadCacheData, 5 * 60 * 1000);
+
+    // Load data on page load
+    loadCacheData();
+  </script>
+</body>
+</html>
