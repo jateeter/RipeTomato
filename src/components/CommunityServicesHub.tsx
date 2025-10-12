@@ -14,6 +14,10 @@ import ServicesManager from './ServicesManager';
 import ClientStatusDashboard from './ClientStatusDashboard';
 import { ClientServicesDashboard } from './ClientServicesDashboard';
 import { OrganizationDashboard } from './OrganizationDashboard';
+import { WeatherWidget } from './WeatherWidget';
+import { WeatherForecastWidget } from './WeatherForecastWidget';
+import { WeatherAlertIndicator } from './WeatherAlertIndicator';
+import TransportationManagement from './TransportationManagement';
 
 interface CommunityServicesHubProps {
   initialUserRole?: 'manager' | 'client' | 'staff';
@@ -57,6 +61,8 @@ export const CommunityServicesHub: React.FC<CommunityServicesHubProps> = ({
         return renderSanitationService();
       case 'transportation':
         return renderTransportationService();
+      case 'weather' as any:
+        return renderWeatherService();
       default:
         return <div className="p-6">Service not found</div>;
     }
@@ -340,56 +346,150 @@ export const CommunityServicesHub: React.FC<CommunityServicesHubProps> = ({
                 <div className="text-sm text-purple-800">Bikes Available</div>
               </div>
             </div>
-            <div className="text-center py-8 text-gray-500">
-              <div>📊 Transportation management interface would appear here</div>
-              <div className="text-sm mt-2">Fleet management, route planning, voucher system</div>
-            </div>
+            <TransportationManagement />
           </div>
         </div>
       );
     }
   };
 
-  return (
-    <LayoutWithSidebar
-      userRole={userRole}
-      userId={userId}
-      activeService={activeService}
-      onServiceChange={handleServiceChange}
-    >
-      {renderMainContent()}
+  const renderWeatherService = () => {
+    return (
+      <div className="p-6">
+        <div className="space-y-6">
+          {/* Weather Overview */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <WeatherForecastWidget 
+                days={10}
+                compact={false}
+                showDetails={true}
+                className="h-full"
+              />
+            </div>
+            <div>
+              <WeatherWidget 
+                compact={false}
+                showAlerts={true}
+                showLocation={true}
+              />
+            </div>
+          </div>
+          
+          {/* Service Impact Analysis */}
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              Service Operations Impact
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-blue-50 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-blue-800 font-medium">🏠 Shelter Services</span>
+                  <span className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">Normal</span>
+                </div>
+                <p className="text-sm text-blue-700">
+                  Current weather conditions support normal shelter operations.
+                </p>
+              </div>
+              
+              <div className="bg-yellow-50 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-yellow-800 font-medium">🚌 Transportation</span>
+                  <span className="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Caution</span>
+                </div>
+                <p className="text-sm text-yellow-700">
+                  Monitor conditions for potential impacts to transportation services.
+                </p>
+              </div>
+              
+              <div className="bg-green-50 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-green-800 font-medium">🌳 Outdoor Events</span>
+                  <span className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">Clear</span>
+                </div>
+                <p className="text-sm text-green-700">
+                  Weather conditions are favorable for outdoor activities.
+                </p>
+              </div>
+            </div>
+          </div>
 
-      {/* Role Switcher for Demo */}
-      <div className="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg border p-4">
-        <div className="text-sm font-medium text-gray-700 mb-2">Demo: Switch Role</div>
-        <div className="flex space-x-2">
-          <button
-            onClick={() => setUserRole('manager')}
-            className={`px-3 py-1 text-xs rounded ${
-              userRole === 'manager' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
-          >
-            Manager
-          </button>
-          <button
-            onClick={() => setUserRole('client')}
-            className={`px-3 py-1 text-xs rounded ${
-              userRole === 'client' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
-          >
-            Client
-          </button>
-          <button
-            onClick={() => setUserRole('staff')}
-            className={`px-3 py-1 text-xs rounded ${
-              userRole === 'staff' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
-          >
-            Staff
-          </button>
+          {/* Weather Recommendations */}
+          <div className="bg-white rounded-lg shadow-sm border p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              Operational Recommendations
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-start space-x-3">
+                <span className="text-green-500 mt-1">✓</span>
+                <div>
+                  <p className="font-medium text-gray-900">Maintain Standard Operations</p>
+                  <p className="text-sm text-gray-600">Current weather supports normal service delivery</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-blue-500 mt-1">ℹ</span>
+                <div>
+                  <p className="font-medium text-gray-900">Monitor Evening Conditions</p>
+                  <p className="text-sm text-gray-600">Temperature may drop - prepare warming resources</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-orange-500 mt-1">⚠</span>
+                <div>
+                  <p className="font-medium text-gray-900">Weekend Weather Alert</p>
+                  <p className="text-sm text-gray-600">Potential precipitation forecasted - review backup plans</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </LayoutWithSidebar>
+    );
+  };
+
+  return (
+    <div data-testid="community-services-hub">
+      <LayoutWithSidebar
+        userRole={userRole}
+        userId={userId}
+        activeService={activeService}
+        onServiceChange={handleServiceChange}
+      >
+        {renderMainContent()}
+
+        {/* Role Switcher for Demo */}
+        <div className="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg border p-4">
+          <div className="text-sm font-medium text-gray-700 mb-2">Demo: Switch Role</div>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setUserRole('manager')}
+              className={`px-3 py-1 text-xs rounded ${
+                userRole === 'manager' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+            >
+              Manager
+            </button>
+            <button
+              onClick={() => setUserRole('client')}
+              className={`px-3 py-1 text-xs rounded ${
+                userRole === 'client' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+            >
+              Client
+            </button>
+            <button
+              onClick={() => setUserRole('staff')}
+              className={`px-3 py-1 text-xs rounded ${
+                userRole === 'staff' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+            >
+              Staff
+            </button>
+          </div>
+        </div>
+      </LayoutWithSidebar>
+    </div>
   );
 };
 
