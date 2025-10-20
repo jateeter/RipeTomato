@@ -27,7 +27,7 @@
     "qrcode": "^1.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "^0.0.0",
     "sql.js": "^1.13.0",
     "typescript": "^4.9.5",
     "uuid": "^11.1.0",
@@ -55,7 +55,14 @@
     "cache:help": "echo 'Cache Population CLI - Populates local database with shelter and location data'",
     "lint:deno": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task lint",
     "lint:deno:check": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task lint:check",
-    "lint:deno:fix": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task lint:fix"
+    "lint:deno:fix": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task lint:fix",
+    "test:deno": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task test",
+    "test:deno:unit": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task test:unit",
+    "test:deno:integration": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task test:integration",
+    "test:deno:coverage": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task test:coverage",
+    "test:deno:watch": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task test:watch",
+    "test:deno:all": "PATH=\"/Users/johnt/.deno/bin:$PATH\" deno task test:all",
+    "test:all": "npm run test && npm run test:deno:all && npm run test:e2e"
   },
   "eslintConfig": {
     "extends": [

@@ -4,10 +4,22 @@
     "lint:check": "deno lint src/utils/ src/types/ --ext=ts",
     "lint:fix": "deno lint src/utils/ src/types/ --ext=ts --fix",
     "lint:all": "deno lint src/ --ext=ts,tsx,js,jsx --quiet",
-    "fmt": "deno fmt src/utils/ src/types/"
+    "fmt": "deno fmt src/utils/ src/types/",
+    "test": "deno test --allow-read --allow-write --allow-env --allow-net tests/",
+    "test:unit": "deno test --allow-read --allow-env tests/unit/",
+    "test:integration": "deno test --allow-read --allow-write --allow-env --allow-net tests/integration/",
+    "test:coverage": "deno test --allow-read --allow-write --allow-env --allow-net --coverage=coverage/ tests/",
+    "test:watch": "deno test --allow-read --allow-write --allow-env --allow-net --watch tests/",
+    "test:summary": "deno coverage coverage/ --lcov --output=coverage/lcov.info",
+    "test:all": "deno task test:unit && deno task test:integration && deno task test:coverage",
+    "cache": "deno cache --reload tests/**/*.test.ts"
+  },
+  "test": {
+    "include": ["tests/**/*.test.ts"],
+    "exclude": ["tests/**/*.skip.ts", "node_modules/"]
   },
   "lint": {
-    "include": ["src/utils/", "src/types/"],
+    "include": ["src/utils/", "src/types/", "tests/"],
     "exclude": ["node_modules/", "build/", "dist/", "coverage/", "src/**/*.test.ts", "src/**/*.test.tsx", "src/components/", "src/services/"],
     "rules": {
       "tags": ["recommended"],
@@ -15,7 +27,7 @@
     }
   },
   "fmt": {
-    "include": ["src/utils/", "src/types/"],
+    "include": ["src/utils/", "src/types/", "tests/"],
     "exclude": ["node_modules/", "build/", "dist/", "coverage/", "src/components/", "src/services/"],
     "useTabs": false,
     "lineWidth": 100,
@@ -23,5 +35,20 @@
     "semiColons": true,
     "singleQuote": false,
     "proseWrap": "preserve"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "deno.window", "dom", "dom.iterable", "dom.asynciterable"],
+    "strict": true,
+    "noImplicitAny": false,
+    "allowJs": true
+  },
+  "imports": {
+    "std/": "https://deno.land/std@0.224.0/",
+    "std/testing": "https://deno.land/std@0.224.0/testing/mod.ts",
+    "std/assert": "https://deno.land/std@0.224.0/assert/mod.ts",
+    "std/path": "https://deno.land/std@0.224.0/path/mod.ts",
+    "std/fs": "https://deno.land/std@0.224.0/fs/mod.ts",
+    "std/http": "https://deno.land/std@0.224.0/http/mod.ts",
+    "mock": "https://deno.land/x/mock@0.15.2/mod.ts"
   }
 }
