@@ -1,0 +1,48 @@
+# Idaho Events - Docker Compose Configuration (Development)
+# Development environment with hot-reload
+
+version: '3.8'
+
+services:
+  # Development application service
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: idaho-events:dev
+    container_name: idaho-events-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"  # React dev server
+      - "8080:8080"  # Proxy server
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true  # For hot-reload in Docker
+      - WATCHPACK_POLLING=true
+      - TZ=America/Boise
+    volumes:
+      # Mount source code for hot-reload
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./cypress:/app/cypress
+      - ./tests:/app/tests
+      # Don't mount node_modules
+      - /app/node_modules
+    networks:
+      - idaho-events-dev-network
+    stdin_open: true  # Keep STDIN open for React
+    tty: true         # Allocate TTY
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - "com.idaho-events.description=Idaho Events Development Server"
+      - "com.idaho-events.environment=development"
+
+networks:
+  idaho-events-dev-network:
+    driver: bridge
+    name: idaho-events-dev-network

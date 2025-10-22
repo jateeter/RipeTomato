@@ -1,0 +1,47 @@
+# Idaho Events - Docker Compose Configuration (Production)
+# Deploy application with all services
+
+version: '3.8'
+
+services:
+  # Main application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: idaho-events:latest
+    container_name: idaho-events-app
+    restart: unless-stopped
+    ports:
+      - "80:80"      # Frontend (Nginx)
+      - "8080:8080"  # Proxy server
+    environment:
+      - NODE_ENV=production
+      - TZ=America/Boise
+    volumes:
+      - app-data:/app/data
+      - app-logs:/var/log/nginx
+    networks:
+      - idaho-events-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.idaho-events.description=Idaho Events Main Application"
+      - "com.idaho-events.version=1.0.0"
+
+networks:
+  idaho-events-network:
+    driver: bridge
+    name: idaho-events-network
+
+volumes:
+  app-data:
+    name: idaho-events-data
+    driver: local
+  app-logs:
+    name: idaho-events-logs
+    driver: local

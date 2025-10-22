@@ -1,0 +1,78 @@
+# Idaho Events - Docker Ignore File
+# Excludes unnecessary files from Docker build context
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+tests/__snapshots__/
+cypress/videos/
+cypress/screenshots/
+*.test.ts
+*.test.tsx
+*.test.js
+*.spec.ts
+*.spec.tsx
+*.spec.js
+
+# Production build
+build/
+dist/
+
+# Development
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+*.md
+!README.md
+
+# Documentation
+docs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+debug-*.js
+test-*.js
+test-*.html
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+
+# Deno
+.deno/
+
+# Misc
+*.bak
+*.orig
